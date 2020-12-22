@@ -1,0 +1,53 @@
+<mat-card class="home mat-elevation-z3">
+    <mat-card-title class="title">
+        {{ event.league.name }}
+    </mat-card-title>
+    <mat-card-subtitle class="subtitle">
+        {{ event.stringedGameWithRedcardsAndClock }}
+    </mat-card-subtitle>
+
+    <img src="https://assets.b365api.com/images/team/b/{{ event.home.image_id }}.png" alt="home_logo" />
+    X
+    <img src="https://assets.b365api.com/images/team/b/{{ event.away.image_id }}.png" alt="away_logo" />
+
+</mat-card>
+<mat-card class="home mat-elevation-z3">
+    <mat-card-title class="title">
+        {{ event.pointsSlices.minutesToShow_stringed }}
+    </mat-card-title>
+    <br>
+    <mat-card-title class="title">
+        {{ event.pointsSlices.powerIndexToShow_stringed }}
+    </mat-card-title>
+</mat-card>
+
+<mat-card class="home mat-elevation-z3">
+    <mat-card-title class="title">
+        Bem Vindo!
+    </mat-card-title>
+    <mat-card-subtitle class="subtitle">
+        eventoJSON: {{event | json}} => {{eventId}}
+    </mat-card-subtitle>
+    <ul>
+        <li *myFor="let n em ['C reate','R etrieve','U pdate','D elete']">{{ n }}</li>
+    </ul>
+</mat-card>
+
+
+<button mat-raised-button (click)="consolaTotalEvents()" color="primary">
+    Consola
+</button>
+
+<button mat-raised-button (click)="updateEvents()">
+    Update
+</button>
+
+<button mat-raised-button (click)="atribuirJogo()">
+    Atribuir
+</button>
+
+
+<!--
+
+    <p class="texto">{{ jogos | json }}</p>
+-->
