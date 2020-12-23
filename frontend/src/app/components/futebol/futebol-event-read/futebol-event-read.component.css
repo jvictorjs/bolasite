@@ -1,3 +1,42 @@
 button {
     margin: 20px 15px 0px 0px;
 }
+
+.eventNameAndLogos {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 12px;
+    border-radius: 8px;
+}
+
+.eventNameAndLogos .title {
+    font-size: 1.6rem;
+    font-weight: light;
+    line-height: 1.5;
+}
+
+.eventNameAndLogos .subtitle {
+    font-size: 1.3rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border-width: 3px;
+    border-color: black;
+    line-height: 2;
+    vertical-align: middle;
+}
+
+.eventStats {
+    display: flex;
+    font-size: 1.1rem;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    line-height: 1.5;
+}
+
+.eventStats .subtitle {
+    font-size: 1.3rem;
+}

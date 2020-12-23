@@ -1,6 +1,11 @@
 <mat-sidenav-container class="container">
-    <mat-sidenav class="sidenav" mode="side" opened
-    fixedInViewport="true" fixedTopGap="64">
+    <mat-sidenav class="sidenav" mode="side" 
+    opened="true"
+    fixedInViewport="true" fixedTopGap="64"
+    disableClose="false"
+    fixedBottomGap="0"
+    position="start"
+    >
         <mat-nav-list class="nav-list">
             <a mat-list-item routerLink="/">
                 <i class="material-icons"> <!--https://material.io/resources/icons/?style=baseline-->
@@ -22,6 +27,8 @@
             </a>
         </mat-nav-list>
     </mat-sidenav>
+
+
     <mat-sidenav-content class="content">
         <router-outlet>
 

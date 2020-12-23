@@ -28,6 +28,7 @@ export class FutebolEventReadComponent implements OnInit {
     this.route.data.subscribe(data => {
       console.log('data = ' + JSON.stringify(data))
     })
+    /*
     if (this.jogos.botVersion === 0) {
       console.log('this.jogos.botVersion === 0, coletando jogos...')
       this.futebolService.read().subscribe(jogos => {
@@ -37,8 +38,13 @@ export class FutebolEventReadComponent implements OnInit {
         this.futebolService.showMessage('Jogos carregados e evento atribuido')
       })
     }
+    */
     this.futebolService.readById(id).subscribe(event => {
-      this.event = event
+      console.log('chegou evento = '+JSON.stringify(event))
+      this.futebolService.event = event
+      this.event =  this.futebolService.event.result.inPlayEventsBSF_eventViewInfos[0]
+      this.futebolService.showMessage('Evento atribuido')
+      // console.log()
     })
 
   }
