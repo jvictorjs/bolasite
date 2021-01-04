@@ -16,3 +16,7 @@ table {
 .delete > i {
     color: #e35e6b;
 }
+
+.button {
+    margin-top: 15px;
+}

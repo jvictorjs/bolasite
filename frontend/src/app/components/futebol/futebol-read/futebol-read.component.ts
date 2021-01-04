@@ -27,6 +27,9 @@ export class FutebolReadComponent implements OnInit {
         this.jogos = jogos
         this.futebolService.jogos = jogos
         this.futebolService.showMessage('Jogos carregados')
+        if (this.jogos.result.inPlayEventsBSF_eventViewInfos.length === 0){
+          this.futebolService.showMessage('Sem jogos ao vivo no momento.')
+        }
       })
     }
   }
