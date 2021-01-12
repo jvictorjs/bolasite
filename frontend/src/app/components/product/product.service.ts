@@ -10,7 +10,7 @@ import { catchError, map } from 'rxjs/operators';
 })
 export class ProductService {
 
-  baseUrl = 'http://bolaback.jvictor.com.br/products' // PRODUÇÃO
+  baseUrl = 'https://angularcrudbackend.bolanarede.net.br/products' // PRODUÇÃO
   // baseUrl = 'http://localhost:3001/products' //DEV
 
   constructor(private snackBar: MatSnackBar, private http: HttpClient) { }

@@ -57,5 +57,17 @@
       "symbol": "!",
       "name": "exclamation mark"
     }
+  ],
+  "live_events": [
+    {
+      "id": 1,
+      "response": {
+        "botVersion": 113,
+        "result": {
+          "loopMsgText": "\nInPlay=8 (active=0) len=0 (v113) last:1s lim:3573",
+          "inPlayEventsBSF_eventViewInfos": []
+        }
+      }
+    }
   ]
 }

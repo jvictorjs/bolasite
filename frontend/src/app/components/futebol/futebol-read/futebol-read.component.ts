@@ -9,7 +9,7 @@ import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
 })
 export class FutebolReadComponent implements OnInit {
 
-  jogos: any = { botVersion: 0, result: { loopMsgText: '', inPlayEventsBSF_eventViewInfos: [] } };
+  jogos: any = { id: 0, response: { botVersion: 0, result: { loopMsgText: '', inPlayEventsBSF_eventViewInfos: [] } } };
   displayedColumns = ['id', 'clock','name', 'action']
 
   constructor(
@@ -21,13 +21,13 @@ export class FutebolReadComponent implements OnInit {
 
   ngOnInit(): void {
 
-    if (this.jogos.botVersion === 0) {
-      console.log('this.jogos.botVersion === 0, coletando jogos...')
+    if (this.jogos.response.botVersion === 0) {
+      console.log('this.jogos.response.botVersion === 0, coletando jogos...')
       this.futebolService.read().subscribe(jogos => {
         this.jogos = jogos
         this.futebolService.jogos = jogos
         this.futebolService.showMessage('Jogos carregados')
-        if (this.jogos.result.inPlayEventsBSF_eventViewInfos.length === 0){
+        if (this.jogos.response.result.inPlayEventsBSF_eventViewInfos.length === 0){
           this.futebolService.showMessage('Sem jogos ao vivo no momento.')
         }
       })
