@@ -16,11 +16,21 @@ export class FutebolService {
 
   constructor(private snackBar: MatSnackBar, private http: HttpClient) { }
 
-  showMessage(msg: string): void {
+  showMessage(msg: string, isError: boolean = false): void {
+    this.snackBar.open(msg, 'X', {
+      duration: 10000,
+      horizontalPosition: "center",
+      verticalPosition: "bottom",
+      panelClass: isError ? ['msg-error'] : ['msg-success']
+    });
+  }
+
+  showLoadingMessage(msg: string): void {
     this.snackBar.open(msg, 'X', {
       duration: 15000,
-      horizontalPosition: "right",
-      verticalPosition: "top"
+      horizontalPosition: "center",
+      verticalPosition: "bottom",
+      panelClass: ['msg-default']
     });
   }
   /*
@@ -31,7 +41,7 @@ export class FutebolService {
 
   read(): Observable<Object> {
     this.jogos = this.http.get<Object>(this.baseUrl)
-    console.log('jogos serão coletados');
+    console.log('jogos serão coletados', true);
     return this.jogos
   }
 

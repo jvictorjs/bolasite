@@ -9,14 +9,45 @@ table {
 .edit {
     margin-right: 10px;
 }
-.edit > i{
+
+.edit>i {
     color: #d9cd26;
 }
 
-.delete > i {
+.delete>i {
     color: #e35e6b;
+}
+
+.view>i {
+    color: #0d3fe2;
 }
 
 .button {
     margin-top: 15px;
+}
+
+i {
+    transition: transform .2s;
+}
+
+i:hover {
+    -ms-transform: scale(1.5);
+    /* IE 9 */
+    -webkit-transform: scale(1.5);
+    /* Safari 3-8 */
+    transform: scale(1.5);
+}
+
+.team-logo {
+    width: 1.6rem;
+    transition: transform 0.3s;
+    vertical-align: middle;
+}
+
+.team-logo:hover {
+    -ms-transform: scale(1.8);
+    /* IE 9 */
+    -webkit-transform: scale(1.8);
+    /* Safari 3-8 */
+    transform: scale(2.8);
 }
