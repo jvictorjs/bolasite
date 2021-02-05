@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FutebolService } from './../futebol.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-futebol-event-read',
@@ -10,21 +11,26 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class FutebolEventReadComponent implements OnInit {
 
   jogos: any = { botVersion: 0, result: { loopMsgText: '', inPlayEventsBSF_eventViewInfos: [] } };
-  event: any = { id: 0 }
+  event: any = { id: 0, league: { id: 0, name: '', cc: '' }, }
   eventId = 0;
 
   constructor(
     private futebolService: FutebolService,
     private router: Router,
     private route: ActivatedRoute,
-  ) {
-    this.futebolService.showMessage('Este é um jogo...')
+    private location: Location) {
+
+  }
+
+  navigationGoBack() {
+    this.location.back();
   }
 
   ngOnInit(): void {
-    this.futebolService.showMessage('Carregando jogos')
+    this.futebolService.showLoadingMessage('Loading event...')
     const id = +this.route.snapshot.paramMap.get('id')
     this.eventId = id;
+    this.showLoader()
     this.route.data.subscribe(data => {
       console.log('data = ' + JSON.stringify(data))
     })
@@ -39,22 +45,48 @@ export class FutebolEventReadComponent implements OnInit {
       })
     }
     */
+
+    /*
     this.futebolService.readById(id).subscribe(event => {
-      console.log('chegou evento = '+JSON.stringify(event))
+      console.log('chegou evento = ' + JSON.stringify(event))
       this.futebolService.event = event
-      this.event =  this.futebolService.event.result.inPlayEventsBSF_eventViewInfos[0]
-      this.futebolService.showMessage('Evento atribuido')
+      this.event = this.futebolService.event.result.inPlayEventsBSF_eventViewInfos[0]
+      this.futebolService.showMessage('Event loaded.')
+      this.hideLoader()
+      // console.log()
+    })
+    */
+
+    this.futebolService.readById_cached(id).subscribe(event => { // cached direct from google apps scripts
+      console.log('chegou evento = ' + JSON.stringify(event))
+      this.futebolService.event = event
+      // this.event = this.futebolService.event.result.inPlayEventsBSF_eventViewInfos[0]
+      this.event = event
+      this.futebolService.showMessage('Event loaded.')
+      this.hideLoader()
       // console.log()
     })
 
   }
 
+  hideLoader(): void {
+    // Setting display of spinner element to none 
+    document.getElementById('loadingEventComponent').style.display = 'none';
+    document.getElementById('eventComponent').style.display = 'inline';
+  }
+
+  showLoader(): void {
+    // Setting display of spinner element to inline 
+    document.getElementById('loadingEventComponent').style.display = 'inline';
+    document.getElementById('eventComponent').style.display = 'none';
+  }
+
   updateEvents(): void {
-    this.futebolService.showMessage('Atualizando jogos')
+    this.futebolService.showLoadingMessage('Updating events list...')
     this.futebolService.read().subscribe(jogos => {
       this.futebolService.jogos = jogos
-      this.event = this.jogos.result.inPlayEventsBSF_eventViewInfos.find((x: { id: number; })=>x.id == this.eventId)
-      this.futebolService.showMessage('Jogos atualizados e evento atribuido')
+      this.event = this.jogos.result.inPlayEventsBSF_eventViewInfos.find((x: { id: number; }) => x.id == this.eventId)
+      this.futebolService.showMessage('Events list reloaded.')
     })
   }
 
@@ -62,7 +94,7 @@ export class FutebolEventReadComponent implements OnInit {
     this.futebolService.consolaTotalEvents();
   }
 
-  atribuirJogo(): void{
-    this.event = this.jogos.result.inPlayEventsBSF_eventViewInfos.find((x: { id: number; })=>x.id == this.eventId)
+  atribuirJogo(): void {
+    this.event = this.jogos.result.inPlayEventsBSF_eventViewInfos.find((x: { id: number; }) => x.id == this.eventId)
   }
 }

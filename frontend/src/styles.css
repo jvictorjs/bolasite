@@ -1,7 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 .red {
     color: #e35e6b;
@@ -32,46 +38,218 @@ a, a:hover, a:focus, a:active {
 }
 
 /* Rules for sizing the icon. */
-.material-icons.md-18 { font-size: 18px; }
-.material-icons.md-21 { font-size: 21px; }
-.material-icons.md-24 { font-size: 24px; }
-.material-icons.md-26 { font-size: 26px; }
-.material-icons.md-28 { font-size: 28px; }
-.material-icons.md-32 { font-size: 32px; }
-.material-icons.md-36 { font-size: 36px; }
-.material-icons.md-42 { font-size: 42px; }
-.material-icons.md-48 { font-size: 48px; }
-.material-icons.md-54 { font-size: 54px; }
-.material-icons.md-60 { font-size: 60px; }
 
-.material-icons-round.md-18 { font-size: 18px; }
-.material-icons-round.md-21 { font-size: 21px; }
-.material-icons-round.md-24 { font-size: 24px; }
-.material-icons-round.md-26 { font-size: 26px; }
-.material-icons-round.md-28 { font-size: 28px; }
-.material-icons-round.md-32 { font-size: 32px; }
-.material-icons-round.md-36 { font-size: 36px; }
-.material-icons-round.md-42 { font-size: 42px; }
-.material-icons-round.md-48 { font-size: 48px; }
-.material-icons-round.md-54 { font-size: 54px; }
-.material-icons-round.md-60 { font-size: 60px; }
+.material-icons.md-18 {
+    font-size: 18px;
+}
 
-.material-icons-two-tone.md-18 { font-size: 18px; }
-.material-icons-two-tone.md-21 { font-size: 21px; }
-.material-icons-two-tone.md-24 { font-size: 24px; }
-.material-icons-two-tone.md-26 { font-size: 26px; }
-.material-icons-two-tone.md-28 { font-size: 28px; }
-.material-icons-two-tone.md-32 { font-size: 32px; }
-.material-icons-two-tone.md-36 { font-size: 36px; }
-.material-icons-two-tone.md-42 { font-size: 42px; }
-.material-icons-two-tone.md-48 { font-size: 48px; }
-.material-icons-two-tone.md-54 { font-size: 54px; }
-.material-icons-two-tone.md-60 { font-size: 60px; }
+.material-icons.md-21 {
+    font-size: 21px;
+}
+
+.material-icons.md-24 {
+    font-size: 24px;
+}
+
+.material-icons.md-26 {
+    font-size: 26px;
+}
+
+.material-icons.md-28 {
+    font-size: 28px;
+}
+
+.material-icons.md-32 {
+    font-size: 32px;
+}
+
+.material-icons.md-36 {
+    font-size: 36px;
+}
+
+.material-icons.md-42 {
+    font-size: 42px;
+}
+
+.material-icons.md-48 {
+    font-size: 48px;
+}
+
+.material-icons.md-54 {
+    font-size: 54px;
+}
+
+.material-icons.md-60 {
+    font-size: 60px;
+}
+
+.material-icons-round.md-18 {
+    font-size: 18px;
+}
+
+.material-icons-round.md-21 {
+    font-size: 21px;
+}
+
+.material-icons-round.md-24 {
+    font-size: 24px;
+}
+
+.material-icons-round.md-26 {
+    font-size: 26px;
+}
+
+.material-icons-round.md-28 {
+    font-size: 28px;
+}
+
+.material-icons-round.md-32 {
+    font-size: 32px;
+}
+
+.material-icons-round.md-36 {
+    font-size: 36px;
+}
+
+.material-icons-round.md-42 {
+    font-size: 42px;
+}
+
+.material-icons-round.md-48 {
+    font-size: 48px;
+}
+
+.material-icons-round.md-54 {
+    font-size: 54px;
+}
+
+.material-icons-round.md-60 {
+    font-size: 60px;
+}
+
+.material-icons-two-tone.md-18 {
+    font-size: 18px;
+}
+
+.material-icons-two-tone.md-21 {
+    font-size: 21px;
+}
+
+.material-icons-two-tone.md-24 {
+    font-size: 24px;
+}
+
+.material-icons-two-tone.md-26 {
+    font-size: 26px;
+}
+
+.material-icons-two-tone.md-28 {
+    font-size: 28px;
+}
+
+.material-icons-two-tone.md-32 {
+    font-size: 32px;
+}
+
+.material-icons-two-tone.md-36 {
+    font-size: 36px;
+}
+
+.material-icons-two-tone.md-42 {
+    font-size: 42px;
+}
+
+.material-icons-two-tone.md-48 {
+    font-size: 48px;
+}
+
+.material-icons-two-tone.md-54 {
+    font-size: 54px;
+}
+
+.material-icons-two-tone.md-60 {
+    font-size: 60px;
+}
 
 /* Rules for using icons as black on a light background. */
-.material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
-.material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
+
+.material-icons.md-dark {
+    color: rgba(0, 0, 0, 0.54);
+}
+
+.material-icons.md-dark.md-inactive {
+    color: rgba(0, 0, 0, 0.26);
+}
 
 /* Rules for using icons as white on a dark background. */
-.material-icons.md-light { color: rgba(255, 255, 255, 1); }
-.material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
+
+.material-icons.md-light {
+    color: rgba(255, 255, 255, 1);
+}
+
+.material-icons.md-light.md-inactive {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/*
+STACKOVERFLOW https://projects.lukehaas.me/css-loaders/
+*/
+
+.loader, .loader:before, .loader:after {
+    background: #3f51b5;
+    -webkit-animation: load1 1s infinite ease-in-out;
+    animation: load1 1s infinite ease-in-out;
+    width: 1em;
+    height: 4em;
+}
+
+.loader {
+    color: #3f51b5;
+    text-indent: -9999em;
+    margin: 20px auto;
+    position: relative;
+    font-size: 11px;
+    -webkit-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-animation-delay: -0.16s;
+    animation-delay: -0.16s;
+}
+
+.loader:before, .loader:after {
+    position: absolute;
+    top: 0;
+    content: '';
+}
+
+.loader:before {
+    left: -1.5em;
+    -webkit-animation-delay: -0.32s;
+    animation-delay: -0.32s;
+}
+
+.loader:after {
+    left: 1.5em;
+}
+
+@-webkit-keyframes load1 {
+    0%, 80%, 100% {
+        box-shadow: 0 0;
+        height: 4em;
+    }
+    40% {
+        box-shadow: 0 -2em;
+        height: 5em;
+    }
+}
+
+@keyframes load1 {
+    0%, 80%, 100% {
+        box-shadow: 0 0;
+        height: 4em;
+    }
+    40% {
+        box-shadow: 0 -2em;
+        height: 5em;
+    }
+}

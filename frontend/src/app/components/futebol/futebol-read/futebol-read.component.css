@@ -39,7 +39,7 @@ i:hover {
 }
 
 .team-logo {
-    width: 1.6rem;
+    width: 2.3rem;
     transition: transform 0.3s;
     vertical-align: middle;
 }
@@ -49,5 +49,5 @@ i:hover {
     /* IE 9 */
     -webkit-transform: scale(1.8);
     /* Safari 3-8 */
-    transform: scale(2.8);
+    transform: scale(1.8);
 }

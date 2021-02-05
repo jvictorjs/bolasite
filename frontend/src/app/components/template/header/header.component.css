@@ -1,4 +1,4 @@
-.header{
+.header {
     display: flex;
     align-items: center;
 }
@@ -11,13 +11,23 @@
 }
 
 .header .logo {
-    max-height: 32px;   
+    max-height: 32px;
+}
+
+.header .title {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    border: none;
 }
 
 .header .title-group {
-    padding-left: 25px;
+    padding-left: 33px;
+    align-self: center;
+    border: none;
+    margin-right: 3%;
 }
 
-.header .title-group i{
+.header .title-group i {
     padding-right: 5px;
 }

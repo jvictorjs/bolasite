@@ -8,6 +8,7 @@ import { ProductDeleteComponent } from './components/product/product-delete/prod
 import { ProductUpdateComponent } from './components/product/product-update/product-update.component';
 import { FutebolComponent } from './views/futebol/futebol.component';
 import { FutebolEventReadComponent } from './components/futebol/futebol-event-read/futebol-event-read.component';
+import { AboutComponent } from './views/about/about.component';
 
 const routes: Routes = [
   {
@@ -37,6 +38,10 @@ const routes: Routes = [
   {
     path: "futebol/event/:id",
     component: FutebolEventReadComponent
+  },
+  {
+    path: "about",
+    component: AboutComponent
   }
 ];
 

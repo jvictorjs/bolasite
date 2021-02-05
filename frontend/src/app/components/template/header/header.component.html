@@ -1,15 +1,20 @@
 <mat-toolbar class="header mat-elevation-z5">
-    <span>
+    <span style="margin: 0 0 0 40px">
         <a routerLink="/">
-            <img class="logo" src="assets/img/logo-200506-094136.png" alt="logo">
+            <!--
+                <img class="logo" src="assets/img/logo-200506-094136.png" alt="logo">
+            -->
+            <strong>bola<span class="red">na</span>rede</strong>
         </a>
     </span>
-    <span class="title-group">
-        <a routerLink="{{ routeUrl }}">
-            <i class="material-icons">
-                {{ icon }}
-            </i>
-            {{ title }}
-        </a>
-    </span>
+    <div class="title">
+        <span class="title-group">
+            <a routerLink="{{ routeUrl }}">
+                {{ title }}
+                <i class="material-icons md-32 title-icon">
+                    {{ icon }}
+                </i>
+            </a>
+        </span>
+    </div>
 </mat-toolbar>
