@@ -37,13 +37,15 @@ import { ProductRead2Component } from './components/product/product-read2/produc
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort'
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
 import { ProductUpdateComponent } from './components/product/product-update/product-update.component';
 import { ProductDeleteComponent } from './components/product/product-delete/product-delete.component';
 import { FutebolEventReadComponent } from './components/futebol/futebol-event-read/futebol-event-read.component';
-import { AboutComponent } from './views/about/about.component'
+import { AboutComponent } from './views/about/about.component';
+import { TvGuideComponent } from './views/tv-guide/tv-guide.component'
 
 registerLocaleData(localePt);
 
@@ -65,7 +67,8 @@ registerLocaleData(localePt);
     ProductUpdateComponent,
     ProductDeleteComponent,
     FutebolEventReadComponent,
-    AboutComponent
+    AboutComponent,
+    TvGuideComponent
   ],
   imports: [ // módulos
     BrowserModule,
@@ -83,7 +86,8 @@ registerLocaleData(localePt);
     MatInputModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatTooltipModule
   ],
   providers: [{
     provide: LOCALE_ID,

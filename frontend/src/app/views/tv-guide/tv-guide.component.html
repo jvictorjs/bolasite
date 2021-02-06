@@ -1,0 +1,28 @@
+<a matTooltip="{{json_response | json}} => {{json_response}}">
+    <h1>
+        {{json_response.title}}
+
+    </h1>
+</a>
+<br>
+<div style="row-gap: 1px;">
+    <div style="display: flex; flex-direction: row; column-gap: 20px; justify-content: space-between;"
+        *ngFor="let event of json_response.events">
+        <div style="width: 7%;">
+            {{ event.start_at }}
+        </div>
+        <div style="width: 18%;">
+            {{ event.league }}
+        </div>
+        <div style="width: 35%;">
+            {{ event.event }}
+        </div>
+        <div style="width: 30%;">
+            {{ event.tv_channel }}
+        </div>
+    </div>
+</div>
+<br>
+<button mat-raised-button matTooltip="Tooltip above the element" matTooltipPosition="above">
+    Tooltip
+</button>

@@ -9,6 +9,7 @@ import { ProductUpdateComponent } from './components/product/product-update/prod
 import { FutebolComponent } from './views/futebol/futebol.component';
 import { FutebolEventReadComponent } from './components/futebol/futebol-event-read/futebol-event-read.component';
 import { AboutComponent } from './views/about/about.component';
+import { TvGuideComponent } from './views/tv-guide/tv-guide.component';
 
 const routes: Routes = [
   {
@@ -42,6 +43,10 @@ const routes: Routes = [
   {
     path: "about",
     component: AboutComponent
+  },
+  {
+    path: "tv-guide",
+    component: TvGuideComponent
   }
 ];
 
