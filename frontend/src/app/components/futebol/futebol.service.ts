@@ -8,12 +8,14 @@ import { Observable } from 'rxjs';
 })
 export class FutebolService {
 
-  baseUrl = 'https://angularcrudbackend.bolanarede.net.br/live_events/1' // PRODUÇÃO
+  baseUrl = 'https://angularcrudbackend.bolanarede.net.br/live_events/1' // PRODUÇÃO - live events
+  baseUrl_upcomingEvents = 'https://angularcrudbackend.bolanarede.net.br/live_events/2' // PRODUÇÃO - live event
   // baseUrl = 'http://localhost:3001/live_events/1' // DESENVOLVIMENTO
   // the below link is from 
-  baseUrl2 = 'https://script.google.com/macros/s/AKfycbx9YFTSh9GRqZ6TYPirRUWGtIdfqWR7qrLyAa2rdQuvV-Pm15B7qBbt/exec?doLoop=justDoIt'
+  baseUrl2 = 'https://script.google.com/macros/2/AKfycbx9YFTSh9GRqZ6TYPirRUWGtIdfqWR7qrLyAa2rdQuvV-Pm15B7qBbt/exec?doLoop=justDoIt'
   // https://script.google.com/macros/s/AKfycby7xJZIUEwRVRESF11LKl8xv96JoQLtgBl6KgxUfuQ/dev?doLoop=justDoIt&eventId=2683591&cached=true
   jogos: any = { id: 0, response: { botVersion: 0, result: { loopMsgText: '', inPlayEventsBSF_eventViewInfos: [] } } };
+  jogos_upcoming: any = { id: 0, response: { botVersion: 0, result: [] } };
   event: any = { botVersion: 0, result: { loopMsgText: '', inPlayEventsBSF_eventViewInfos: [] } };
 
   constructor(private snackBar: MatSnackBar, private http: HttpClient) { }
@@ -29,7 +31,7 @@ export class FutebolService {
 
   showLoadingMessage(msg: string): void {
     this.snackBar.open(msg, 'X', {
-      duration: 15000,
+      duration: 5000,
       horizontalPosition: "center",
       verticalPosition: "bottom",
       panelClass: ['msg-default']
@@ -45,6 +47,13 @@ export class FutebolService {
     this.jogos = this.http.get<Object>(this.baseUrl)
     console.log('events will be collected', true);
     return this.jogos
+  }
+
+
+  readUpComingEvents(): Observable<Object> {
+    this.jogos_upcoming = this.http.get<Object>(this.baseUrl_upcomingEvents)
+    console.log('events will be collected', true);
+    return this.jogos_upcoming
   }
 
 

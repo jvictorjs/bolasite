@@ -45,7 +45,8 @@ import { ProductUpdateComponent } from './components/product/product-update/prod
 import { ProductDeleteComponent } from './components/product/product-delete/product-delete.component';
 import { FutebolEventReadComponent } from './components/futebol/futebol-event-read/futebol-event-read.component';
 import { AboutComponent } from './views/about/about.component';
-import { TvGuideComponent } from './views/tv-guide/tv-guide.component'
+import { TvGuideComponent } from './views/tv-guide/tv-guide.component';
+import { FutebolUpcomingComponent } from './components/futebol/futebol-upcoming/futebol-upcoming.component'
 
 registerLocaleData(localePt);
 
@@ -68,7 +69,8 @@ registerLocaleData(localePt);
     ProductDeleteComponent,
     FutebolEventReadComponent,
     AboutComponent,
-    TvGuideComponent
+    TvGuideComponent,
+    FutebolUpcomingComponent
   ],
   imports: [ // módulos
     BrowserModule,

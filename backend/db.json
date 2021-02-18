@@ -19,26 +19,6 @@
       "name": "Geladeira",
       "price": "1900",
       "id": 4
-    },
-    {
-      "name": "novo",
-      "price": "123",
-      "id": 6
-    },
-    {
-      "name": "lapis",
-      "price": "22.4",
-      "id": 7
-    },
-    {
-      "name": "ashdajkshdjk",
-      "price": "19",
-      "id": 8
-    },
-    {
-      "name": "kjk",
-      "price": "008",
-      "id": 9
     }
   ],
   "english_it_terms": [
@@ -68,6 +48,10 @@
           "inPlayEventsBSF_eventViewInfos": []
         }
       }
+    },
+    {
+      "response": "response",
+      "id": 2
     }
   ]
 }

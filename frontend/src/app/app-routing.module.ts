@@ -10,6 +10,7 @@ import { FutebolComponent } from './views/futebol/futebol.component';
 import { FutebolEventReadComponent } from './components/futebol/futebol-event-read/futebol-event-read.component';
 import { AboutComponent } from './views/about/about.component';
 import { TvGuideComponent } from './views/tv-guide/tv-guide.component';
+import { FutebolUpcomingComponent } from './components/futebol/futebol-upcoming/futebol-upcoming.component';
 
 const routes: Routes = [
   {
@@ -35,6 +36,10 @@ const routes: Routes = [
   {
     path: "futebol",
     component: FutebolComponent
+  },
+  {
+    path: "futebol-upcoming",
+    component: FutebolUpcomingComponent
   },
   {
     path: "futebol/event/:id",
