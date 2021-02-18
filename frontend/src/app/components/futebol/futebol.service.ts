@@ -12,7 +12,8 @@ export class FutebolService {
   baseUrl_upcomingEvents = 'https://angularcrudbackend.bolanarede.net.br/live_events/2' // PRODUÇÃO - live event
   // baseUrl = 'http://localhost:3001/live_events/1' // DESENVOLVIMENTO
   // the below link is from 
-  baseUrl2 = 'https://script.google.com/macros/2/AKfycbx9YFTSh9GRqZ6TYPirRUWGtIdfqWR7qrLyAa2rdQuvV-Pm15B7qBbt/exec?doLoop=justDoIt'
+  baseUrl2 = 'https://script.google.com/macros/s/AKfycbx9YFTSh9GRqZ6TYPirRUWGtIdfqWR7qrLyAa2rdQuvV-Pm15B7qBbt/exec?doLoop=justDoIt'
+  // mudei o /2/ para /s/ e, 18fev21, parecia nao funcionar com /2/ nao entendi | baseUrl2 = 'https://script.google.com/macros/2/AKfycbx9YFTSh9GRqZ6TYPirRUWGtIdfqWR7qrLyAa2rdQuvV-Pm15B7qBbt/exec?doLoop=justDoIt'
   // https://script.google.com/macros/s/AKfycby7xJZIUEwRVRESF11LKl8xv96JoQLtgBl6KgxUfuQ/dev?doLoop=justDoIt&eventId=2683591&cached=true
   jogos: any = { id: 0, response: { botVersion: 0, result: { loopMsgText: '', inPlayEventsBSF_eventViewInfos: [] } } };
   jogos_upcoming: any = { id: 0, response: { botVersion: 0, result: [] } };
