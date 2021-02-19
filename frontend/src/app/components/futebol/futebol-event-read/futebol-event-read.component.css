@@ -2,6 +2,67 @@ button {
     margin: 20px 15px 20px 0px;
 }
 
+.graphsCard {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    border: none;
+    padding: 10px;
+}
+
+.graphs {
+    display: flex;
+    flex-direction: row;
+    border: none;
+    max-width: 800px;
+    align-items: center;
+    align-content: center;
+    justify-content: space-around;
+    margin-bottom: 12px;
+    border-radius: 8px;
+}
+
+.teamLogos {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    width: 18%;
+    min-width: 50px;
+    max-width: 80px;
+    border: none;
+    padding: 0 0 13px;
+    margin-left: 10px;
+}
+
+/* STACKOVERFLOW https://stackoverflow.com/questions/787839/resize-image-proportionally-with-css */
+
+.graphTeamLogo {
+    height: auto;
+    width: 80%;
+    align-self: flex-end;
+    border: none;
+}
+
+.pointsSlicesToShow {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 12px;
+    border-radius: 8px;
+}
+
+.pointsSlicesToShow .title {
+    font-size: 1rem;
+    text-align: center;
+    font-weight: light;
+    line-height: 1.5;
+    border: none;
+    margin-left: 10vw;
+}
+
 .eventNameAndLogos {
     display: flex;
     align-items: center;
@@ -12,12 +73,15 @@ button {
 
 .eventNameAndLogos .title {
     font-size: 1.6rem;
+    text-align: center;
     font-weight: light;
     line-height: 1.5;
+    border: none;
 }
 
 .eventNameAndLogos .subtitle {
     font-size: 1.3rem;
+    text-align: center;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -25,6 +89,7 @@ button {
     border-color: black;
     line-height: 2;
     vertical-align: middle;
+    border: none;
 }
 
 .eventStats {
@@ -39,6 +104,7 @@ button {
 
 .eventStats .subtitle {
     font-size: 1.3rem;
+    text-align: center;
 }
 
 /*
@@ -73,4 +139,8 @@ STACKOVERFLOW https://www.geeksforgeeks.org/how-to-display-spinner-on-the-screen
 #eventComponent {
     display: flex;
     flex-direction: column;
+    width: 100%;
+    border: none;
+    /* flex: 1 0 100%; /* flex-grow, flex-shrink, flex-basis */
+    align-items: stretch;
 }

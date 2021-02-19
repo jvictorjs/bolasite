@@ -5,83 +5,140 @@
     Back to Soccer Events List
 </button>
 
-<!-- 
-    STACKOVERFLOW https://www.geeksforgeeks.org/how-to-display-spinner-on-the-screen-till-the-data-from-the-api-loads-using-angular-8/
--->
-<!-- spinnner element is  
-    defined with id loading -->
-<div class="d-flex justify-content-center">
-    <div class="spinner-border" role="status">
-        <span id="loadingEventComponent"></span>
-    </div>
-</div>
-<div id="eventComponent">
-    <mat-card class="eventNameAndLogos mat-elevation-z2">
-        <mat-card-title class="title">
-            {{ event.league.name }}
-        </mat-card-title>
-        <mat-card-subtitle class="subtitle">
-            {{ event.stringedGameWithRedcardsAndClock }}
-        </mat-card-subtitle>
-        <mat-card-subtitle class="subtitle">
-            <img src="https://assets.b365api.com/images/team/b/{{ event.home.image_id }}.png" alt="home_logo" />
-            X
-            <img src="https://assets.b365api.com/images/team/b/{{ event.away.image_id }}.png" alt="away_logo" />
-        </mat-card-subtitle>
-    </mat-card>
-    <mat-card class="eventStats mat-elevation-z2">
-        <mat-card-title class="title">
-            {{ event.pointsSlices.minutesToShow_stringed }}
-        </mat-card-title>
-        <br>
-        <mat-card-title class="title">
-            {{ event.pointsSlices.powerIndexToShow_stringed }}
-        </mat-card-title>
-        <mat-card-title class="subtitle">
-            {{ event.event_odds.odds_summary.end.home_odd }}
-            <img src="https://assets.b365api.com/images/team/s/{{ event.home.image_id }}.png" alt="home_logo" />
-            {{ event.stringedGameWithRedcards }}
-            <img src="https://assets.b365api.com/images/team/s/{{ event.away.image_id }}.png" alt="away_logo" />
-            {{ event.event_odds.odds_summary.end.away_odd }}
-        </mat-card-title>
-        <mat-card-title class="subtitle">
-            📊
-            {{ event.event_odds.odds_summary.start.home_odd }}
-            |
-            {{ event.event_odds.odds_summary.start.draw_odd }}
-            |
-            {{ event.event_odds.odds_summary.start.away_odd }}
-        </mat-card-title>
-    </mat-card>
+<div style="display: flex; justify-content: center; align-items: center; border: none; width: 100%;">
 
-    <mat-card class="event mat-elevation-z2">
+    <div
+        style="display: flex; flex-direction: column; align-items: stretch; max-width: 1000px; border: none; width: 100%;">
+
+
+        <!-- 
+            STACKOVERFLOW https://www.geeksforgeeks.org/how-to-display-spinner-on-the-screen-till-the-data-from-the-api-loads-using-angular-8/
+        -->
+        <!-- spinnner element is  
+    defined with id loading -->
+
+        <div class="d-flex justify-content-center">
+            <div class="spinner-border" role="status">
+                <span id="loadingEventComponent"></span>
+            </div>
+        </div>
+
+        <div id="eventComponent">
+            <mat-card class="eventNameAndLogos mat-elevation-z3">
+                <mat-card-title class="title">
+                    {{ event.league.name }}
+                </mat-card-title>
+                <mat-card-subtitle class="subtitle">
+                    {{ event.stringedGameWithRedcardsAndClock }}
+                </mat-card-subtitle>
+                <mat-card-subtitle class="subtitle">
+                    <img src="https://assets.b365api.com/images/team/b/{{ event.home.image_id }}.png" alt="home_logo" />
+                    X
+                    <img src="https://assets.b365api.com/images/team/b/{{ event.away.image_id }}.png" alt="away_logo" />
+                </mat-card-subtitle>
+            </mat-card>
+            <mat-card class="eventStats mat-elevation-z3">
+                <mat-card-title class="subtitle">
+                    {{ event.event_odds.odds_summary.end.home_odd }}
+                    <img src="https://assets.b365api.com/images/team/s/{{ event.home.image_id }}.png" alt="home_logo" />
+                    {{ event.stringedGameWithRedcards }}
+                    <img src="https://assets.b365api.com/images/team/s/{{ event.away.image_id }}.png" alt="away_logo" />
+                    {{ event.event_odds.odds_summary.end.away_odd }}
+                </mat-card-title>
+                <mat-card-title class="subtitle">
+                    📊
+                    {{ event.event_odds.odds_summary.start.home_odd }}
+                    |
+                    {{ event.event_odds.odds_summary.start.draw_odd }}
+                    |
+                    {{ event.event_odds.odds_summary.start.away_odd }}
+                </mat-card-title>
+            </mat-card>
+            <mat-card class="pointsSlicesToShow mat-elevation-z3">
+                <mat-card-title class="title">
+                    {{ event.pointsSlices.minutesToShow_stringed }}
+                </mat-card-title>
+                <br>
+                <mat-card-title class="title">
+                    {{ event.pointsSlices.powerIndexToShow_stringed }}
+                </mat-card-title>
+            </mat-card>
+            <!--
+
+    <mat-card class="mat-elevation-z3">
         <mat-card-title class="title">
             JSON
         </mat-card-title>
         <mat-card-subtitle class="subtitle">
-            eventoJSON: {{event | json}} <br><br>=> id: {{eventId}}
+            eventoJSON: {{event | json}} => {{eventId}}
         </mat-card-subtitle>
         <ul>
             <li *myFor="let n em ['C reate','R etrieve']">{{ n }}</li>
         </ul>
     </mat-card>
-</div>
-
-
-<button mat-raised-button (click)="consolaTotalEvents()" color="primary">
-    Consola
-</button>
-
-<button mat-raised-button (click)="updateEvents()">
-    Update
-</button>
-
-<button mat-raised-button (click)="atribuirJogo()">
-    Atribuir
-</button>
-
-
-<!--
-
-    <p class="texto">{{ jogos | json }}</p>
 -->
+            <mat-card class="graphsCard mat-elevation-z3">
+
+                <!--
+            
+            STACKOVERFLOW   https://www.npmjs.com/package/ng2-charts
+            STACKOVERFLOW   https://stackblitz.com/edit/ng2-charts-bar-template?file=src%2Fapp%2Fapp.component.html
+            STACKOVERFLOW   https://valor-software.com/ng2-charts/#/BarChart
+            STACKOVERFLOW   https://stackoverflow.com/questions/23424123/remove-x-axis-label-text-in-chart-js
+            STACKOVERFLOW   https://codepen.io/chartjs/pen/YVWZbz
+        -->
+                <mat-card-subtitle class="subtitle">
+                    <div class="graphs">
+                        <div id="teamsLogos" class="teamLogos">
+                            <div>
+                                <img class="graphTeamLogo"
+                                    src="https://assets.b365api.com/images/team/b/{{ event.home.image_id }}.png"
+                                    alt="home_logo" />
+                            </div>
+                            <div>
+                                <img class="graphTeamLogo"
+                                    src="https://assets.b365api.com/images/team/b/{{ event.away.image_id }}.png"
+                                    alt="away_logo" />
+                            </div>
+                        </div>
+                        <div style="position: relative; width: 60vw; height:200px;border: none;">
+                            <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels"
+                                [options]="barChartOptions" [legend]="barChartLegend" [chartType]="barChartType">
+                            </canvas>
+                        </div>
+                    </div>
+                    <button mat-raised-button color="primary" (click)="updateChart()" style="margin-top: 0px;">
+                        <span class="material-icons md-24 v-middle">
+                            refresh
+                        </span>
+                        update
+                    </button>
+                    <button mat-raised-button color="primary" (click)="randomize()" style="margin-top: 0px;">
+                        <span class="material-icons md-24 v-middle">
+                            refresh
+                        </span>
+                        randomize()
+                    </button>
+                </mat-card-subtitle>
+            </mat-card>
+            <mat-card class="eventNameAndLogos mat-elevation-z3">
+                <mat-card-subtitle>
+                    <button mat-raised-button (click)="consolaTotalEvents()" color="primary">
+                        Consola
+                    </button>
+
+                    <button mat-raised-button (click)="updateEvents()">
+                        Update
+                    </button>
+
+                    <button mat-raised-button (click)="atribuirJogo()">
+                        Atribuir
+                    </button>
+                </mat-card-subtitle>
+            </mat-card>
+        </div>
+        <br>
+        <br>
+        <br>
+    </div>
+</div>

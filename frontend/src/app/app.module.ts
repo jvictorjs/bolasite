@@ -47,6 +47,7 @@ import { FutebolEventReadComponent } from './components/futebol/futebol-event-re
 import { AboutComponent } from './views/about/about.component';
 import { TvGuideComponent } from './views/tv-guide/tv-guide.component';
 import { FutebolUpcomingComponent } from './components/futebol/futebol-upcoming/futebol-upcoming.component'
+import { ChartsModule } from 'ng2-charts';
 
 registerLocaleData(localePt);
 
@@ -89,7 +90,8 @@ registerLocaleData(localePt);
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    MatTooltipModule
+    MatTooltipModule,
+    ChartsModule
   ],
   providers: [{
     provide: LOCALE_ID,
