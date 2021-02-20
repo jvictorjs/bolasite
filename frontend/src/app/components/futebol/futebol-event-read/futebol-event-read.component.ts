@@ -11,7 +11,7 @@ import { Label } from 'ng2-charts';
   styleUrls: ['./futebol-event-read.component.css']
 })
 export class FutebolEventReadComponent implements OnInit {
-  MAX_GRAPH_YAXIS_VALUE = 3;
+  MAX_GRAPH_YAXIS_VALUE = 3.3;
   jogos: any = { botVersion: 0, result: { loopMsgText: '', inPlayEventsBSF_eventViewInfos: [] } };
   event: any = {
     id: 0, league: {
@@ -43,7 +43,28 @@ export class FutebolEventReadComponent implements OnInit {
       ],
       away_slice_points_array_reverse: [
 
+      ],
+      minutesOfHomeGoalsToShow_array: [
+
+      ],
+      minutesOfAwayGoalsToShow_array: [
+
+      ],
+      minutesOfHomeRedCardsToShow_array: [
+
+      ],
+      minutesOfAwayRedCardsToShow_array: [
+
+      ],
+      minutesToShow_array: [
+
       ]
+    },
+    clock: {
+      brClock: " ",
+      period: " ",
+      minute: 0,
+      second: 0
     }
   }
   eventId = 0;
@@ -55,7 +76,7 @@ export class FutebolEventReadComponent implements OnInit {
     scales: {
       xAxes: [{
         stacked: true,
-        display: true,
+        display: false,
       }],
       yAxes: [{
         stacked: true,
@@ -89,7 +110,32 @@ export class FutebolEventReadComponent implements OnInit {
       backgroundColor: 'rgba(100,100,100,0.9)',
       hoverBackgroundColor: 'rgba(100,100,100,0.5)'
     }
+    /*, these settings above insert mini balls in chart
+    {
+      label: "red-card",
+      type: "scatter",
+      fill: false,
+      showLine: false,
+      backgroundColor: "rgba(222,33,0,0.8)",
+      data: [, , , { y: 2.8, x: 1 }, , , , , , , , , ,],
+      borderWidth: 10,
+      borderColor: "rgba(222,33,0,0.8)"
+    },
+    {
+      label: "red-card",
+      type: "scatter",
+      fill: false,
+      showLine: false,
+      backgroundColor: "rgba(222,33,0,0.8)",
+      data: [, , , , , , , , { y: -2.8, x: 1 },],
+      borderWidth: 10,
+      borderColor: "rgba(222,33,0,0.8)"
+    }
+    */
   ];
+
+  intervalId: any;
+  eventClock = { date: new Date(), minute: 0, second: 0 };
 
   constructor(
     private futebolService: FutebolService,
@@ -140,11 +186,34 @@ export class FutebolEventReadComponent implements OnInit {
       // this.event = this.futebolService.event.result.inPlayEventsBSF_eventViewInfos[0]
       this.event = event
       this.futebolService.showMessage('Event loaded ✅') // ✅✔
-      this.hideLoader()
+      this.hideLoader();
       this.updateChart();
+      this.updateClock();
     })
 
+    setInterval(() => {
+      // console.log(this.eventClock.date)
+      this.eventClock.date = new Date(this.eventClock.date.getTime() + 1000);
+    }, 1000);
+
+    this.intervalId = setInterval(() => {
+      this.refreshData(id);
+    }, 120000);
+
   }
+
+  refreshData(id: number): void {
+    this.futebolService.readById_cached(id).subscribe(event => { // cached direct from google apps scripts
+      console.log('chegou evento = ' + JSON.stringify(event))
+      this.futebolService.event = event
+      // this.event = this.futebolService.event.result.inPlayEventsBSF_eventViewInfos[0]
+      this.event = event
+      // this.futebolService.showMessage(' ✅') // ✅✔
+      this.updateChart();
+      this.updateClock();
+    })
+  }
+
 
   hideLoader(): void {
     // Setting display of spinner element to none 
@@ -178,6 +247,7 @@ export class FutebolEventReadComponent implements OnInit {
   atribuirJogo(): void {
     this.event = this.jogos.result.inPlayEventsBSF_eventViewInfos.find((x: { id: number; }) => x.id == this.eventId)
   }
+
   randomize(): void {
     // Only Change 3 values
     this.barChartData[0].data = [
@@ -205,5 +275,11 @@ export class FutebolEventReadComponent implements OnInit {
     // Only Change 3 values
     this.barChartData[0].data = this.event.pointsSlices.home_slice_points_array;
     this.barChartData[1].data = this.event.pointsSlices.away_slice_points_array_reverse;
+  }
+
+  updateClock(): void {
+    this.eventClock.date = new Date();
+    this.eventClock.date.setMinutes(this.event.clock.minute)
+    this.eventClock.date.setSeconds(this.event.clock.second)
   }
 }

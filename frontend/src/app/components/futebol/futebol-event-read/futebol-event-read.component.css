@@ -9,7 +9,7 @@ button {
     margin-bottom: 12px;
     border-radius: 8px;
     border: none;
-    padding: 10px;
+    padding: 15px;
 }
 
 .graphs {
@@ -29,23 +29,53 @@ button {
     flex-direction: column;
     justify-content: flex-end;
     align-items: flex-end;
-    width: 18%;
+    width: 14%;
     min-width: 50px;
     max-width: 80px;
     border: none;
-    padding: 0 0 13px;
-    margin-left: 10px;
+    padding: 0 0 43px 0;
+    margin: 0px 0 0 0;
+}
+
+.graphContainer {
+    display: flex;
+    flex-direction: column;
+    border: none;
+    width: 83%;
+    max-width: 600px;
 }
 
 /* STACKOVERFLOW https://stackoverflow.com/questions/787839/resize-image-proportionally-with-css */
 
-.graphTeamLogo {
+.teamLogos .graphTeamLogo {
     height: auto;
-    width: 80%;
+    width: 90%;
     align-self: flex-end;
     border: none;
+    margin: 15px 0 0 0;
 }
 
+.graphRowData {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border: none;
+    width: 99.5%;
+    height: 18px;
+}
+
+.graphRowData .cell {
+    display: flex;
+    font-size: 0.85rem;
+    color: #888888;
+    font-weight: 'bold';
+    border: none;
+    width: 4%;
+    white-space: nowrap;
+    justify-content: center;
+}
+
+/*
 .pointsSlicesToShow {
     display: flex;
     align-items: center;
@@ -62,6 +92,7 @@ button {
     border: none;
     margin-left: 10vw;
 }
+*/
 
 .eventNameAndLogos {
     display: flex;
@@ -143,4 +174,33 @@ STACKOVERFLOW https://www.geeksforgeeks.org/how-to-display-spinner-on-the-screen
     border: none;
     /* flex: 1 0 100%; /* flex-grow, flex-shrink, flex-basis */
     align-items: stretch;
+}
+
+.x {
+    text-align: center;
+    vertical-align: center;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    margin: 25px;
+}
+
+.x .tooltiptext {
+    font-size: 0.3rem;
+    visibility: hidden;
+    width: 90%;
+    background-color: rgba(111, 111, 111, 0.99);
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    margin: 0px 0px 0 -45%;
+    line-height: normal;
+}
+
+.x:hover .tooltiptext {
+    visibility: visible;
 }

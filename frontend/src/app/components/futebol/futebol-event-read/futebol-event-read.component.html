@@ -1,10 +1,9 @@
 <button mat-raised-button color="primary" (click)="navigationGoBack()" style="margin-top: 0px;">
-    <span class="material-icons md-21 v-middle">
+    <span class="material-icons md-24 v-middle">
         arrow_back
     </span>
     Back to Soccer Events List
 </button>
-
 <div style="display: flex; justify-content: center; align-items: center; border: none; width: 100%;">
 
     <div
@@ -29,11 +28,23 @@
                     {{ event.league.name }}
                 </mat-card-title>
                 <mat-card-subtitle class="subtitle">
-                    {{ event.stringedGameWithRedcardsAndClock }}
+                    {{ event.stringedGameWithRedcards }}
+                    {{ event.clock.period === '' ? '('+event.brClock+')' : ''}}
+                    <!--
+                        STACKOVERFLOW https://stackoverflow.com/questions/54289078/display-time-clock-in-angular
+                        STACKOVERFLOW https://stackoverflow.com/questions/36158193/javascript-set-a-new-date-to-tomorrow-8am
+                        STACKOVERFLOW https://stackoverflow.com/questions/7687884/add-10-seconds-to-a-date
+                        STACKOVERFLOW https://stackoverflow.com/questions/23848608/angularjs-ng-if-to-change-text
+                    -->
+                    {{ event.clock.period !== '' ? ' ('+event.clock.period+' '+(eventClock.date | date: 'mm:ss')+')' :
+                    ''}}
                 </mat-card-subtitle>
                 <mat-card-subtitle class="subtitle">
                     <img src="https://assets.b365api.com/images/team/b/{{ event.home.image_id }}.png" alt="home_logo" />
-                    X
+                    <p class="x">
+                        <span class="tooltiptext">{{event | json}}</span>
+                        X
+                    </p>
                     <img src="https://assets.b365api.com/images/team/b/{{ event.away.image_id }}.png" alt="away_logo" />
                 </mat-card-subtitle>
             </mat-card>
@@ -54,6 +65,7 @@
                     {{ event.event_odds.odds_summary.start.away_odd }}
                 </mat-card-title>
             </mat-card>
+            <!--
             <mat-card class="pointsSlicesToShow mat-elevation-z3">
                 <mat-card-title class="title">
                     {{ event.pointsSlices.minutesToShow_stringed }}
@@ -63,7 +75,6 @@
                     {{ event.pointsSlices.powerIndexToShow_stringed }}
                 </mat-card-title>
             </mat-card>
-            <!--
 
     <mat-card class="mat-elevation-z3">
         <mat-card-title class="title">
@@ -101,26 +112,77 @@
                                     alt="away_logo" />
                             </div>
                         </div>
-                        <div style="position: relative; width: 60vw; height:200px;border: none;">
-                            <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels"
-                                [options]="barChartOptions" [legend]="barChartLegend" [chartType]="barChartType">
-                            </canvas>
+
+                        <!--
+
+                                return (
+                                    <View style={{ justifyContent: 'space-around', flexDirection: 'row', borderWidth: 0, width: '99%', alignSelf: 'center' }}>
+                                        {eventBSF_StatsTrend_MinutesOfHomeGoalsToShow_slices.map((minuteOfGoalsToShow) => (
+                                            <Text key={'minuteOfGoalsToShow_Key_' + key++} style={{ fontSize: 8, color: "#888888", textAlign: 'center', flexWrap: 'wrap', marginHorizontal: 0, fontWeight: 'bold', borderWidth: 0, width: '5%', width: '8%' }} >{minuteOfGoalsToShow}</Text>
+                                            ))}
+                                        </View>
+                                      
+                                -->
+                        <div class="graphContainer">
+                            <div class="graphRowData" style="height: auto;">
+                                <!-- home redcards 🟥 -->
+                                <div class="cell" *ngFor="let number of [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]">
+                                    {{ event.pointsSlices.minutesOfHomeRedCardsToShow_array[number]}}
+                                </div>
+                            </div>
+                            <div class="graphRowData">
+                                <!-- home goals ⚽ -->
+                                <!-- STACKOVERFLOW https://stackoverflow.com/questions/36354325/angular-2-ngfor-using-numbers-instead-collections -->
+                                <div class="cell" *ngFor="let number of [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]">
+                                    {{ event.pointsSlices.minutesOfHomeGoalsToShow_array[number]}}
+                                </div>
+                            </div>
+                            <div style="position: relative; width: 100%; height:150px;border: none;">
+                                <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels"
+                                    [options]="barChartOptions" [legend]="barChartLegend" [chartType]="barChartType">
+                                </canvas>
+                            </div>
+                            <div class="graphRowData">
+                                <!-- away goals ⚽ -->
+                                <div class="cell" *ngFor="let number of [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]">
+                                    {{ event.pointsSlices.minutesOfAwayGoalsToShow_array[number]}}
+                                </div>
+                            </div>
+                            <div class="graphRowData" style="height: auto;">
+                                <!-- away redcards 🟥 -->
+                                <div class="cell" *ngFor="let number of [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]">
+                                    {{ event.pointsSlices.minutesOfAwayRedCardsToShow_array[number]}}
+                                </div>
+                            </div>
+                            <div class="graphRowData">
+                                <div style="font-size: 0.6rem; color: #888888; text-Align: center; flex-Wrap: wrap; font-Weight: 'bold'; border:none; width: 3%;"
+                                    *ngFor="let number of ['05','10','15','20','25','30','35','40','45','50','55','60','65','70','75','80','85','90']">
+                                    {{ number }}'</div>
+                            </div>
+                            <div class="graphRowData">
+                                <div style="font-size: 0.6rem; color: #888888; text-Align: center; flex-Wrap: wrap; font-Weight: 'bold'; border:none; width: 3%;"
+                                    *ngFor="let number of [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]">
+                                    {{ event.pointsSlices.minutesToShow_array[number]}}</div>
+                            </div>
                         </div>
                     </div>
-                    <button mat-raised-button color="primary" (click)="updateChart()" style="margin-top: 0px;">
-                        <span class="material-icons md-24 v-middle">
-                            refresh
-                        </span>
-                        update
-                    </button>
-                    <button mat-raised-button color="primary" (click)="randomize()" style="margin-top: 0px;">
-                        <span class="material-icons md-24 v-middle">
-                            refresh
-                        </span>
-                        randomize()
-                    </button>
+                    <!--
+                        <button mat-raised-button color="primary" (click)="updateChart()" style="margin-top: 0px;">
+                            <span class="material-icons-two-tone md-24 v-middle">
+                                refresh
+                            </span>
+                            update
+                        </button>
+                        <button mat-raised-button color="primary" (click)="randomize()" style="margin-top: 0px;">
+                            <span class="material-icons-two-tone md-24 v-middle">
+                                refresh
+                            </span>
+                            randomize()
+                        </button>
+                    -->
                 </mat-card-subtitle>
             </mat-card>
+            <!--
             <mat-card class="eventNameAndLogos mat-elevation-z3">
                 <mat-card-subtitle>
                     <button mat-raised-button (click)="consolaTotalEvents()" color="primary">
@@ -136,8 +198,8 @@
                     </button>
                 </mat-card-subtitle>
             </mat-card>
+            -->
         </div>
-        <br>
         <br>
         <br>
     </div>
