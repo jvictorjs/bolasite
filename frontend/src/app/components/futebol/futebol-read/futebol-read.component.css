@@ -4,6 +4,7 @@
 
 table {
     width: 100%;
+    padding: -18px;
 }
 
 .edit {
@@ -18,12 +19,25 @@ table {
     color: #e35e6b;
 }
 
+.event-div {
+    width: auto;
+}
+
+.event-div:hover {
+    font-weight: 500;
+    -ms-transform: scale(1.01);
+    /* IE 9 */
+    -webkit-transform: scale(1.01);
+    /* Safari 3-8 */
+    transform: scale(1.01);
+}
+
 .view>i {
     color: #0d3fe2;
 }
 
-.button {
-    margin-top: 15px;
+button {
+    margin: 15px 20px 0 0;
 }
 
 i {
@@ -39,7 +53,7 @@ i:hover {
 }
 
 .team-logo {
-    width: 2.3rem;
+    width: 1.3rem;
     transition: transform 0.3s;
     vertical-align: middle;
 }
@@ -49,5 +63,5 @@ i:hover {
     /* IE 9 */
     -webkit-transform: scale(1.8);
     /* Safari 3-8 */
-    transform: scale(1.8);
+    transform: scale(2.8);
 }
