@@ -1,75 +1,153 @@
-<mat-sidenav-container class="container">
-    <mat-sidenav class="sidenav" mode="side" opened="true" fixedInViewport="true" fixedTopGap="64" disableClose="false"
-        fixedBottomGap="0" position="start">
-        <mat-nav-list class="nav-list">
-            <a mat-list-item routerLink="/futebol">
-                <i class="material-icons">
-                    sports_soccer
-                </i>
-                Futebol
+<!--
+    STACKOVERFLOW https://material.angular.io/components/sidenav/overview
+    STACKOVERFLOW https://stackblitz.com/angular/mnbqebkojae?file=src%2Fapp%2Fsidenav-responsive-example.ts
+-->
+<div class="example-container mat-elevation-z10" [class.example-is-mobile]="mobileQuery.matches">
+    <mat-toolbar color="primary" class="example-toolbar mat-elevation-z10 backgroundColor">
+        <button mat-icon-button (click)="sidenav.toggle()"><i class="material-icons textColor">menu</i></button>
+        <div style="width: 140px; border: none;">
+            <a href="https://bolanarede.net.br">
+                <h1 class="example-app-name">
+                    <strong class="textColor">
+                        bola<span class="red">na</span>rede</strong>
+                </h1>
             </a>
-            <a mat-list-item routerLink="/tv-guide">
-                <i class="material-icons">
-                    tv
-                </i>
-                Jogos do dia
-            </a>
-            <a mat-list-item routerLink="/futebol">
-                <i class="material-icons">
-                    sports_soccer
-                </i>
-                TremdGol APP
-            </a>
-            <a mat-list-item routerLink="/futebol" class="mini">
-                <i class="material-icons">
-                    sports_soccer
-                </i>
-                Bolão Rússia 2018
-            </a>
-            <a mat-list-item routerLink="/futebol">
-                <i class="material-icons">
-                    sports_soccer
-                </i>
-                TIPS
-            </a>
-            <a mat-list-item routerLink="/futebol">
-                <i class="material-icons">
-                    sports_soccer
-                </i>
-                Prognósticos
-            </a>
-            <a mat-list-item routerLink="/futebol">
-                <i class="material-icons">
-                    sports_soccer
-                </i>
-                Bola na Rede
-            </a>
-            <a mat-list-item routerLink="/futebol">
-                <i class="material-icons">
-                    attach_money
-                </i>
-                Controle Financeiro
-            </a>
-            <a mat-list-item routerLink="/products">
-                <i class="material-icons">
-                    storefront
-                </i>
-                Produtos
-            </a>
-            <a mat-list-item routerLink="/about">
-                <i class="material-icons">
-                    <!--https://material.io/resources/icons/?style=baseline-->
-                    info
-                </i>
-                Sobre
-            </a>
-        </mat-nav-list>
-    </mat-sidenav>
+        </div>
+        <div style="width: 50px; border: none;margin-bottom: 13px;" class="hover-rotate">
+            <span style="font-size: 0.9rem;" class="textColor">
+                beta</span>
+        </div>
+        <div class="title">
+            <span class="title-group">
+                <a routerLink="{{ routeUrl }}" class="textColor">
+                    {{ title }}
+                    <i class="material-icons md-32 title-icon hover-rotate">
+                        {{ icon }}
+                    </i>
+                </a>
+            </span>
+        </div>
+
+    </mat-toolbar>
+
+    <!--
+    <mat-sidenav-container class="container">
+        <!-- opened="true" 
+        mode="side" 
+        fixedInViewport="true" 
+        
+        <button md-raised-button="md-raised-button" color="primary" (click)="sidenav.toggle()">Open Sidenav</button>
+        <mat-sidenav #sidenav class="sidenav" [(opened)]="opened" (opened)="events.push('open!')"
+        (closed)="events.push('close!')" [fixedInViewport]="true" [mode]="mobileQuery.matches ? 'over' : 'side'"
+        fixedTopGap="56" disableClose="false" fixedBottomGap="0" position="start">
+    -->
 
 
-    <mat-sidenav-content class="content">
-        <router-outlet>
+    <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+        <mat-sidenav class="sidenav mat-elevation-z10 backgroundColor" #sidenav
+            [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56"
+            [(opened)]="opened">
+            <div style="display: flex; flex-direction: column; justify-content: flex-start; height: 95%;border:none;">
+                <div style="display: flex; flex-direction: column; margin-top: 0px;">
+                    <mat-nav-list class="nav-list">
+                        <!-- STACKOVERFLOW https://stackoverflow.com/questions/43808809/close-angular-material-sidenav-on-any-button-click-inside -->
+                        <a mat-list-item routerLink="/futebol" class="list-item-with-icon"
+                            (click)="mobileQuery.matches === false || sidenav.close()">
+                            <mat-icon mat-list-icon class="material-icons side-nav-icon hover-rotate">
+                                sports_soccer
+                            </mat-icon>
+                            Futebol
+                        </a>
+                        <a mat-list-item routerLink="/tv-guide" class="list-item-with-icon"
+                            (click)="mobileQuery.matches === false || sidenav.close()">
+                            <mat-icon mat-list-icon class="material-icons side-nav-icon hover-rotate">
+                                tv
+                            </mat-icon>
+                            Jogos na TV
+                        </a>
+                        <a mat-list-item routerLink="/futebol" class="list-item-with-icon"
+                            (click)="mobileQuery.matches === false || sidenav.close()">
+                            <mat-icon mat-list-icon class="material-icons side-nav-icon hover-rotate">
+                                sports_soccer
+                            </mat-icon>
+                            TremdGol App
+                        </a>
+                        <a mat-list-item routerLink="/futebol" class="list-item-with-icon"
+                            (click)="mobileQuery.matches === false || sidenav.close()">
+                            <mat-icon mat-list-icon class="material-icons side-nav-icon hover-rotate">
+                                sports_soccer
+                            </mat-icon>
+                            Bolão Rússia 2018
+                        </a>
+                        <a mat-list-item routerLink="/futebol" class="list-item-with-icon"
+                            (click)="mobileQuery.matches === false || sidenav.close()">
+                            <mat-icon mat-list-icon class="material-icons side-nav-icon hover-rotate">
+                                sports_soccer
+                            </mat-icon>
+                            TIPS
+                        </a>
+                        <a mat-list-item routerLink="/futebol" class="list-item-with-icon"
+                            (click)="mobileQuery.matches === false || sidenav.close()">
+                            <mat-icon mat-list-icon class="material-icons side-nav-icon hover-rotate">
+                                sports_soccer
+                            </mat-icon>
+                            Prognósticos
+                        </a>
+                        <a mat-list-item routerLink="/futebol" class="list-item-with-icon"
+                            (click)="mobileQuery.matches === false || sidenav.close()">
+                            <mat-icon mat-list-icon class="material-icons side-nav-icon hover-rotate">
+                                sports_soccer
+                            </mat-icon>
+                            Bola na Rede
+                        </a>
+                        <a mat-list-item routerLink="/futebol" class="list-item-with-icon"
+                            (click)="mobileQuery.matches === false || sidenav.close()">
+                            <mat-icon mat-list-icon class="material-icons side-nav-icon hover-rotate">
+                                sports_soccer
+                            </mat-icon>
+                            Controle Financeiro
+                        </a>
+                        <a mat-list-item routerLink="/products" class="list-item-with-icon"
+                            (click)="mobileQuery.matches === false || sidenav.close()">
+                            <mat-icon mat-list-icon class="material-icons side-nav-icon hover-rotate">
+                                storefront
+                            </mat-icon>
+                            Produtos
+                        </a>
+                        <a mat-list-item routerLink="/about" class="list-item-with-icon"
+                            (click)="mobileQuery.matches === false || sidenav.close()">
+                            <mat-icon mat-list-icon class="material-icons side-nav-icon hover-rotate">
+                                info
+                            </mat-icon>
+                            Sobre
+                        </a>
 
-        </router-outlet>
-    </mat-sidenav-content>
-</mat-sidenav-container>
+                        <div
+                            style="display: flex;justify-content: center; flex-direction: column;height: 40px; align-content: center; text-align: center;">
+                        </div>
+                        <div style="display: flex;justify-content: flex-end; flex-direction: column;height: 100px;">
+                            <div
+                                style="display: flex; flex-direction: column; justify-content: center; align-content: center; text-align: center; margin-bottom: 22px;">
+                                <span style="font-weight: 400; margin: 0 0 0 10px;">
+                                    Developed with
+                                    <i class="material-icons v-middle pulse-heart" appRed>
+                                        favorite
+                                    </i>
+                                    by <strong>bola<span class="red">na</span>rede</strong>
+                                </span>
+
+                            </div>
+                        </div>
+                    </mat-nav-list>
+                </div>
+            </div>
+
+        </mat-sidenav>
+        <mat-sidenav-content class="content">
+            <router-outlet>
+            </router-outlet>
+        </mat-sidenav-content>
+
+    </mat-sidenav-container>
+
+</div>

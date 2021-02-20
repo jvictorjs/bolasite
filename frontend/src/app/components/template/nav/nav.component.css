@@ -1,7 +1,105 @@
-.sidenav {
-    margin-top: 0px;
+/*
+STACKOVERFLOW https://stackoverflow.com/questions/4847850/is-it-possible-to-define-constants-in-css/48175165
+*/
+
+.backgroundColor {
+    background-color: rgba(171, 172, 173, 0.836);
+    /*
     background-color: #3f51b5;
-    width: 210px;
+    azul portfolio = #3f51b5 
+    */
+}
+
+.textColor {
+    color: rgb(85, 82, 82);
+    /*defaul is #FFF*/
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    z-index: 2;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.example-toolbar a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.example-toolbar .title {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    border: none;
+}
+
+.example-toolbar .title-group {
+    padding-left: 33px;
+    align-self: center;
+    border: none;
+    margin-right: 3%;
+}
+
+.example-toolbar .title-group i {
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+.title-icon {
+    transition: transform .3s;
+}
+
+.title-icon:hover {
+    -ms-transform: scale(1.5);
+    /* IE 9 */
+    -webkit-transform: scale(1.5);
+    /* Safari 3-8 */
+    transform: scale(1.5);
+}
+
+.example-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.example-is-mobile .example-toolbar {
+    position: fixed;
+    /* Make sure the toolbar will stay on top of the content as it scrolls past. */
+    z-index: 2;
+    /*
+    box-shadow: inset 0 0 1em gold, 0 0 1em red;
+    */
+}
+
+h1.example-app-name {
+    margin-left: 8px;
+}
+
+.example-sidenav-container {
+    /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
+       causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
+    flex: 1;
+}
+
+.example-is-mobile .example-sidenav-container {
+    /* When the sidenav is fixed, don't constrain the height of the sidenav container. This allows the
+       `<body>` to be our scrolling element for mobile layouts. */
+    flex: 1 0 auto;
+}
+
+.sidenav {
+    z-index: 3;
+    margin-top: 0px;
+    width: 236;
     height: 100%;
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
@@ -11,19 +109,188 @@
 }
 
 .sidenav a {
-    color:#fff;
+    color: rgb(85, 82, 82);
 }
 
 .sidenav i {
     padding-right: 10px;
 }
 
+.nav-list {
+    margin-top: 3px;
+    width: 93%;
+}
+
 .content {
-    padding: 5px 16px 16px 16px;
+    padding: 16px 16px 16px 16px;
     background-color: #fff;
+    box-shadow: inset 0 0px 0.4em black, 0 0 0em red;
+    border: none;
 }
 
 .container {
-    margin-top: 14px;
-    background-color: #3f51b5;
+    margin-top: 0px;
+    padding-top: 64px;
+    background-color: #fff;
+}
+
+.list-item-with-icon {
+    transition: transform .1001s;
+    border: none;
+    align-items: center;
+}
+
+/*
+STACKOVERFLOW https://stackoverflow.com/questions/52962476/in-angular7-how-do-i-change-the-height-of-a-mat-select-when-shows-the-list-of-i
+STACKOVERFLOW https://pt.stackoverflow.com/questions/25311/para-que-serve-a-declara%C3%A7%C3%A3o-important
+STACKOVERFLOR https://zenorocha.com/css-important/
+!important is very dangerous!!
+*/
+
+.mat-list-item {
+    height: 46px !important;
+    /* default is 72px */
+}
+
+.side-nav-icon {
+    margin: 0 3px 0 0;
+    border: none;
+}
+
+.list-item-with-icon:hover {
+    -ms-transform: scale(1.5);
+    /* IE 9 */
+    -webkit-transform: scale(1.5);
+    /* Safari 3-8 */
+    transform: scale(1.07);
+    border-radius: 8px;
+    height: 46px !important;
+}
+
+.showme {
+    display: none;
+}
+
+.showhim:hover .showme {
+    display: block;
+}
+
+.mini-logo-fixed {
+    display: inline-block;
+    margin: 0px 10px 0px 10px;
+    width: 1.3rem;
+    vertical-align: middle;
+}
+
+.font-awesome-icon {
+    color: black;
+}
+
+.fa-cog {
+    color: black;
+}
+
+.mini-logo {
+    display: inline-block;
+    margin: 0px 5px 0px 5px;
+    width: 1.3rem;
+    vertical-align: middle;
+    transition: transform .3s;
+}
+
+.mini-logo:hover {
+    -ms-transform: scale(1.5);
+    /* IE 9 */
+    -webkit-transform: scale(1.5);
+    /* Safari 3-8 */
+    transform: scale(1.5);
+}
+
+.icon-heart-pulsing {
+    transition: transform .4s;
+}
+
+.icon-heart-pulsing:hover {
+    -ms-transform: scale(1.5);
+    /* IE 9 */
+    -webkit-transform: scale(1.5);
+    /* Safari 3-8 */
+    transform: scale(1.4);
+}
+
+.pulse-heart {
+    animation: pulse-heart 2s linear;
+    border-radius: 50%;
+    margin: 0 -10px 0 3px;
+}
+
+.pulse-heart:hover {
+    -ms-transform: scale(1.5);
+    /* IE 9 */
+    -webkit-transform: scale(1.5);
+    /* Safari 3-8 */
+    transform: scale(1.4);
+}
+
+@keyframes pulse-heart {
+    0% {
+        transform: scale(0.9);
+        box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+    }
+    20% {
+        transform: scale(1.15);
+        box-shadow: 0 0 0 0px rgba(0, 0, 0, 0);
+    }
+    40% {
+        transform: scale(0.9);
+        box-shadow: 0 0 0 0px rgba(0, 0, 0, 0);
+    }
+    60% {
+        transform: scale(1.2);
+        box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.);
+    }
+    100% {
+        transform: scale(0.90);
+        box-shadow: 0 0 0 0px rgba(0, 0, 0, 0);
+    }
+}
+
+/* #STACKOVERFLOW  https://www.florin-pop.com/blog/2019/03/css-pulse-effect/ */
+
+.pulse-ori {
+    border-radius: 50%;
+    margin: 10px;
+    box-shadow: 0 0 0 0px rgba(0, 0, 0, 1);
+    transform: scale(1);
+    animation: pulse-ori 2s infinite;
+}
+
+@keyframes pulse-ori {
+    0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+    }
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+    }
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    }
+}
+
+/* 
+STACKOVERFLOW https://stackoverflow.com/questions/16771225/css3-rotate-animation
+*/
+
+.hover-rotate {
+    overflow: hidden;
+    transition-duration: 0.8s;
+    transition-property: transform;
+}
+
+.hover-rotate:hover {
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
 }
