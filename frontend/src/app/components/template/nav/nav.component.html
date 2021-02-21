@@ -1,10 +1,13 @@
 <!--
     STACKOVERFLOW https://material.angular.io/components/sidenav/overview
     STACKOVERFLOW https://stackblitz.com/angular/mnbqebkojae?file=src%2Fapp%2Fsidenav-responsive-example.ts
+    STACKOVERFLOW esse aqui nao é exatamente, mas ajuda caso a sidenav fique doida https://stackoverflow.com/questions/49176479/angular-incorrect-margin-left-applied-to-sidenav-content 
 -->
 <div class="example-container mat-elevation-z10" [class.example-is-mobile]="mobileQuery.matches">
     <mat-toolbar color="primary" class="example-toolbar mat-elevation-z10 backgroundColor">
-        <button mat-icon-button (click)="sidenav.toggle()"><i class="material-icons textColor">menu</i></button>
+        <button mat-icon-button (click)="sidenav.toggle()">
+            <i class="material-icons textColor">menu</i>
+        </button>
         <div style="width: 140px; border: none;">
             <a href="https://bolanarede.net.br">
                 <h1 class="example-app-name">
@@ -123,26 +126,37 @@
                         </a>
 
                         <div
-                            style="display: flex;justify-content: center; flex-direction: column;height: 40px; align-content: center; text-align: center;">
+                            style="display: flex;justify-content: center; flex-direction: column;height: 25px; align-content: center; text-align: center;width: 100px;border: none;">
                         </div>
-                        <div style="display: flex;justify-content: flex-end; flex-direction: column;height: 100px;">
-                            <div
-                                style="display: flex; flex-direction: column; justify-content: center; align-content: center; text-align: center; margin-bottom: 22px;">
-                                <span style="font-weight: 400; margin: 0 0 0 10px;">
-                                    Developed with
-                                    <i class="material-icons v-middle pulse-heart" appRed>
-                                        favorite
-                                    </i>
-                                    by <strong>bola<span class="red">na</span>rede</strong>
-                                </span>
 
+                        <div
+                            style="display: flex; flex-direction: column; justify-content: center; align-content: center; text-align: center; margin-bottom: 22px;border:none">
+                            <div style="width: 235px; border: none;">
+                                <div class="showhim">
+                                    <div style="width: 140px; border: none; margin-left: 44px;">
+                                        <a href="https://bolanarede.net.br">
+                                            <strong class="textColor">
+                                                bola<span class="red">na</span>rede</strong> © 2021
+                                        </a>
+                                        <div class="showme">
+                                            <div
+                                                style="display: flex;justify-content: flex-end; flex-direction: column;height: 20px;border:none;">
+                                                <mat-icon mat-list-icon
+                                                    class="material-icons side-nav-icon rotate-infinite textColor">
+                                                    sports_soccer
+                                                </mat-icon>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </mat-nav-list>
                 </div>
             </div>
-
         </mat-sidenav>
+
+
         <mat-sidenav-content class="content">
             <router-outlet>
             </router-outlet>

@@ -99,7 +99,7 @@ h1.example-app-name {
 .sidenav {
     z-index: 3;
     margin-top: 0px;
-    width: 236;
+    width: 235;
     height: 100%;
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
@@ -293,4 +293,18 @@ STACKOVERFLOW https://stackoverflow.com/questions/16771225/css3-rotate-animation
 .hover-rotate:hover {
     transform: rotate(360deg);
     -webkit-transform: rotate(360deg);
+}
+
+/*
+STACKOVERFLOR https://stackoverflow.com/questions/6410730/css-endless-rotation-animation
+*/
+
+.rotate-infinite {
+    animation: rotate 1.5s linear infinite;
+}
+
+@keyframes rotate {
+    to {
+        transform: rotate(360deg);
+    }
 }
