@@ -23,7 +23,7 @@
         </div>
 
         <div id="eventComponent">
-            <mat-card class="eventNameAndLogos mat-elevation-z3">
+            <mat-card class="eventNameAndLogos mat-elevation-z1">
                 <mat-card-title class="title">
                     {{ event.league.name }}
                 </mat-card-title>
@@ -36,7 +36,9 @@
                         STACKOVERFLOW https://stackoverflow.com/questions/7687884/add-10-seconds-to-a-date
                         STACKOVERFLOW https://stackoverflow.com/questions/23848608/angularjs-ng-if-to-change-text
                     -->
-                    {{ event.clock.period !== '' ? ' ('+event.clock.period+' '+(eventClock.date | date: 'mm:ss')+')' :
+                    {{ event.clock.period !== '' ? ' ('+event.clock.period+' '+(eventClock.date | date:
+                    'mm:ss')+')'
+                    :
                     ''}}
                 </mat-card-subtitle>
                 <mat-card-subtitle class="subtitle">
@@ -48,7 +50,7 @@
                     <img src="https://assets.b365api.com/images/team/b/{{ event.away.image_id }}.png" alt="away_logo" />
                 </mat-card-subtitle>
             </mat-card>
-            <mat-card class="eventStats mat-elevation-z3">
+            <mat-card class="eventStats mat-elevation-z1">
                 <mat-card-title class="subtitle">
                     {{ event.event_odds.odds_summary.end.home_odd }}
                     <img src="https://assets.b365api.com/images/team/s/{{ event.home.image_id }}.png" alt="home_logo" />
@@ -88,7 +90,7 @@
         </ul>
     </mat-card>
 -->
-            <mat-card class="graphsCard mat-elevation-z3">
+            <mat-card class="graphsCard mat-elevation-z1">
 
                 <!--
             

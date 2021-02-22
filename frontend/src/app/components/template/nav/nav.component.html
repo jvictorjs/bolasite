@@ -3,8 +3,8 @@
     STACKOVERFLOW https://stackblitz.com/angular/mnbqebkojae?file=src%2Fapp%2Fsidenav-responsive-example.ts
     STACKOVERFLOW esse aqui nao é exatamente, mas ajuda caso a sidenav fique doida https://stackoverflow.com/questions/49176479/angular-incorrect-margin-left-applied-to-sidenav-content 
 -->
-<div class="example-container mat-elevation-z10" [class.example-is-mobile]="mobileQuery.matches">
-    <mat-toolbar color="primary" class="example-toolbar mat-elevation-z10 backgroundColor">
+<div class="example-container mat-elevation-z5" [class.example-is-mobile]="mobileQuery.matches">
+    <mat-toolbar color="primary" class="example-toolbar mat-elevation-z5 backgroundColor">
         <button mat-icon-button (click)="sidenav.toggle()">
             <i class="material-icons textColor">menu</i>
         </button>
@@ -16,8 +16,8 @@
                 </h1>
             </a>
         </div>
-        <div style="width: 50px; border: none;margin-bottom: 13px;" class="hover-rotate">
-            <span style="font-size: 0.9rem;" class="textColor">
+        <div style="width: 50px; border: none;margin: 0px 0px 13px -5px;" class="hover-rotate">
+            <span style="font-size: 0.8rem;" class="textColor">
                 beta</span>
         </div>
         <div class="title">
@@ -47,7 +47,7 @@
 
 
     <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
-        <mat-sidenav class="sidenav mat-elevation-z10 backgroundColor" #sidenav
+        <mat-sidenav class="sidenav mat-elevation-z5 backgroundColor" #sidenav
             [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56"
             [(opened)]="opened">
             <div style="display: flex; flex-direction: column; justify-content: flex-start; height: 95%;border:none;">
@@ -158,8 +158,27 @@
 
 
         <mat-sidenav-content class="content">
-            <router-outlet>
-            </router-outlet>
+            <!--
+                
+                <div style="margin-top: 100x; height: 90%; border:none; overflow: scroll;
+                
+                box-shadow: inset 0 0 1em black, 0 0 1em white; padding: 10px;">
+                
+                <div style="margin-top: 150x; height: 100%; border:none; overflow: scroll;
+                box-shadow: inset 0 0 1em black, 0 0 1em white; padding: 10px;">
+                <router-outlet>
+                </router-outlet>
+            </div>
+        </div>
+    -->
+            <div style="display: flex; flex-direction: column; align-items: center;">
+                <div style="max-width: 1440px; align-self: center; width: 100%;">
+
+                    <router-outlet>
+                    </router-outlet>
+                </div>
+            </div>
+
         </mat-sidenav-content>
 
     </mat-sidenav-container>

@@ -1,4 +1,4 @@
-import { HeaderService } from './../../components/template/header/header.service';
+import { HeaderService } from './../../components/template/nav/nav.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -10,7 +10,7 @@ export class FutebolComponent implements OnInit {
 
   constructor(private headerService: HeaderService) {
     headerService.headerData = {
-      title: 'Jogos de Futebol Ao Vivo',
+      title: 'Jogos Ao Vivo',
       icon: 'sports_soccer',
       routeUrl: ''
     }

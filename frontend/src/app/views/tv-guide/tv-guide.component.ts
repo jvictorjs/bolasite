@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { EMPTY, Observable } from 'rxjs';
+import { HeaderService } from './../../components/template/nav/nav.service';
 
 @Component({
   selector: 'app-tv-guide',
@@ -15,18 +16,24 @@ export class TvGuideComponent implements OnInit {
   displayedColumns = ['id', 'name', 'price', 'action']
   json_response: any = {}
 
-  constructor(private http: HttpClient) { }
-
-  ngOnInit(): void {
-    this.read().subscribe(response => {
-      this.json_response = response
-      console.log(response)
-    })
+  constructor(private http: HttpClient, private headerService: HeaderService) {
+    headerService.headerData = {
+      title: 'Guia de Jogos na TV',
+      icon: 'tv',
+      routeUrl: '/tv-guide'
+    }
   }
 
-  read(): Observable<any[]> {
-    return this.http.get<any[]>(this.baseUrl)
-  }
+ngOnInit(): void {
+  this.read().subscribe(response => {
+    this.json_response = response
+    console.log(response)
+  })
+}
+
+read(): Observable < any[] > {
+  return this.http.get<any[]>(this.baseUrl)
+}
 }
 
 

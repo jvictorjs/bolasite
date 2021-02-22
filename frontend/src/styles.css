@@ -9,8 +9,25 @@ body {
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+/*
+STACKOVERFLOW https://stackoverflow.com/questions/4847850/is-it-possible-to-define-constants-in-css/48175165
+*/
+
+.backgroundColor {
+    background-color: rgba(171, 172, 173, 1);
+    /*
+    background-color: #3f51b5;
+    azul portfolio = #3f51b5 
+    */
+}
+
+.textColor {
+    color: rgb(85, 82, 82);
+    /*defaul is #FFF*/
+}
+
 .red {
-    color: #e35e6b;
+    color: #c5505c;
 }
 
 .v-middle {

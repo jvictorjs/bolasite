@@ -1,18 +1,9 @@
-/*
-STACKOVERFLOW https://stackoverflow.com/questions/4847850/is-it-possible-to-define-constants-in-css/48175165
-*/
-
 .backgroundColor {
     background-color: rgba(171, 172, 173, 1);
     /*
     background-color: #3f51b5;
     azul portfolio = #3f51b5 
     */
-}
-
-.textColor {
-    color: rgb(85, 82, 82);
-    /*defaul is #FFF*/
 }
 
 .header {
@@ -80,6 +71,15 @@ STACKOVERFLOW https://stackoverflow.com/questions/4847850/is-it-possible-to-defi
     */
 }
 
+.example-is-mobile .example-toolbar {
+    position: fixed;
+    /* Make sure the toolbar will stay on top of the content as it scrolls past. */
+    z-index: 2;
+    /*
+    box-shadow: inset 0 0 1em gold, 0 0 1em red;
+    */
+}
+
 h1.example-app-name {
     margin-left: 8px;
 }
@@ -123,7 +123,8 @@ h1.example-app-name {
 
 .content {
     padding: 16px 16px 16px 16px;
-    background-color: #fff;
+    background-color: #f9f9f9;
+    /*tremdgol = ececec | f2f2f2*/
     box-shadow: inset 0 0px 0.4em black, 0 0 0em red;
     border: none;
 }

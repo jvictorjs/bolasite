@@ -48,6 +48,7 @@ import { AboutComponent } from './views/about/about.component';
 import { TvGuideComponent } from './views/tv-guide/tv-guide.component';
 import { FutebolUpcomingComponent } from './components/futebol/futebol-upcoming/futebol-upcoming.component'
 import { ChartsModule } from 'ng2-charts';
+import { FutebolReadCardsComponent } from './components/futebol/futebol-read-cards/futebol-read-cards.component';
 
 registerLocaleData(localePt);
 
@@ -71,7 +72,8 @@ registerLocaleData(localePt);
     FutebolEventReadComponent,
     AboutComponent,
     TvGuideComponent,
-    FutebolUpcomingComponent
+    FutebolUpcomingComponent,
+    FutebolReadCardsComponent
   ],
   imports: [ // módulos
     BrowserModule,

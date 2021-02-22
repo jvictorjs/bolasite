@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HeaderService } from './../../components/template/header/header.service';
+import { HeaderService } from './../../components/template/nav/nav.service';
 
 @Component({
   selector: 'app-about',
@@ -13,7 +13,7 @@ export class AboutComponent implements OnInit {
   constructor(private headerService: HeaderService) {
     headerService.headerData = {
       title: 'Sobre',
-      icon: 'home',
+      icon: 'info',
       routeUrl: 'about'
     }
   }

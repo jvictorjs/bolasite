@@ -1,0 +1,63 @@
+
+.event-card {
+    border-radius: 8px;
+    margin: 0 0 10px 0;
+    background-color: #fff;
+}
+
+.event-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    font-size: 1.2rem;
+    font-weight: 400;
+    width: auto;
+    border:none;
+    margin:-5px;
+    padding: 5px;
+    vertical-align: middle;
+    flex-wrap: wrap;
+}
+
+.event-div:hover {
+    font-weight: 500;
+    -ms-transform: scale(1.01);
+    /* IE 9 */
+    -webkit-transform: scale(1.01);
+    /* Safari 3-8 */
+    transform: scale(1.01);
+}
+
+.view>i {
+    color: #0d3fe2;
+}
+
+button {
+    margin: 15px 20px 0 0;
+}
+
+i {
+    transition: transform .2s;
+}
+
+i:hover {
+    -ms-transform: scale(1.5);
+    /* IE 9 */
+    -webkit-transform: scale(1.5);
+    /* Safari 3-8 */
+    transform: scale(1.5);
+}
+
+.team-logo {
+    width: 1.4rem;
+    transition: transform 0.3s;
+    vertical-align: middle;
+}
+
+.team-logo:hover {
+    -ms-transform: scale(1.8);
+    /* IE 9 */
+    -webkit-transform: scale(1.8);
+    /* Safari 3-8 */
+    transform: scale(2.8);
+}
