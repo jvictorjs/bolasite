@@ -1,8 +1,16 @@
-
 .event-card {
     border-radius: 8px;
     margin: 0 0 10px 0;
     background-color: #fff;
+}
+
+.event-card:hover {
+    font-weight: 500;
+    -ms-transform: scale(1.01);
+    /* IE 9 */
+    -webkit-transform: scale(1.01);
+    /* Safari 3-8 */
+    transform: scale(1.01);
 }
 
 .event-div {
@@ -12,20 +20,11 @@
     font-size: 1.2rem;
     font-weight: 400;
     width: auto;
-    border:none;
-    margin:-5px;
+    border: none;
+    margin: -5px;
     padding: 5px;
     vertical-align: middle;
-    flex-wrap: wrap;
-}
-
-.event-div:hover {
-    font-weight: 500;
-    -ms-transform: scale(1.01);
-    /* IE 9 */
-    -webkit-transform: scale(1.01);
-    /* Safari 3-8 */
-    transform: scale(1.01);
+    flex-wrap: nowrap;
 }
 
 .view>i {
@@ -52,6 +51,7 @@ i:hover {
     width: 1.4rem;
     transition: transform 0.3s;
     vertical-align: middle;
+    margin: 0 5px 0 5px;
 }
 
 .team-logo:hover {

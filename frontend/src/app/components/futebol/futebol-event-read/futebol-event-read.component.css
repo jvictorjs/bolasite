@@ -106,7 +106,7 @@ button {
     font-size: 1.6rem;
     text-align: center;
     font-weight: light;
-    line-height: 1.5;
+    line-height: 1.2;
     border: none;
 }
 
@@ -118,7 +118,7 @@ button {
     justify-content: space-around;
     border-width: 3px;
     border-color: black;
-    line-height: 2;
+    line-height: 1.3;
     vertical-align: middle;
     border: none;
 }
@@ -182,7 +182,7 @@ STACKOVERFLOW https://www.geeksforgeeks.org/how-to-display-spinner-on-the-screen
     justify-content: center;
     align-items: center;
     align-content: center;
-    margin: 25px;
+    margin: 8px 8px 0 8px;
 }
 
 .x .tooltiptext {
@@ -203,4 +203,31 @@ STACKOVERFLOW https://www.geeksforgeeks.org/how-to-display-spinner-on-the-screen
 
 .x:hover .tooltiptext {
     visibility: visible;
+}
+
+.homeEvent {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    border: none;
+    justify-content: flex-start;
+    text-align: end;
+    color:gray;
+}
+
+.awayEvent {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    width: 100%;
+    border: none;
+    color:gray;
+}
+
+.centerALL {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }

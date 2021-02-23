@@ -41,12 +41,18 @@
                     :
                     ''}}
                 </mat-card-subtitle>
-                <mat-card-subtitle class="subtitle">
+                <mat-card-subtitle class="subtitle centerALL">
                     <img src="https://assets.b365api.com/images/team/b/{{ event.home.image_id }}.png" alt="home_logo" />
+                    <div style="font-size: 3rem; margin: 0 1px 0 13px;">
+                        {{event.totalGoals_home}}
+                    </div>
                     <p class="x">
                         <span class="tooltiptext">{{event | json}}</span>
                         X
                     </p>
+                    <div style="font-size: 3rem; margin: 0 13px 0 1px">
+                        {{event.totalGoals_away}}
+                    </div>
                     <img src="https://assets.b365api.com/images/team/b/{{ event.away.image_id }}.png" alt="away_logo" />
                 </mat-card-subtitle>
             </mat-card>
@@ -68,7 +74,7 @@
                 </mat-card-title>
             </mat-card>
             <!--
-            <mat-card class="pointsSlicesToShow mat-elevation-z3">
+                <mat-card class="pointsSlicesToShow mat-elevation-z3">
                 <mat-card-title class="title">
                     {{ event.pointsSlices.minutesToShow_stringed }}
                 </mat-card-title>
@@ -77,7 +83,7 @@
                     {{ event.pointsSlices.powerIndexToShow_stringed }}
                 </mat-card-title>
             </mat-card>
-
+            
     <mat-card class="mat-elevation-z3">
         <mat-card-title class="title">
             JSON
@@ -93,7 +99,7 @@
             <mat-card class="graphsCard mat-elevation-z1">
 
                 <!--
-            
+                    
             STACKOVERFLOW   https://www.npmjs.com/package/ng2-charts
             STACKOVERFLOW   https://stackblitz.com/edit/ng2-charts-bar-template?file=src%2Fapp%2Fapp.component.html
             STACKOVERFLOW   https://valor-software.com/ng2-charts/#/BarChart
@@ -117,14 +123,14 @@
 
                         <!--
 
-                                return (
-                                    <View style={{ justifyContent: 'space-around', flexDirection: 'row', borderWidth: 0, width: '99%', alignSelf: 'center' }}>
-                                        {eventBSF_StatsTrend_MinutesOfHomeGoalsToShow_slices.map((minuteOfGoalsToShow) => (
-                                            <Text key={'minuteOfGoalsToShow_Key_' + key++} style={{ fontSize: 8, color: "#888888", textAlign: 'center', flexWrap: 'wrap', marginHorizontal: 0, fontWeight: 'bold', borderWidth: 0, width: '5%', width: '8%' }} >{minuteOfGoalsToShow}</Text>
-                                            ))}
-                                        </View>
-                                      
-                                -->
+                    return (
+                        <View style={{ justifyContent: 'space-around', flexDirection: 'row', borderWidth: 0, width: '99%', alignSelf: 'center' }}>
+                            {eventBSF_StatsTrend_MinutesOfHomeGoalsToShow_slices.map((minuteOfGoalsToShow) => (
+                                <Text key={'minuteOfGoalsToShow_Key_' + key++} style={{ fontSize: 8, color: "#888888", textAlign: 'center', flexWrap: 'wrap', marginHorizontal: 0, fontWeight: 'bold', borderWidth: 0, width: '5%', width: '8%' }} >{minuteOfGoalsToShow}</Text>
+                                ))}
+                            </View>
+                            
+                        -->
                         <div class="graphContainer">
                             <div class="graphRowData" style="height: auto;">
                                 <!-- home redcards 🟥 -->
@@ -184,23 +190,84 @@
                     -->
                 </mat-card-subtitle>
             </mat-card>
+
+
+            <mat-card class="eventNameAndLogos mat-elevation-z0" style="background-color: #f9f9f9; 
+            border:none">
+
+                <mat-card-subtitle *ngFor="let eventToShow of event.eventsToShow"
+                    class="centerALL mat-elevation-z2 eventNameAndLogos" style="display: flex; flex-direction: row; border-radius: 8px; width: 100%; background-color: #fff;
+                    margin:-15px 10px 23px 10px;min-height: 35px; ">
+                    <div class="centerALL"
+                        style="display: flex; margin:0 10px 0 0; border:none; vertical-align: middle; min-width: 10%; font-weight: 500;">
+                        {{ eventToShow.minuteToShow }}
+                    </div>
+                    <div style="display: flex;width: 90%;justify-content: flex-start; border:none;">
+                        <div *ngIf="eventToShow.homeOrAway == '-'; else elseBlock" class="centerALL"
+                            style="font-weight: 600; border: none;width: 100%;">
+                            {{ eventToShow.text }}
+                        </div>
+                        <ng-template #elseBlock>
+                            <div class="
+                            {{ eventToShow.homeOrAway === 'H' ? 'homeEvent':'awayEvent' }} centerALL">
+                                <div *ngIf="eventToShow.homeOrAway === 'H'; else elseLogoBlock">
+                                    <img style="display: flex;
+                                margin: 0px 5px 0px 5px;
+                                width: 1.8rem;
+                                border: none;"
+                                        src="https://assets.b365api.com/images/team/b/{{ event.home.image_id }}.png"
+                                        alt="home_logo" />
+                                </div>
+                                <ng-template #elseLogoBlock>
+                                    <div>
+                                        <img style="display: flex;
+                                    margin: 0px 5px 0px 5px;
+                                    width: 1.8rem;
+                                    border: none;"
+                                            src="https://assets.b365api.com/images/team/b/{{ event.away.image_id }}.png"
+                                            alt="away_logo" />
+                                    </div>
+                                </ng-template>
+
+                                <div style="text-align: center; width: 30%;">
+                                    {{ eventToShow.text }}
+                                </div>
+                                <div style="display:flex;
+                                justify-content: center; 
+                                margin: 0 5px 0 5px; 
+                                vertical-align: middle; 
+                                align-content: center;
+                                text-align: center;
+                                border:none;
+                                font-size: 1.3rem;">
+                                    {{ eventToShow.symbolToShow }}
+                                </div>
+                                <div style="border:none;width: 45%; color:#fff">
+                                    espaço branco aqui
+                                </div>
+                            </div>
+                        </ng-template>
+                    </div>
+
+                </mat-card-subtitle>
+            </mat-card>
             <!--
-            <mat-card class="eventNameAndLogos mat-elevation-z3">
-                <mat-card-subtitle>
-                    <button mat-raised-button (click)="consolaTotalEvents()" color="primary">
+                <mat-card class="eventNameAndLogos mat-elevation-z3">
+                    <mat-card-subtitle>
+                        <button mat-raised-button (click)="consolaTotalEvents()" color="primary">
                         Consola
                     </button>
-
+                    
                     <button mat-raised-button (click)="updateEvents()">
                         Update
                     </button>
-
+                    
                     <button mat-raised-button (click)="atribuirJogo()">
                         Atribuir
                     </button>
                 </mat-card-subtitle>
             </mat-card>
-            -->
+        -->
         </div>
         <br>
         <br>
