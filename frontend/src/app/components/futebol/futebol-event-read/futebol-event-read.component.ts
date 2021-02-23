@@ -137,6 +137,8 @@ export class FutebolEventReadComponent implements OnInit {
   intervalId: any;
   eventClock = { date: new Date(), minute: 0, second: 0 };
 
+  bolShowFlagsMatCardBackground = true;
+
   constructor(
     private futebolService: FutebolService,
     private router: Router,
@@ -229,6 +231,15 @@ export class FutebolEventReadComponent implements OnInit {
     document.getElementById('teamsLogos').style.display = 'none';
     //document.getElementById('graphs').style.display = 'none';
     document.getElementById('eventComponent').style.display = 'none';
+  }
+  
+  switchShowFlagsMatCardBackground(): void {
+    if (this.bolShowFlagsMatCardBackground) {
+      this.bolShowFlagsMatCardBackground = false;
+    } else {
+      this.bolShowFlagsMatCardBackground = true;
+    }
+    console.log(`this.bolShowFlagsMatCardBackground switched to = ${this.bolShowFlagsMatCardBackground}`)
   }
 
   updateEvents(): void {

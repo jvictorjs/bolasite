@@ -21,6 +21,22 @@ STACKOVERFLOW https://stackoverflow.com/questions/4847850/is-it-possible-to-defi
     */
 }
 
+.backgroundColor-white {
+    background-color: rgba(255, 255, 255, 1);
+    /*
+    background-color: #3f51b5;
+    azul portfolio = #3f51b5 
+    */
+}
+
+.backgroundColor-lightGray {
+    background-color: #f9f9f9;
+    /*
+    background-color: #3f51b5;
+    azul portfolio = #3f51b5 
+    */
+}
+
 .textColor {
     color: rgb(85, 82, 82);
     /*defaul is #FFF*/

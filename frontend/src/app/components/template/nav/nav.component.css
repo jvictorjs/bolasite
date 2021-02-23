@@ -123,8 +123,9 @@ h1.example-app-name {
 
 .content {
     padding: 16px 16px 16px 16px;
-    background-color: #f9f9f9;
-    /*tremdgol = ececec | f2f2f2*/
+    /*
+    background-color: #fff;
+    tremdgol = ececec | f2f2f2*/
     box-shadow: inset 0 0px 0.4em black, 0 0 0em red;
     border: none;
 }

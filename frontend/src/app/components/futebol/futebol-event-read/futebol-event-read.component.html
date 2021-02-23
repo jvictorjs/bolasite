@@ -23,55 +23,63 @@
         </div>
 
         <div id="eventComponent">
-            <mat-card class="eventNameAndLogos mat-elevation-z1">
-                <mat-card-title class="title">
-                    {{ event.league.name }}
-                </mat-card-title>
-                <mat-card-subtitle class="subtitle">
-                    {{ event.stringedGameWithRedcards }}
-                    {{ event.clock.period === '' ? '('+event.brClock+')' : ''}}
+            <mat-card id="flagsMatCard"
+                class="eventNameAndLogos {{ bolShowFlagsMatCardBackground ? 'mat-elevation-z1 backgroundColor-white' : 'mat-elevation-z0 backgroundColor-lightGray'}}">
+
+                <mat-card-subtitle class="subtitle centerALL">
+                    <img src="https://assets.b365api.com/images/team/b/{{ event.home.image_id }}.png" alt="home_logo" />
+                    <div style="font-size: 3rem; margin: 0 1px 0 18px;">
+                        {{event.totalGoals_home}}
+                    </div>
+                    <a (click)="switchShowFlagsMatCardBackground()">
+                        <p class="x">
+                            <span class="tooltiptext">{{event | json}}</span>
+                            X
+                        </p>
+                    </a>
+                    <div style="font-size: 3rem; margin: 0 18px 0 1px;">
+                        {{event.totalGoals_away}}
+                    </div>
+                    <img src="https://assets.b365api.com/images/team/b/{{ event.away.image_id }}.png" alt="away_logo" />
+                </mat-card-subtitle>
+                <mat-card-subtitle class="subtitle" style="font-weight: 500;">
                     <!--
                         STACKOVERFLOW https://stackoverflow.com/questions/54289078/display-time-clock-in-angular
                         STACKOVERFLOW https://stackoverflow.com/questions/36158193/javascript-set-a-new-date-to-tomorrow-8am
                         STACKOVERFLOW https://stackoverflow.com/questions/7687884/add-10-seconds-to-a-date
                         STACKOVERFLOW https://stackoverflow.com/questions/23848608/angularjs-ng-if-to-change-text
                     -->
-                    {{ event.clock.period !== '' ? ' ('+event.clock.period+' '+(eventClock.date | date:
-                    'mm:ss')+')'
+                    {{ event.clock.period !== '' ? ''+event.clock.period+' '+(eventClock.date | date:
+                    'mm:ss')+''
                     :
                     ''}}
-                </mat-card-subtitle>
-                <mat-card-subtitle class="subtitle centerALL">
-                    <img src="https://assets.b365api.com/images/team/b/{{ event.home.image_id }}.png" alt="home_logo" />
-                    <div style="font-size: 3rem; margin: 0 1px 0 13px;">
-                        {{event.totalGoals_home}}
-                    </div>
-                    <p class="x">
-                        <span class="tooltiptext">{{event | json}}</span>
-                        X
-                    </p>
-                    <div style="font-size: 3rem; margin: 0 13px 0 1px">
-                        {{event.totalGoals_away}}
-                    </div>
-                    <img src="https://assets.b365api.com/images/team/b/{{ event.away.image_id }}.png" alt="away_logo" />
+                    {{ event.clock.period === '' ? '('+event.brClock+')' : ''}}
                 </mat-card-subtitle>
             </mat-card>
             <mat-card class="eventStats mat-elevation-z1">
-                <mat-card-title class="subtitle">
+                <mat-card-title class="title">
+                    {{ event.league.name }}
+                </mat-card-title>
+                <mat-card-subtitle class="subtitle">
                     {{ event.event_odds.odds_summary.end.home_odd }}
                     <img src="https://assets.b365api.com/images/team/s/{{ event.home.image_id }}.png" alt="home_logo" />
                     {{ event.stringedGameWithRedcards }}
                     <img src="https://assets.b365api.com/images/team/s/{{ event.away.image_id }}.png" alt="away_logo" />
                     {{ event.event_odds.odds_summary.end.away_odd }}
-                </mat-card-title>
-                <mat-card-title class="subtitle">
+                    <br>
                     📊
                     {{ event.event_odds.odds_summary.start.home_odd }}
                     |
                     {{ event.event_odds.odds_summary.start.draw_odd }}
                     |
                     {{ event.event_odds.odds_summary.start.away_odd }}
-                </mat-card-title>
+                    <!-- STACKOVERFLOW  https://stackoverflow.com/questions/56669505/adding-whitespace-to-a-string-in-typescript-in-angular/56670220 -->
+                    &nbsp;
+                    {{ ' ➕'+event.event_odds.odds_summary.start.handicap}}
+                    {{'@'+event.event_odds.odds_summary.start.over_odd}}
+                    <br>
+                    {{''+event.points.datt_home + '💥' +event.points.datt_away + ' ('+event.points.datt_per_minute+')'}}
+                </mat-card-subtitle>
             </mat-card>
             <!--
                 <mat-card class="pointsSlicesToShow mat-elevation-z3">
@@ -110,7 +118,7 @@
                     <div class="graphs">
                         <div id="teamsLogos" class="teamLogos">
                             <div>
-                                <img class="graphTeamLogo"
+                                <img style="box-shadow: inset 0 0 0em white, 0 0 0em gray;" class="graphTeamLogo"
                                     src="https://assets.b365api.com/images/team/b/{{ event.home.image_id }}.png"
                                     alt="home_logo" />
                             </div>
@@ -192,20 +200,21 @@
             </mat-card>
 
 
-            <mat-card class="eventNameAndLogos mat-elevation-z0" style="background-color: #f9f9f9; 
-            border:none">
+            <mat-card class="eventNameAndLogos mat-elevation-z0 backgroundColor-lightGray"
+                style="border:none ;margin:13px">
 
-                <mat-card-subtitle *ngFor="let eventToShow of event.eventsToShow" class="centerALL mat-elevation-z0"
-                    style="display: flex; flex-direction: row; justify-content: center;align-items: center;
-                    border-radius: 8px; width: 100%; background-color: #f9f9f9;
+                <mat-card-subtitle *ngFor="let eventToShow of event.eventsToShow"
+                    class="centerALL mat-elevation-z0 backgroundColor-lightGray" style="display: flex; flex-direction: row; justify-content: center;align-items: center;
+                    border-radius: 8px; width: 100%;
                     margin:-15px -12px 23px -22px;min-height: 35px; border:none">
 
 
 
-                    <div class="centerALL mat-elevation-z2" style="display: flex; flex-direction: row; 
-                    border-radius: 8px; width: 7%; background-color: #fff; padding: 3px; margin: 0px 3px">
+                    <div class="centerALL mat-elevation-z2"
+                        style="display: flex; flex-direction: row; 
+                    border-radius: 8px; width: 7%; background-color: #fff; padding: 3px; margin: 0px 3px; border: none;">
 
-                        <div class="centerALL" style="display: flex; margin: 2px 3px px 5px; border:none; vertical-align: middle;
+                        <div class="centerALL" style="display: flex; margin: 2px 3px 0px 5px; border:none; vertical-align: middle;
                     min-width: 7%; font-weight: 600; height: 100%;">
                             {{ eventToShow.minuteToShow }}
                             <!-- MINUTO -->
@@ -220,7 +229,7 @@
 
                         <div style="display: flex;width: 100%;justify-content: flex-start; border:none;">
                             <div *ngIf="eventToShow.homeOrAway == '-'; else elseBlock" class="centerALL"
-                                style="font-weight: 600; border: none;width: 100%;">
+                                style="font-weight: 600; border: none;width: 100%; margin: 2px;">
                                 {{ eventToShow.text }}
                                 <!-- HALF AND FULLTIME BAR -->
                             </div>
