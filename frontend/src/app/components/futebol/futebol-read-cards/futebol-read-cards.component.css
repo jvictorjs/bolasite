@@ -21,8 +21,8 @@
     font-weight: 400;
     width: auto;
     border: none;
-    margin: -5px;
-    padding: 5px;
+    margin: 0px;
+    padding: 5px 3px 3px 3px;
     vertical-align: middle;
     flex-wrap: nowrap;
 }
@@ -51,7 +51,8 @@ i:hover {
     width: 1.4rem;
     transition: transform 0.3s;
     vertical-align: middle;
-    margin: 0 5px 0 5px;
+    margin: 0 2px 0 2px;
+    border: none;
 }
 
 .team-logo:hover {

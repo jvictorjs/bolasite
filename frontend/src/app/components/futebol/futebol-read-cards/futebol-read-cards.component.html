@@ -9,9 +9,11 @@
     <a routerLink="/futebol/event/{{ event.id }}" [state]="{hello:'world'}" class="view">
         <mat-card class="event-card mat-elevation-z3">
             <div class="event-div">
-                <div style="display: flex; flex-direction: row; border:none; flex-wrap: wrap; width: 100%;margin:-13px; padding:3px">
+                <div
+                    style="display: flex; flex-direction: row; border:none; flex-wrap: wrap; width: 100%;margin:-13px; padding:3px">
 
-                    <div style="display: flex; flex-direction: row; border:none; flex-wrap: wrap; min-width: 30%;">
+                    <div
+                        style="display: flex; flex-direction: row; border:none; flex-wrap: wrap; min-width: 30%; margin: 0 0 5px;">
                         <div class="textColor" style="display:flex; flex-direction: column; justify-content: center; padding: 0px 3px 0 8px; 
                     font-size: 1.3rem; border:none; vertical-align:middle; width:27px;">
                             {{getFlags(event.league.cc)}}
@@ -21,17 +23,20 @@
                             {{event.league.name}}
                         </div>
                     </div>
-                    <div class="textColor" style="display:flex; flex-direction: column; justify-content: center; 
-                font-size: 0.8rem; font-weight: 500; text-align: center;border:none; width: 15%;">
+                    <div class="textColor"
+                        style="display:flex; flex-direction: column; justify-content: center; 
+                font-size: 0.8rem; font-weight: 500; text-align: center;border:none; min-width: 18%; margin: 0 0 5px 50px">
                         {{event.brClock}}
                     </div>
-                    <div style="display:flex; flex-direction: row; justify-content: center; flex-wrap: wrap;font-weight: 500;
+                    <div>
+                        <div style="display:inline-block; flex-direction: row; justify-content: center; flex-wrap: wrap;font-weight: 500;
                 border:none; min-width: 50%;">
-                        <img src="https://assets.b365api.com/images/team/m/{{ event.home.image_id }}.png"
-                            alt="home_logo" class="team-logo" />
-                        {{event.stringedGameWithRedcards}}
-                        <img src="https://assets.b365api.com/images/team/m/{{ event.away.image_id }}.png"
-                            alt="away_logo" class="team-logo" />
+                            <img src="https://assets.b365api.com/images/team/m/{{ event.home.image_id }}.png"
+                                alt="home_logo" class="team-logo" />
+                            {{event.stringedGameWithRedcards}}
+                            <img src="https://assets.b365api.com/images/team/m/{{ event.away.image_id }}.png"
+                                alt="away_logo" class="team-logo" />
+                        </div>
                     </div>
                 </div>
             </div>

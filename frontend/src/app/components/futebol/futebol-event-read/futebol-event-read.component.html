@@ -195,81 +195,97 @@
             <mat-card class="eventNameAndLogos mat-elevation-z0" style="background-color: #f9f9f9; 
             border:none">
 
-                <mat-card-subtitle *ngFor="let eventToShow of event.eventsToShow"
-                    class="centerALL mat-elevation-z2 eventNameAndLogos" style="display: flex; flex-direction: row; border-radius: 8px; width: 100%; background-color: #fff;
-                    margin:-15px 10px 23px 10px;min-height: 35px; ">
-                    <div class="centerALL"
-                        style="display: flex; margin:0 10px 0 0; border:none; vertical-align: middle; min-width: 10%; font-weight: 500;">
-                        {{ eventToShow.minuteToShow }}
-                    </div>
-                    <div style="display: flex;width: 90%;justify-content: flex-start; border:none;">
-                        <div *ngIf="eventToShow.homeOrAway == '-'; else elseBlock" class="centerALL"
-                            style="font-weight: 600; border: none;width: 100%;">
-                            {{ eventToShow.text }}
+                <mat-card-subtitle *ngFor="let eventToShow of event.eventsToShow" class="centerALL mat-elevation-z0"
+                    style="display: flex; flex-direction: row; justify-content: center;align-items: center;
+                    border-radius: 8px; width: 100%; background-color: #f9f9f9;
+                    margin:-15px -12px 23px -22px;min-height: 35px; border:none">
+
+
+
+                    <div class="centerALL mat-elevation-z2" style="display: flex; flex-direction: row; 
+                    border-radius: 8px; width: 7%; background-color: #fff; padding: 3px; margin: 0px 3px">
+
+                        <div class="centerALL" style="display: flex; margin: 2px 3px px 5px; border:none; vertical-align: middle;
+                    min-width: 7%; font-weight: 600; height: 100%;">
+                            {{ eventToShow.minuteToShow }}
+                            <!-- MINUTO -->
                         </div>
-                        <ng-template #elseBlock>
-                            <div class="
-                            {{ eventToShow.homeOrAway === 'H' ? 'homeEvent':'awayEvent' }} centerALL">
-                                <div *ngIf="eventToShow.homeOrAway === 'H'; else elseLogoBlock">
-                                    <img style="display: flex;
-                                margin: 0px 5px 0px 5px;
-                                width: 1.8rem;
-                                border: none;"
-                                        src="https://assets.b365api.com/images/team/b/{{ event.home.image_id }}.png"
-                                        alt="home_logo" />
-                                </div>
-                                <ng-template #elseLogoBlock>
-                                    <div>
-                                        <img style="display: flex;
-                                    margin: 0px 5px 0px 5px;
-                                    width: 1.8rem;
-                                    border: none;"
-                                            src="https://assets.b365api.com/images/team/b/{{ event.away.image_id }}.png"
-                                            alt="away_logo" />
-                                    </div>
-                                </ng-template>
-
-                                <div style="text-align: center; width: 30%;">
-                                    {{ eventToShow.text }}
-                                </div>
-                                <div style="display:flex;
-                                justify-content: center; 
-                                margin: 0 5px 0 5px; 
-                                vertical-align: middle; 
-                                align-content: center;
-                                text-align: center;
-                                border:none;
-                                font-size: 1.3rem;">
-                                    {{ eventToShow.symbolToShow }}
-                                </div>
-                                <div style="border:none;width: 45%; color:#fff">
-                                    espaço branco aqui
-                                </div>
-                            </div>
-                        </ng-template>
                     </div>
 
+
+
+
+                    <div class="centerALL mat-elevation-z2" style="display: flex; flex-direction: row; 
+                    border-radius: 8px; width: 100%; background-color: #fff; border: none; padding: 3px;">
+
+                        <div style="display: flex;width: 100%;justify-content: flex-start; border:none;">
+                            <div *ngIf="eventToShow.homeOrAway == '-'; else elseBlock" class="centerALL"
+                                style="font-weight: 600; border: none;width: 100%;">
+                                {{ eventToShow.text }}
+                                <!-- HALF AND FULLTIME BAR -->
+                            </div>
+                            <ng-template #elseBlock>
+                                <div class="
+                            {{ eventToShow.homeOrAway === 'H' ? 'homeEvent':'awayEvent' }} centerALL"
+                                    style="border:none;">
+                                    <div class="
+                                {{ eventToShow.homeOrAway === 'H' ? 'homeEvent':'awayEvent' }} " style="display: flex;
+                                    
+    align-items: center;
+    text-align: center;
+    justify-content: space-between; 
+    border: none; 
+    width: 55%;">
+                                        <div style="display:flex;
+    justify-content: center; 
+    margin: 0 8px 0 8px; 
+    vertical-align: middle; 
+    align-content: center;
+    text-align: center;
+    border:none;
+    font-size: 1.2rem;
+    width: 12%;">
+                                            {{ eventToShow.symbolToShow }}
+                                            <!-- EVENT SYMBOL ⚽⚽⚽⚽🌫-->
+                                        </div>
+
+                                        <div style="text-align: center; width: 60%; border: none; margin: 5px 1px 5px 1px; 
+                                    word-wrap: break-word; font-size: 0.8rem; line-height: 1.2;">
+                                            {{ eventToShow.text }}
+                                            <!-- EVENT TEXT -->
+                                        </div>
+                                        <div style="width: 18%; border: none" class="centerALL">
+
+                                            <div *ngIf="eventToShow.homeOrAway === 'H'; else elseLogoBlock">
+                                                <img style="display: flex;
+                                margin: 0px 0px 0px 0px;
+                                height: 1.8rem;
+                                border:none;" src="https://assets.b365api.com/images/team/b/{{ event.home.image_id }}.png"
+                                                    alt="home_logo" />
+                                            </div>
+                                            <ng-template #elseLogoBlock>
+                                                <div>
+                                                    <img style="display: flex;
+                                    margin: 0px 0px 0px 0px;
+                                    height: 1.8rem;
+                                    border:none;
+                                    " src="https://assets.b365api.com/images/team/b/{{ event.away.image_id }}.png"
+                                                        alt="away_logo" />
+                                                </div>
+                                            </ng-template>
+                                        </div>
+                                    </div>
+                                    <div style="border:none;width: 45%; color:#fff">
+                                        branco aqui
+                                        <!-- WHITE SPACE -->
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </div>
+                    </div>
                 </mat-card-subtitle>
             </mat-card>
-            <!--
-                <mat-card class="eventNameAndLogos mat-elevation-z3">
-                    <mat-card-subtitle>
-                        <button mat-raised-button (click)="consolaTotalEvents()" color="primary">
-                        Consola
-                    </button>
-                    
-                    <button mat-raised-button (click)="updateEvents()">
-                        Update
-                    </button>
-                    
-                    <button mat-raised-button (click)="atribuirJogo()">
-                        Atribuir
-                    </button>
-                </mat-card-subtitle>
-            </mat-card>
-        -->
         </div>
-        <br>
         <br>
     </div>
 </div>
