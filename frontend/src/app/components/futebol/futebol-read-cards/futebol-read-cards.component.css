@@ -2,6 +2,9 @@
     border-radius: 8px;
     margin: 0 0 10px 0;
     background-color: #fff;
+    border:none;
+    border-color: red;
+    padding: 4px 4px 4px 4px;
 }
 
 .event-card:hover {
@@ -20,9 +23,10 @@
     font-size: 1.2rem;
     font-weight: 400;
     width: auto;
-    border: none;
+    border:none;
+    border-color: blue;
     margin: 0px;
-    padding: 5px 3px 3px 3px;
+    padding: 0px 0px 0px 0px;
     vertical-align: middle;
     flex-wrap: nowrap;
 }

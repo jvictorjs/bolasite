@@ -58,6 +58,7 @@
             </mat-card>
             <mat-card class="eventStats mat-elevation-z1">
                 <mat-card-title class="title">
+                    {{ getFlags(event.league.cc)}}
                     {{ event.league.name }}
                 </mat-card-title>
                 <mat-card-subtitle class="subtitle">
@@ -67,18 +68,38 @@
                     <img src="https://assets.b365api.com/images/team/s/{{ event.away.image_id }}.png" alt="away_logo" />
                     {{ event.event_odds.odds_summary.end.away_odd }}
                     <br>
-                    📊
-                    {{ event.event_odds.odds_summary.start.home_odd }}
-                    |
-                    {{ event.event_odds.odds_summary.start.draw_odd }}
-                    |
-                    {{ event.event_odds.odds_summary.start.away_odd }}
-                    <!-- STACKOVERFLOW  https://stackoverflow.com/questions/56669505/adding-whitespace-to-a-string-in-typescript-in-angular/56670220 -->
-                    &nbsp;
-                    {{ ' ➕'+event.event_odds.odds_summary.start.handicap}}
-                    {{'@'+event.event_odds.odds_summary.start.over_odd}}
-                    <br>
-                    {{''+event.points.datt_home + '💥' +event.points.datt_away + ' ('+event.points.datt_per_minute+')'}}
+                    <div style="color: rgba(133,133,100,1);font-weight: 400;">
+                        📊
+                        {{ event.event_odds.odds_summary.start.home_odd }}
+                        |
+                        {{ event.event_odds.odds_summary.start.draw_odd }}
+                        |
+                        {{ event.event_odds.odds_summary.start.away_odd }}
+                        <!-- STACKOVERFLOW  https://stackoverflow.com/questions/56669505/adding-whitespace-to-a-string-in-typescript-in-angular/56670220 -->
+                        &nbsp;
+                        {{ ' ➕'+event.event_odds.odds_summary.start.handicap}}
+                        {{'@'+event.event_odds.odds_summary.start.over_odd}}
+                        <div style="color: rgba(77,88,100,1);font-weight: 500;">
+                            {{''+event.points.total_shots_home + '🥅' +event.points.total_shots_away}}
+                            &nbsp;&nbsp;&nbsp;
+                            {{''+event.points.on_target_home + '🎯' +event.points.on_target_away}}
+                            &nbsp;&nbsp;&nbsp;
+                            {{''+event.points.datt_home + '💥' +event.points.datt_away + '
+                            ('+event.points.datt_per_minute+')'}}
+                        </div>
+                    </div>
+                </mat-card-subtitle>
+            </mat-card>
+            <mat-card class="eventStats mat-elevation-z1">
+                <mat-card-title class="title">
+                    {{ event.tm_stats.avg_market_value[0] +'€'}}
+                    market values
+                    {{ event.tm_stats.avg_market_value[1] + '€'}}
+                </mat-card-title>
+                <mat-card-subtitle class="subtitle">
+                    {{ event.tm_stats.avg_market_value[0] +'€'}}
+                    market values
+                    {{ event.tm_stats.avg_market_value[1] + '€'}}
                 </mat-card-subtitle>
             </mat-card>
             <!--

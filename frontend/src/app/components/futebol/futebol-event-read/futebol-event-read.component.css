@@ -43,6 +43,7 @@ button {
     border: none;
     width: 83%;
     max-width: 600px;
+
 }
 
 /* STACKOVERFLOW https://stackoverflow.com/questions/787839/resize-image-proportionally-with-css */
@@ -62,6 +63,7 @@ button {
     border: none;
     width: 99.5%;
     height: 18px;
+    margin: 0 0 2px 0;
 }
 
 .graphRowData .cell {
@@ -224,11 +226,4 @@ STACKOVERFLOW https://www.geeksforgeeks.org/how-to-display-spinner-on-the-screen
     width: 100%;
     border: none;
     color:gray;
-}
-
-.centerALL {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
 }

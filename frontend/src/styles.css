@@ -50,6 +50,13 @@ STACKOVERFLOW https://stackoverflow.com/questions/4847850/is-it-possible-to-defi
     vertical-align: middle;
 }
 
+.centerALL {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
 .msg-success {
     background-color: #21923c;
     color: #fff

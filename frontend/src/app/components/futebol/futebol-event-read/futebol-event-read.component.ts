@@ -14,58 +14,63 @@ export class FutebolEventReadComponent implements OnInit {
   MAX_GRAPH_YAXIS_VALUE = 3.3;
   jogos: any = { botVersion: 0, result: { loopMsgText: '', inPlayEventsBSF_eventViewInfos: [] } };
   event: any = {
-    id: 0, league: {
-      id: 0, name: '', cc: ''
-    },
-    home: {
-      image_id: '7411'
-    },
-    away: {
-      image_id: '7409'
-    },
+    id: 0,
+    league: { id: 0, name: '', cc: '' },
+    home: { image_id: '7411' },
+    away: { image_id: '7409' },
     event_odds: {
       odds_summary: {
-        end: {
-          home_odd: '',
-          draw_odd: '',
-          away_odd: ''
-        },
-        start: {
-          home_odd: '',
-          draw_odd: '',
-          away_odd: ''
-        }
+        end: { home_odd: '', draw_odd: '', away_odd: '' },
+        start: { home_odd: '', draw_odd: '', away_odd: '' }
       }
     },
     pointsSlices: {
-      home_slice_points_array: [
-
-      ],
-      away_slice_points_array_reverse: [
-
-      ],
-      minutesOfHomeGoalsToShow_array: [
-
-      ],
-      minutesOfAwayGoalsToShow_array: [
-
-      ],
-      minutesOfHomeRedCardsToShow_array: [
-
-      ],
-      minutesOfAwayRedCardsToShow_array: [
-
-      ],
-      minutesToShow_array: [
-
-      ]
+      home_slice_points_array: [],
+      away_slice_points_array_reverse: [],
+      minutesOfHomeGoalsToShow_array: [],
+      minutesOfAwayGoalsToShow_array: [],
+      minutesOfHomeRedCardsToShow_array: [],
+      minutesOfAwayRedCardsToShow_array: [],
+      minutesToShow_array: []
     },
-    clock: {
-      brClock: " ",
-      period: " ",
-      minute: 0,
-      second: 0
-    }
+    clock: { brClock: " ", period: " ", minute: 0, second: 0 },
+    points: {
+      total_shots_home: 2, total_shots_away: 8,
+      total_shots_home_ht: 0, total_shots_away_ht: 0,
+      shots_off_in: "2-8 [0-4]", shots_off_in_ht: "0-0 [0-0]",
+      totalPoints: "18.4",
+      points_home: "6.2", points_away: "12.3",
+      points_home_ht: "0.0", points_away_ht: "0.0",
+      points_home_2t: "6.2", points_away_2t: "12.3",
+      table_position_home: "", table_position_away: "",
+      round: "3",
+      league_name: "Womens International", league_cc: null, league_flag: "🏳",
+      placar_ft: "0-2",
+      datt_home: 0, datt_away: 0, datt_per_minute: 1.05,
+      datt_home_ht: 0, datt_away_ht: 0,
+      att_home: 49, att_away: 62, 
+      att_home_ht: 0, att_away_ht: 0,
+      on_target_home: 0, on_target_away: 4, off_target_home: 2, off_target_away: 4, // 👟
+      possession_home: 48, possession_away: 52,
+      redcards_home: "0", redcards_away: "0", //🟥
+      on_target_home_ht: 0, on_target_away_ht: 0, //🎯
+      off_target_home_ht: 0, off_target_away_ht: 0,//🥅
+      power_index: "A⬅️2.00", power_index_ht: "H➡️NaN", power_index_2t: "A⬅️2.00",
+      power_index_side: "A", power_index_factor: 2,
+      pointsIndex: "0.33",
+      pointsIndexColoredSymbol: "🟡",
+      pointsStringedWithBars: "||||||-||||||||||||",
+      pointsStringedWithPeriod: "······x············"
+    },
+    tm_stats: {
+      avg_age: ["27.5", "26.6"],
+      avg_market_value: [34950000, 30910000],
+      club_members: ["128.249", "30.000"],
+      foreigners: ["17", "21"],
+      national_team_players: ["16", "18"],
+      total_market_value: [769000000, 803650000],
+      youth_national_team_players: ["0", "3"]
+    },
   }
   eventId = 0;
   // STACKOVERFLOR https://stackoverflow.com/questions/28716464/hiding-labels-on-y-axis-in-chart-js
@@ -232,7 +237,7 @@ export class FutebolEventReadComponent implements OnInit {
     //document.getElementById('graphs').style.display = 'none';
     document.getElementById('eventComponent').style.display = 'none';
   }
-  
+
   switchShowFlagsMatCardBackground(): void {
     if (this.bolShowFlagsMatCardBackground) {
       this.bolShowFlagsMatCardBackground = false;
@@ -292,5 +297,10 @@ export class FutebolEventReadComponent implements OnInit {
     this.eventClock.date = new Date();
     this.eventClock.date.setMinutes(this.event.clock.minute)
     this.eventClock.date.setSeconds(this.event.clock.second)
+  }
+
+  
+  getFlags($code: string) {
+    return this.futebolService.getFlags($code);
   }
 }
