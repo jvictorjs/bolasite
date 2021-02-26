@@ -31,7 +31,7 @@ export class FutebolReadCardsComponent implements OnInit {
 
     this.intervalId = setInterval(() => {
       this.loadEvents();
-    }, 120000);
+    }, 30000);
   }
 
   ngOnDestroy() {
@@ -49,6 +49,11 @@ export class FutebolReadCardsComponent implements OnInit {
       if (this.jogos.response.result.inPlayEventsBSF_eventViewInfos.length === 0) {
         this.futebolService.showMessage('No live events.')
         // this.futebolService.showMessage('Sem jogos ao vivo no momento.')
+      } else {
+        for (let event of this.jogos.response.result.inPlayEventsBSF_eventViewInfos) {
+          console.log(event.pointsStringedWithFavoriteSymbol)
+          event.bolToolTipVisibility = false;
+        }
       }
     })
   }
@@ -64,5 +69,23 @@ export class FutebolReadCardsComponent implements OnInit {
 
   getFlags($code: string) {
     return this.futebolService.getFlags($code);
+  }
+
+  getBadgeVisibility(dattPerMinuteValue: Number) {
+    return (dattPerMinuteValue >= 1.3) ? false : true;
+  }
+
+  switchBolToolTipVisibility(event: any): void {
+    console.log(`switchBolToolTipVisibility() to ${!event.bolToolTipVisibility}`)
+    event.bolToolTipVisibility = !event.bolToolTipVisibility;
+    console.log(event.bolToolTipVisibility)
+  }
+
+  getToolTipMsgForEvent(event: any) {
+    return this.futebolService.getToolTipMsgForEvent(event);
+  }
+
+  getToolTipMsgForEvent_colorSlices(event: any) {
+    return this.futebolService.getToolTipMsgForEvent_colorSlices(event)
   }
 }

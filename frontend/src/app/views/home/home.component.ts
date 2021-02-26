@@ -10,8 +10,8 @@ export class HomeComponent implements OnInit {
 
   constructor(private headerService: HeaderService) {
     headerService.headerData = {
-      title: 'Início',
-      icon: 'home',
+      title: 'Jogos Ao Vivo',
+      icon: 'sports_soccer',
       routeUrl: ''
     }
   }

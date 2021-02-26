@@ -1,6 +1,16 @@
-<mat-card class="home mat-elevation-z4">
+<br>
+<div style="display: flex; justify-content: center;">
+    <button mat-raised-button color="primary" (click)="switchShowUpcomingEvents()"
+        class="{{ showUpcomingEvents ? 'display-none' : ''}}">
+        <span class="material-icons md-24 v-middle">
+            today
+        </span>
+        Mostrar próximos jogos
+    </button>
+</div>
+<mat-card class="home mat-elevation-z4 {{ showUpcomingEvents ? '' : 'display-none'}}">
     <mat-card-title class="title">
-        Up Coming Events
+        Próximos Eventos
         <br>
         <br>
     </mat-card-title>
@@ -84,12 +94,18 @@
         </div>
 
 
-        <div style="display: flex;flex-direction: row;">
+        <div style="display: flex;flex-direction: row; flex-wrap: wrap; justify-content: center;">
             <button mat-raised-button color="primary" (click)="loadUpcomingEvents()">
                 <span class="material-icons md-24 v-middle">
                     refresh
                 </span>
-                Refresh
+                Atualizar
+            </button>
+            <button mat-raised-button color="primary" (click)="switchShowUpcomingEvents()">
+                <span class="material-icons md-24 v-middle">
+                    keyboard_arrow_up
+                </span>
+                Esconder Próximos Jogos
             </button>
         </div>
 

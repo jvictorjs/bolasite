@@ -61,16 +61,7 @@ export class FutebolEventReadComponent implements OnInit {
       pointsIndexColoredSymbol: "🟡",
       pointsStringedWithBars: "||||||-||||||||||||",
       pointsStringedWithPeriod: "······x············"
-    },
-    tm_stats: {
-      avg_age: ["27.5", "26.6"],
-      avg_market_value: [34950000, 30910000],
-      club_members: ["128.249", "30.000"],
-      foreigners: ["17", "21"],
-      national_team_players: ["16", "18"],
-      total_market_value: [769000000, 803650000],
-      youth_national_team_players: ["0", "3"]
-    },
+    }
   }
   eventId = 0;
   // STACKOVERFLOR https://stackoverflow.com/questions/28716464/hiding-labels-on-y-axis-in-chart-js
@@ -205,7 +196,7 @@ export class FutebolEventReadComponent implements OnInit {
 
     this.intervalId = setInterval(() => {
       this.refreshData(id);
-    }, 120000);
+    }, 60000);
 
   }
 
@@ -302,5 +293,9 @@ export class FutebolEventReadComponent implements OnInit {
   
   getFlags($code: string) {
     return this.futebolService.getFlags($code);
+  }
+
+  getToolTipMsgForEvent(event: any) {
+    return this.futebolService.getToolTipMsgForEvent(event);
   }
 }

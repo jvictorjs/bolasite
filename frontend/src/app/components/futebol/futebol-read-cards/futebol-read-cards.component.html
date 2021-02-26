@@ -6,19 +6,24 @@
 
     -->
 <div *ngFor="let event of jogos.response.result.inPlayEventsBSF_eventViewInfos">
-    <a routerLink="/futebol/event/{{ event.id }}" [state]="{hello:'world'}" class="view">
-        <mat-card class="event-card mat-elevation-z2">
-            <div class="event-div">
-                <div style="display: flex; flex-direction: row; justify-content: space-around; border:none; flex-wrap: wrap; 
+    <!--STACKOVERFLOW https://stackblitz.com/angular/yjpgkmogvgle?file=src%2Fapp%2Fbadge-overview-example.ts-->
+    <mat-card class="event-card mat-elevation-z2">
+        <div class="event-div" matTooltipPosition="above" matBadge="{{event.points.datt_per_minute}}"
+            matBadgePosition="after" matBadgeColor="warn"
+            [matBadgeHidden]="getBadgeVisibility(event.points.datt_per_minute)"
+            (click)="switchBolToolTipVisibility(event)">
+            <div style="display: flex; flex-direction: row; justify-content: space-around; border:none; flex-wrap: wrap; 
                 width: 100%; margin: 0px; padding:1px">
-                    <div class="textColor"
-                        style="display:flex; flex-direction: column; justify-content: center; font-size: 0.8rem; 
+                <div class="textColor"
+                    style="display:flex; flex-direction: column; justify-content: center; font-size: 0.8rem; 
                         font-weight: 500; text-align: center;border:none; max-width: 18%; min-width: 60px; margin: 0px 5px 0px 30px">
-                        {{event.brClock}}
-                    </div>
-                    <div 
-                    style="display: inline-block; flex-direction: row; flex-wrap: wrap;border:none; min-width: 200px; margin: 0px 0 0px 0;">
-                        <div class="textColor" style="display:inline-block; flex-direction: row; justify-content: center; 
+                    {{event.brClock}}
+                </div>
+                <a routerLink="/futebol/event/{{ event.id }}" [state]="{hello:'world'}" class="view">
+                    <div
+                        style="display: inline-block; flex-direction: row; flex-wrap: wrap;border:none; min-width: 200px; margin: 0px 0 0px 0;">
+                        <div class="textColor"
+                            style="display:inline-block; flex-direction: row; justify-content: center; 
                         padding: 0px 3px 0 8px; font-size: 1.1rem; border:none; vertical-align:middle; max-width:27px;">
                             {{ getFlags(event.league.cc)}}
                         </div>
@@ -27,7 +32,9 @@
                             {{event.league.name}}
                         </div>
                     </div>
-                    <div class="centerALL" style="border:none; border-color: green; min-width: 55%;">
+                </a>
+                <div class="centerALL" style="border:none; border-color: green; min-width: 55%;">
+                    <a routerLink="/futebol/event/{{ event.id }}" [state]="{hello:'world'}" class="view">
                         <div style="display:inline-block; flex-direction: row; justify-content: center; flex-wrap: wrap;
                         font-size: 0.9rem; font-weight: 500; border:none;">
                             <img src="https://assets.b365api.com/images/team/m/{{ event.home.image_id }}.png"
@@ -36,13 +43,26 @@
                             <img src="https://assets.b365api.com/images/team/m/{{ event.away.image_id }}.png"
                                 alt="away_logo" class="team-logo" />
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
-        </mat-card>
-    </a>
-</div>
-<!--
-</mat-card>
 
--->
+            <div
+                class="tooltiptext mat-elevation-z10 {{ event.bolToolTipVisibility ? ' visibility-visible' : 'visibility-hidden'}}">
+                <!--
+                    STACKOVERFLOW https://stackoverflow.com/questions/44410095/angular-create-a-new-line-on-html
+                    <div (click)="switchBolToolTipVisibility(event)" style="border:inset;">
+                        X
+                    </div>
+                -->
+                <div style="color: rgba(255,255,255,1);font-weight: 500;white-space: pre-wrap; font-size: 0.7rem;">
+                    {{getToolTipMsgForEvent(event)}}
+                </div>
+                <div style="color: rgba(255,255,255,1);font-weight: 500;white-space: pre-wrap; font-size: 0.65rem;">
+                    {{getToolTipMsgForEvent_colorSlices(event)}}
+                </div>
+            </div>
+
+        </div>
+    </mat-card>
+</div>

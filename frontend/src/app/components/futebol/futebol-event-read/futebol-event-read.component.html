@@ -24,9 +24,9 @@
 
         <div id="eventComponent">
             <mat-card id="flagsMatCard"
-                class="eventNameAndLogos {{ bolShowFlagsMatCardBackground ? 'mat-elevation-z1 backgroundColor-white' : 'mat-elevation-z0 backgroundColor-lightGray'}}">
-
-                <mat-card-subtitle class="subtitle centerALL">
+                class="eventNameAndLogos
+                {{ bolShowFlagsMatCardBackground ? 'mat-elevation-z1 backgroundColor-white' : 'mat-elevation-z0 backgroundColor-lightGray'}}">
+                <mat-card-subtitle class="subtitle centerALL" style="border: none;">
                     <img src="https://assets.b365api.com/images/team/b/{{ event.home.image_id }}.png" alt="home_logo" />
                     <div style="font-size: 3rem; margin: 0 1px 0 18px;">
                         {{event.totalGoals_home}}
@@ -42,7 +42,7 @@
                     </div>
                     <img src="https://assets.b365api.com/images/team/b/{{ event.away.image_id }}.png" alt="away_logo" />
                 </mat-card-subtitle>
-                <mat-card-subtitle class="subtitle" style="font-weight: 500;">
+                <mat-card-subtitle class="subtitle" style="font-weight: 500; border: none; margin:-7px; font-size: 1.2rem;">
                     <!--
                         STACKOVERFLOW https://stackoverflow.com/questions/54289078/display-time-clock-in-angular
                         STACKOVERFLOW https://stackoverflow.com/questions/36158193/javascript-set-a-new-date-to-tomorrow-8am
@@ -68,7 +68,7 @@
                     <img src="https://assets.b365api.com/images/team/s/{{ event.away.image_id }}.png" alt="away_logo" />
                     {{ event.event_odds.odds_summary.end.away_odd }}
                     <br>
-                    <div style="color: rgba(133,133,100,1);font-weight: 400;">
+                    <div style="color: rgba(133,133,100,1);font-weight: 400; font-size: 1rem;">
                         📊
                         {{ event.event_odds.odds_summary.start.home_odd }}
                         |
@@ -77,8 +77,10 @@
                         {{ event.event_odds.odds_summary.start.away_odd }}
                         <!-- STACKOVERFLOW  https://stackoverflow.com/questions/56669505/adding-whitespace-to-a-string-in-typescript-in-angular/56670220 -->
                         &nbsp;
-                        {{ ' ➕'+event.event_odds.odds_summary.start.handicap}}
-                        {{'@'+event.event_odds.odds_summary.start.over_odd}}
+                        {{ ' ➕'+event.event_odds.odds_summary.start.handicap+'@'+event.event_odds.odds_summary.start.over_odd}}
+
+                        {{event.textsToShow && ('  ⚽' + event.textsToShow.overOdds.eventOddsTextMsgParsedToSend_GoalLine) }}
+
                         <div style="color: rgba(77,88,100,1);font-weight: 500;">
                             {{''+event.points.total_shots_home + '🥅' +event.points.total_shots_away}}
                             &nbsp;&nbsp;&nbsp;
@@ -90,16 +92,31 @@
                     </div>
                 </mat-card-subtitle>
             </mat-card>
-            <mat-card class="eventStats mat-elevation-z1">
+            <mat-card class="eventMarketValues mat-elevation-z1 {{ (event.tm_stats) ? '' : 'display-none' }}">
                 <mat-card-title class="title">
-                    {{ event.tm_stats.avg_market_value[0] +'€'}}
-                    market values
-                    {{ event.tm_stats.avg_market_value[1] + '€'}}
+                    <img src="https://assets.b365api.com/images/team/s/{{ event.home.image_id }}.png" alt="home_logo" />
+                    {{ event.tm_stats && event.tm_stats.total_market_value &&
+                    event.tm_stats.total_market_value[0]/1000000 +'M €'}}
+                    &nbsp;
+                    {{ event.tm_stats && event.tm_stats.total_market_value && 'vs'}}
+                    &nbsp;
+                    {{ event.tm_stats && event.tm_stats.total_market_value &&
+                    event.tm_stats.total_market_value[1]/1000000 +'M €'}}
+                    <img src="https://assets.b365api.com/images/team/s/{{ event.away.image_id }}.png" alt="away_logo" />
                 </mat-card-title>
                 <mat-card-subtitle class="subtitle">
-                    {{ event.tm_stats.avg_market_value[0] +'€'}}
-                    market values
-                    {{ event.tm_stats.avg_market_value[1] + '€'}}
+                    <!-- STACKOVERFLOW https://stackoverflow.com/questions/46350113/error-typeerror-cannot-read-property-0-of-undefined-angular-4-->
+                    {{ event.tm_stats && event.tm_stats.avg_market_value && event.tm_stats.avg_market_value[0]/1000000
+                    +'M €'}}
+                    &nbsp;
+                    {{ event.tm_stats && event.tm_stats.avg_market_value && 'AVG player value'}}
+                    &nbsp;
+                    {{ event.tm_stats && event.tm_stats.avg_market_value && event.tm_stats.avg_market_value[1]/1000000
+                    +'M €'}}
+                    <br>
+                    {{ event.tm_stats && event.tm_stats.club_members && event.tm_stats.club_members[0] +''}}
+                    {{ event.tm_stats && event.tm_stats.club_members && 'club_members'}}
+                    {{ event.tm_stats && event.tm_stats.club_members && event.tm_stats.club_members[1] +''}}
                 </mat-card-subtitle>
             </mat-card>
             <!--

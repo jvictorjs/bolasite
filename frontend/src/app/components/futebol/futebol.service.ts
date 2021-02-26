@@ -81,6 +81,35 @@ export class FutebolService {
     console.log('this.jogos.response.result.inPlayEventsBSF_eventViewInfos.length = ' + this.jogos.response.result.inPlayEventsBSF_eventViewInfos.length)
   }
 
+  getToolTipMsgForEvent(event: any) {
+    let retorno = '📊' + event.event_odds.odds_summary.start.home_odd + ' | '
+      + event.event_odds.odds_summary.start.draw_odd + ' | '
+      + event.event_odds.odds_summary.start.away_odd
+      + '  ➕' + event.event_odds.odds_summary.start.handicap
+      + '@' + event.event_odds.odds_summary.start.over_odd;
+    if (event.textsToShow) {
+      if (event.textsToShow.overOdds) {
+        retorno += '    ' + event.textsToShow.overOdds.eventOddsSummaryTextMsgParsedToSend_ML
+          + '   ' + event.textsToShow.overOdds.eventOddsTextMsgParsedToSend_GoalLine
+          + '  ' + event.textsToShow.pointsStringedWithFavoriteSymbol // 🌟·············x···············
+          + '  ' + event.points.pointsIndex
+          + '' + event.points.pointsIndexColoredSymbol //🔴🟡🟢
+          // + '   ' + event.points.pointsStringedWithBars // 
+          + '   ' + event.points.total_shots_home + '🥅' + event.points.total_shots_away
+          + '   ' + event.points.on_target_home + '🎯' + event.points.on_target_away
+          + '   ' + event.points.datt_home + '💥' + event.points.datt_away +
+          '  (' + event.points.datt_per_minute + ')'
+      }
+    }
+    return retorno
+  }
+
+  getToolTipMsgForEvent_colorSlices(event: any) {
+    let retorno = event.pointsSlices.minutesToShow_stringed
+      + `\n ` + event.pointsSlices.powerIndexToShow_stringed
+    return retorno
+  }
+
   getFlags($code: string) {
     if ($code) {
       $code = $code.toUpperCase();
