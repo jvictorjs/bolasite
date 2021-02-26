@@ -1,10 +1,12 @@
+import { slideInAnimation } from './../../route-animation';
 import { HeaderService } from './../../components/template/nav/nav.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+  animations: [slideInAnimation]
 })
 export class HomeComponent implements OnInit {
 

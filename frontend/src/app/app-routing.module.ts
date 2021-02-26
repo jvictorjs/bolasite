@@ -15,43 +15,53 @@ import { FutebolUpcomingComponent } from './components/futebol/futebol-upcoming/
 const routes: Routes = [
   {
     path: "",
-    component: HomeComponent
+    component: HomeComponent,
+    data: {animation: 'Home'}
   },
   {
     path: "products",
-    component: ProductCrudComponent
+    component: ProductCrudComponent,
+    data: {animation: 'Products'}
   },
   {
     path: "products/create",
-    component: ProductCreateComponent
+    component: ProductCreateComponent,
+    data: {animation: 'Products-new'}
   },
   {
     path: "products/update/:id",
-    component: ProductUpdateComponent
+    component: ProductUpdateComponent,
+    data: {animation: 'Products-update'}
   },
   {
     path: "products/delete/:id",
-    component: ProductDeleteComponent
+    component: ProductDeleteComponent,
+    data: {animation: 'Products-delete'}
   },
   {
     path: "futebol",
-    component: FutebolComponent
+    component: FutebolComponent,
+    data: {animation: 'Futebol'}
   },
   {
     path: "futebol-upcoming",
-    component: FutebolUpcomingComponent
+    component: FutebolUpcomingComponent,
+    data: {animation: 'Futebol-upcoming'}
   },
   {
     path: "futebol/event/:id",
-    component: FutebolEventReadComponent
+    component: FutebolEventReadComponent,
+    data: {animation: 'Futebol-event'}
   },
   {
     path: "about",
-    component: AboutComponent
+    component: AboutComponent,
+    data: {animation: 'About'}
   },
   {
     path: "tv-guide",
-    component: TvGuideComponent
+    component: TvGuideComponent,
+    data: {animation: 'TV-guide'}
   }
 ];
 

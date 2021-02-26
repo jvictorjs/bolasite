@@ -1,3 +1,4 @@
+import { slideInAnimation } from './../../../route-animation';
 import { ProductService } from './../product.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -6,7 +7,8 @@ import { Product } from './../product.model';
 @Component({
   selector: 'app-product-create',
   templateUrl: './product-create.component.html',
-  styleUrls: ['./product-create.component.css']
+  styleUrls: ['./product-create.component.css'],
+  animations: [slideInAnimation]
 })
 export class ProductCreateComponent implements OnInit {
 

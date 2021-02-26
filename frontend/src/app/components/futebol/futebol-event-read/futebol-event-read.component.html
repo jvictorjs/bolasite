@@ -1,4 +1,4 @@
-<button mat-raised-button color="primary" (click)="navigationGoBack()" style="margin-top: 0px;">
+<button mat-raised-button color="primary" routerLink="/futebol" routerLinkActive="active" style="margin-top: 0px;">
     <span class="material-icons md-24 v-middle">
         arrow_back
     </span>
@@ -42,7 +42,8 @@
                     </div>
                     <img src="https://assets.b365api.com/images/team/b/{{ event.away.image_id }}.png" alt="away_logo" />
                 </mat-card-subtitle>
-                <mat-card-subtitle class="subtitle" style="font-weight: 500; border: none; margin:-7px; font-size: 1.2rem;">
+                <mat-card-subtitle class="subtitle"
+                    style="font-weight: 500; border: none; margin:-7px; font-size: 1.2rem;">
                     <!--
                         STACKOVERFLOW https://stackoverflow.com/questions/54289078/display-time-clock-in-angular
                         STACKOVERFLOW https://stackoverflow.com/questions/36158193/javascript-set-a-new-date-to-tomorrow-8am
@@ -68,7 +69,7 @@
                     <img src="https://assets.b365api.com/images/team/s/{{ event.away.image_id }}.png" alt="away_logo" />
                     {{ event.event_odds.odds_summary.end.away_odd }}
                     <br>
-                    <div style="color: rgba(133,133,100,1);font-weight: 400; font-size: 1rem;">
+                    <div style="color: rgba(133,133,100,1);font-weight: 500; font-size: 1rem;">
                         📊
                         {{ event.event_odds.odds_summary.start.home_odd }}
                         |
@@ -77,9 +78,11 @@
                         {{ event.event_odds.odds_summary.start.away_odd }}
                         <!-- STACKOVERFLOW  https://stackoverflow.com/questions/56669505/adding-whitespace-to-a-string-in-typescript-in-angular/56670220 -->
                         &nbsp;
-                        {{ ' ➕'+event.event_odds.odds_summary.start.handicap+'@'+event.event_odds.odds_summary.start.over_odd}}
+                        {{ '
+                        ➕'+event.event_odds.odds_summary.start.handicap+'@'+event.event_odds.odds_summary.start.over_odd}}
 
-                        {{event.textsToShow && ('  ⚽' + event.textsToShow.overOdds.eventOddsTextMsgParsedToSend_GoalLine) }}
+                        {{event.textsToShow && (' ⚽' + event.textsToShow.overOdds.eventOddsTextMsgParsedToSend_GoalLine)
+                        }}
 
                         <div style="color: rgba(77,88,100,1);font-weight: 500;">
                             {{''+event.points.total_shots_home + '🥅' +event.points.total_shots_away}}

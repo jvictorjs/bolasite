@@ -1,3 +1,4 @@
+import { slideInAnimation } from './../../route-animation';
 import { HeaderService } from './../../components/template/nav/nav.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'
@@ -5,7 +6,8 @@ import { Router } from '@angular/router'
 @Component({
   selector: 'app-product-crud',
   templateUrl: './product-crud.component.html',
-  styleUrls: ['./product-crud.component.css']
+  styleUrls: ['./product-crud.component.css'],
+  animations: [slideInAnimation]
 })
 export class ProductCrudComponent implements OnInit {
 

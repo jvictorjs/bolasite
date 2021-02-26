@@ -1,3 +1,4 @@
+import { slideInAnimation } from './../../../route-animation';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { HeaderService } from './nav.service'
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
@@ -5,7 +6,8 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 @Component({  // DECORATOR é o @
   selector: 'app-nav',
   templateUrl: './nav.component.html',
-  styleUrls: ['./nav.component.css']
+  styleUrls: ['./nav.component.css'],
+  animations: [slideInAnimation]
 })
 export class NavComponent implements OnInit {
 

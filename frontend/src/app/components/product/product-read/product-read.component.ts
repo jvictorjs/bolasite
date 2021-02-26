@@ -1,3 +1,4 @@
+import { slideInAnimation } from './../../../route-animation';
 import { Component, OnInit } from '@angular/core';
 import { Product } from './../product.model';
 import { ProductService } from './../product.service';
@@ -5,12 +6,13 @@ import { ProductService } from './../product.service';
 @Component({
   selector: 'app-product-read',
   templateUrl: './product-read.component.html',
-  styleUrls: ['./product-read.component.css']
+  styleUrls: ['./product-read.component.css'],
+  animations: [slideInAnimation]
 })
 export class ProductReadComponent implements OnInit {
 
   products: Product[] = [];
-  displayedColumns = ['id', 'name', 'price','action']
+  displayedColumns = ['id', 'name', 'price', 'action']
 
   constructor(private productService: ProductService) {
 

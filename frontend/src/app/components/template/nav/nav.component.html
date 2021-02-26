@@ -22,7 +22,7 @@
         </div>
         <div class="title">
             <span class="title-group">
-                <a routerLink="{{ routeUrl }}" class="textColor">
+                <a routerLink="{{ routeUrl }}" routerLinkActive="active" class="textColor">
                     {{ title }}
                     <i class="material-icons md-32 title-icon hover-rotate">
                         {{ icon }}
@@ -54,70 +54,70 @@
                 <div style="display: flex; flex-direction: column; margin-top: 0px;">
                     <mat-nav-list class="nav-list">
                         <!-- STACKOVERFLOW https://stackoverflow.com/questions/43808809/close-angular-material-sidenav-on-any-button-click-inside -->
-                        <a mat-list-item routerLink="/futebol" class="list-item-with-icon"
+                        <a mat-list-item routerLink="/futebol" routerLinkActive="active" class="list-item-with-icon"
                             (click)="mobileQuery.matches === false || sidenav.close()">
                             <mat-icon mat-list-icon class="material-icons side-nav-icon hover-rotate">
                                 sports_soccer
                             </mat-icon>
                             Futebol
                         </a>
-                        <a mat-list-item routerLink="/tv-guide" class="list-item-with-icon"
+                        <a mat-list-item routerLink="/tv-guide" routerLinkActive="active" class="list-item-with-icon"
                             (click)="mobileQuery.matches === false || sidenav.close()">
                             <mat-icon mat-list-icon class="material-icons side-nav-icon hover-rotate">
                                 tv
                             </mat-icon>
                             Jogos na TV
                         </a>
-                        <a mat-list-item routerLink="/futebol" class="list-item-with-icon"
+                        <a mat-list-item routerLink="/futebol" routerLinkActive="active" class="list-item-with-icon"
                             (click)="mobileQuery.matches === false || sidenav.close()">
                             <mat-icon mat-list-icon class="material-icons side-nav-icon hover-rotate">
                                 sports_soccer
                             </mat-icon>
                             TremdGol App
                         </a>
-                        <a mat-list-item routerLink="/futebol" class="list-item-with-icon"
+                        <a mat-list-item routerLink="/futebol" routerLinkActive="active" class="list-item-with-icon"
                             (click)="mobileQuery.matches === false || sidenav.close()">
                             <mat-icon mat-list-icon class="material-icons side-nav-icon hover-rotate">
                                 sports_soccer
                             </mat-icon>
                             Bolão Rússia 2018
                         </a>
-                        <a mat-list-item routerLink="/futebol" class="list-item-with-icon"
+                        <a mat-list-item routerLink="/futebol" routerLinkActive="active" class="list-item-with-icon"
                             (click)="mobileQuery.matches === false || sidenav.close()">
                             <mat-icon mat-list-icon class="material-icons side-nav-icon hover-rotate">
                                 sports_soccer
                             </mat-icon>
                             TIPS
                         </a>
-                        <a mat-list-item routerLink="/futebol" class="list-item-with-icon"
+                        <a mat-list-item routerLink="/futebol" routerLinkActive="active" class="list-item-with-icon"
                             (click)="mobileQuery.matches === false || sidenav.close()">
                             <mat-icon mat-list-icon class="material-icons side-nav-icon hover-rotate">
                                 sports_soccer
                             </mat-icon>
                             Prognósticos
                         </a>
-                        <a mat-list-item routerLink="/futebol" class="list-item-with-icon"
+                        <a mat-list-item routerLink="/futebol" routerLinkActive="active" class="list-item-with-icon"
                             (click)="mobileQuery.matches === false || sidenav.close()">
                             <mat-icon mat-list-icon class="material-icons side-nav-icon hover-rotate">
                                 sports_soccer
                             </mat-icon>
                             Bola na Rede
                         </a>
-                        <a mat-list-item routerLink="/futebol" class="list-item-with-icon"
+                        <a mat-list-item routerLink="/futebol" routerLinkActive="active" class="list-item-with-icon"
                             (click)="mobileQuery.matches === false || sidenav.close()">
                             <mat-icon mat-list-icon class="material-icons side-nav-icon hover-rotate">
                                 sports_soccer
                             </mat-icon>
                             Controle Financeiro
                         </a>
-                        <a mat-list-item routerLink="/products" class="list-item-with-icon"
+                        <a mat-list-item routerLink="/products" routerLinkActive="active" class="list-item-with-icon"
                             (click)="mobileQuery.matches === false || sidenav.close()">
                             <mat-icon mat-list-icon class="material-icons side-nav-icon hover-rotate">
                                 storefront
                             </mat-icon>
                             Produtos
                         </a>
-                        <a mat-list-item routerLink="/about" class="list-item-with-icon"
+                        <a mat-list-item routerLink="/about" routerLinkActive="active" class="list-item-with-icon"
                             (click)="mobileQuery.matches === false || sidenav.close()">
                             <mat-icon mat-list-icon class="material-icons side-nav-icon hover-rotate">
                                 info
@@ -173,9 +173,17 @@
     -->
             <div style="display: flex; flex-direction: column; align-items: center;">
                 <div style="max-width: 1440px; align-self: center; width: 100%;">
+                    <div [@routeAnimations]="o && o.activatedRouteData 
+                    && o.activatedRouteData['animation']">
+                        <router-outlet #o="outlet"></router-outlet>
+                        <!--
 
-                    <router-outlet>
-                    </router-outlet>
+            </div>
+            <router-outlet>
+            </router-outlet>
+        </div>
+    -->
+                    </div>
                 </div>
             </div>
 

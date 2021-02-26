@@ -30,12 +30,11 @@
 
 .event-card .tooltiptext {
     font-size: 0.9rem;
-    
     /*
     visibility: hidden;
     */
     width: 92%;
-    background-color: rgba(111, 111, 111, 0.99);
+    background-color: rgba(111, 111, 111, 0.93);
     color: #fff;
     text-align: center;
     border-radius: 6px;
@@ -53,6 +52,20 @@
     visibility: visible;
 }
 */
+
+/*
+STACKOVERFLOW https://stackoverflow.com/questions/44587532/set-font-size-of-angular-material-tooltip
+STACKOVERFLOW https://stackoverflow.com/questions/47058483/angular-2-material-mattooltip-multiline
+*/
+
+::ng-deep .mat-tooltip {
+    /*
+    background-color: darkblue !important;
+    */
+    font-size: 1rem !important;
+    white-space: pre-line !important;
+    max-width: unset !important;
+}
 
 .event-div {
     display: flex;

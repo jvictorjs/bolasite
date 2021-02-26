@@ -105,7 +105,7 @@ export class FutebolService {
   }
 
   getToolTipMsgForEvent_colorSlices(event: any) {
-    let retorno = event.pointsSlices.minutesToShow_stringed
+    let retorno = `\n` + event.pointsSlices.minutesToShow_stringed
       + `\n ` + event.pointsSlices.powerIndexToShow_stringed
     return retorno
   }

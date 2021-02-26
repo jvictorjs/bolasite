@@ -1,3 +1,4 @@
+import { slideInAnimation } from './../../route-animation';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { EMPTY, Observable } from 'rxjs';
@@ -6,7 +7,8 @@ import { HeaderService } from './../../components/template/nav/nav.service';
 @Component({
   selector: 'app-tv-guide',
   templateUrl: './tv-guide.component.html',
-  styleUrls: ['./tv-guide.component.css']
+  styleUrls: ['./tv-guide.component.css'],
+  animations: [slideInAnimation]
 })
 export class TvGuideComponent implements OnInit {
 
@@ -24,16 +26,16 @@ export class TvGuideComponent implements OnInit {
     }
   }
 
-ngOnInit(): void {
-  this.read().subscribe(response => {
-    this.json_response = response
-    console.log(response)
-  })
-}
+  ngOnInit(): void {
+    this.read().subscribe(response => {
+      this.json_response = response
+      console.log(response)
+    })
+  }
 
-read(): Observable < any[] > {
-  return this.http.get<any[]>(this.baseUrl)
-}
+  read(): Observable<any[]> {
+    return this.http.get<any[]>(this.baseUrl)
+  }
 }
 
 
