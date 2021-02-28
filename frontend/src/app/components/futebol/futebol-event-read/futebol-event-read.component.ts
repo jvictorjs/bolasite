@@ -135,6 +135,7 @@ export class FutebolEventReadComponent implements OnInit {
 
   bolShowFlagsMatCardBackground = true;
   bolDetailedView = false;
+  bolAutoUpdateActive = true;
 
   constructor(
     private futebolService: FutebolService,
@@ -200,11 +201,15 @@ export class FutebolEventReadComponent implements OnInit {
 
     setInterval(() => {
       // console.log(this.eventClock.date)
-      this.eventClock.date = new Date(this.eventClock.date.getTime() + 1000);
+      if (this.bolAutoUpdateActive) {
+        this.eventClock.date = new Date(this.eventClock.date.getTime() + 1000);
+      }
     }, 1000);
 
     this.intervalId = setInterval(() => {
-      this.refreshData(id);
+      if (this.bolAutoUpdateActive) {
+        this.refreshData(id);
+      }
     }, 60000);
 
   }
@@ -265,6 +270,10 @@ export class FutebolEventReadComponent implements OnInit {
   switchBolDetailedView(): void {
     this.bolDetailedView = !this.bolDetailedView
     console.log(`this.bolDetailedView switched to = ${this.bolDetailedView}`)
+  }
+
+  switchBolAutoUpdateActiveLogMsg(): void {
+    console.log(`bolAutoUpdateActive switched to = ${this.bolAutoUpdateActive}`)
   }
 
   /*

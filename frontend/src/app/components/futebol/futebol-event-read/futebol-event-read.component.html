@@ -14,14 +14,24 @@
                     Voltar
                 </button>
 
-                <button mat-raised-button color="primary" (click)="switchBolDetailedView()" routerLinkActive="active"
-                    style="margin-top: 0px; align-self: flex-start;">
+                <button mat-raised-button class="{{ bolDetailedView ? 'display-none' : '' }}" color="primary"
+                    (click)="switchBolDetailedView()" routerLinkActive="active"
+                    style="margin-top: 0px; align-self: flex-start;"
+                    matTooltip="Ativar/desativar visão detalhada do jogo, com informações extras.">
                     <span class="material-icons md-24 v-middle">
                         unfold_more
                     </span>
-                    More Details
+                    Mais detalhes
                 </button>
-
+                <button mat-raised-button class="{{ bolDetailedView ? '' : 'display-none' }}" color="primary"
+                    (click)="switchBolDetailedView()" routerLinkActive="active"
+                    style="margin-top: 0px; align-self: flex-start;"
+                    matTooltip="Ativar/desativar visão detalhada do jogo, com informações extras.">
+                    <span class="material-icons md-24 v-middle">
+                        unfold_less
+                    </span>
+                    Menos detalhes
+                </button>
             </div>
             <!-- 
             STACKOVERFLOW https://www.geeksforgeeks.org/how-to-display-spinner-on-the-screen-till-the-data-from-the-api-loads-using-angular-8/
@@ -81,12 +91,13 @@
                         {{ event.clock.period === '' ? '('+event.brClock+')' : ''}}
                     </mat-card-subtitle>
                 </mat-card>
-                <mat-card class="eventStats mat-elevation-z1">
+                <mat-card class="eventName mat-elevation-z1" (click)="switchBolDetailedView()">
                     <mat-card-title class="title">
                         {{ getFlags(event.league.cc)}}
                         {{ event.league.name }}
                     </mat-card-title>
-                    <mat-card-subtitle class="subtitle">
+                    <mat-card-subtitle class="subtitle"
+                        matTooltip="Os números ao lado dos brasões dos times mostras as respectivas Odds com cotação em tempo real.">
                         {{ event.event_odds.odds_summary.end.home_odd }}
                         <img src="https://assets.b365api.com/images/team/s/{{ event.home.image_id }}.png"
                             alt="home_logo" />
@@ -95,7 +106,24 @@
                             alt="away_logo" />
                         {{ event.event_odds.odds_summary.end.away_odd }}
                         <br>
-                        <div style="color: rgba(133,133,100,1);font-weight: 500; font-size: 1rem;">
+                    </mat-card-subtitle>
+                </mat-card>
+                <mat-card class="eventStats mat-elevation-z1 {{ bolDetailedView ? '' : 'display-none' }}"
+                    (click)="switchBolDetailedView()">
+                    <mat-card-title class="title">
+                        <div style="color: rgba(77,88,100,1);font-weight: 500;">
+                            {{''+event.points.total_shots_home + '🥅' +event.points.total_shots_away}}
+                            &nbsp;&nbsp;&nbsp;
+                            {{''+event.points.on_target_home + '🎯' +event.points.on_target_away}}
+                            &nbsp;&nbsp;&nbsp;
+                            {{''+event.points.datt_home + '💥' +event.points.datt_away + '
+                            ('+event.points.datt_per_minute+')'}}
+                        </div>
+                    </mat-card-title>
+                    <mat-card-subtitle class="subtitle">
+
+                        <div style="color: rgba(133,133,100,1);font-weight: 500; font-size: 1rem;"
+                            matTooltip="📊 Aqui estão as odds quando o mercado abriu (pre-game alguns dias anteriores).">
                             📊
                             {{ event.event_odds.odds_summary.start.home_odd }}
                             |
@@ -111,19 +139,13 @@
                             event.textsToShow.overOdds.eventOddsTextMsgParsedToSend_GoalLine)
                             }}
 
-                            <div style="color: rgba(77,88,100,1);font-weight: 500;">
-                                {{''+event.points.total_shots_home + '🥅' +event.points.total_shots_away}}
-                                &nbsp;&nbsp;&nbsp;
-                                {{''+event.points.on_target_home + '🎯' +event.points.on_target_away}}
-                                &nbsp;&nbsp;&nbsp;
-                                {{''+event.points.datt_home + '💥' +event.points.datt_away + '
-                                ('+event.points.datt_per_minute+')'}}
-                            </div>
+
                         </div>
                     </mat-card-subtitle>
                 </mat-card>
                 <mat-card
-                    class="eventMarketValues mat-elevation-z1 {{ (event.tm_stats) && bolDetailedView ? '' : 'display-none' }}">
+                    class="eventMarketValues mat-elevation-z1 {{ (event.tm_stats) && bolDetailedView ? '' : 'display-none' }}"
+                    (click)="switchBolDetailedView()">
                     <mat-card-title class="title">
                         <img src="https://assets.b365api.com/images/team/s/{{ event.home.image_id }}.png"
                             alt="home_logo" />
@@ -279,7 +301,8 @@
 
 
                 <mat-card class="eventsTimeLineCard mat-elevation-z0 backgroundColor-lightGray
-                {{ bolDetailedView ? '' : 'display-none' }}" style="border:none ;margin:13px">
+                {{ bolDetailedView ? '' : 'display-none' }}" style="border:none ;margin:13px"
+                    (click)="switchBolDetailedView()">
 
                     <mat-card-subtitle *ngFor="let eventToShow of event.eventsToShow"
                         class="centerALL mat-elevation-z0 backgroundColor-lightGray" style="display: flex; flex-direction: row; justify-content: center;align-items: center;
@@ -372,16 +395,27 @@
                         </div>
                     </mat-card-subtitle>
                 </mat-card>
-
-                <button mat-raised-button color="primary" (click)="refreshData(event.id)" routerLinkActive="active"
-                    style="margin-top: 0px; align-self: flex-start;">
-                    <span class="material-icons md-24 v-middle">
-                        refresh
-                    </span>
-                    Update now
-                </button>
+                <div style="display: flex; flex-direction: row;justify-content: space-between;border: none;">
+                    <div class="centerALL" style="font-weight: 500;color:rgba(133, 133, 133, 1); margin: 0 0 0 10px">
+                        <mat-slide-toggle [(ngModel)]="bolAutoUpdateActive" class="example-margin" [color]="'primary'"
+                            [checked]="bolAutoUpdateActive" (change)="switchBolAutoUpdateActiveLogMsg()">
+                            <span class="material-icons md-24 v-middle">
+                                refresh
+                            </span>
+                            Auto-update
+                        </mat-slide-toggle>
+                    </div>
+                    <button mat-raised-button color="primary" (click)="refreshData(event.id)" routerLinkActive="active"
+                        style="margin: 0px 10px 0 0; align-self: flex-start;">
+                        <span class="material-icons md-24 v-middle">
+                            refresh
+                        </span>
+                        Update now
+                    </button>
+                    <!-- STACKOVERFLOW https://stackoverflow.com/questions/50094246/how-to-use-matslidetogglechange-of-mat-slide-toggle-in-angular-material-->
+                </div>
             </div>
-            <br>
+            <br><br>
         </div>
     </div>
 </div>

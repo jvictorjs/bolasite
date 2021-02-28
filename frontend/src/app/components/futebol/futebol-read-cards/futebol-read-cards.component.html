@@ -11,9 +11,10 @@
         style="display: flex; flex-direction: column; align-items: stretch; max-width: 1000px; border: none; width: 100%;">
 
         <div *ngFor="let event of jogos.response.result.inPlayEventsBSF_eventViewInfos">
-            <!--STACKOVERFLOW https://stackblitz.com/angular/yjpgkmogvgle?file=src%2Fapp%2Fbadge-overview-example.ts-->
             <mat-card class="event-card mat-elevation-z2">
-                <div class="event-div">
+                <!--STACKOVERFLOW https://stackblitz.com/angular/yjpgkmogvgle?file=src%2Fapp%2Fbadge-overview-example.ts-->
+                <div class=" event-div" matBadge="{{event.points.datt_per_minute}}" matBadgePosition="after"
+                    matBadgeColor="warn" [matBadgeHidden]="getBadgeVisibility(event.points.datt_per_minute)">
                     <div style="display: flex; flex-direction: row; justify-content: space-around; border:none; flex-wrap: wrap; 
                 width: 100%; margin: 0px; padding:1px">
                         <div class="textColor centerALL v-middle"
@@ -49,10 +50,7 @@
                         <div class="centerALL" style="border:none; border-color: green; min-width: 55%;" matTooltip="{{'\n
         '+
             getToolTipMsgForEvent(event)}} {{getToolTipMsgForEvent_colorSlices(event)}}" matTooltipPosition="above"
-                            matTooltipClass="tooltip" matBadge="{{event.points.datt_per_minute}}"
-                            matBadgePosition="after" matBadgeColor="warn"
-                            [matBadgeHidden]="getBadgeVisibility(event.points.datt_per_minute)"
-                            matTooltipTouchGestures="on">
+                            matTooltipClass="tooltip" matTooltipTouchGestures="on">
                             <a routerLink="/futebol/event/{{ event.id }}" [state]="{hello:'world'}" class="view">
                                 <div style="display:inline-block; flex-direction: row; justify-content: center; flex-wrap: wrap;
                         font-size: 0.9rem; font-weight: 500; border:none;">
@@ -85,7 +83,6 @@
                             </mat-icon>
                         </div>
                     </div>
-
                 </div>
             </mat-card>
         </div>

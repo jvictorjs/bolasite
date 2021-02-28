@@ -39,6 +39,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort'
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatBadgeModule } from '@angular/material/badge';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
@@ -95,7 +96,8 @@ registerLocaleData(localePt);
     MatSortModule,
     MatTooltipModule,
     ChartsModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatSlideToggleModule
   ],
   providers: [{
     provide: LOCALE_ID,

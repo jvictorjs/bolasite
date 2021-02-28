@@ -128,8 +128,30 @@ button {
     border: none;
 }
 
-.eventStats {
+.eventName {
     display: flex;
+    font-size: 1.1rem;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    line-height: 1.5;
+    padding: 3px 3px 7px 3px;
+}
+
+.eventName .title {
+    font-size: 1.3rem;
+    text-align: center;
+    font-weight: 600;
+}
+
+.eventName .subtitle {
+    font-size: 1rem;
+    text-align: center;
+    font-weight: 600;
+}
+
+.eventStats {
     font-size: 1.1rem;
     align-items: center;
     flex-direction: column;

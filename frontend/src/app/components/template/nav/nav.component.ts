@@ -21,8 +21,6 @@ export class NavComponent implements OnInit {
   }
 
 
-
-
   mobileQuery: MediaQueryList;
 
   private _mobileQueryListener: () => void;
