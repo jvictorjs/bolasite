@@ -4,19 +4,19 @@
     STACKOVERFLOW esse aqui nao é exatamente, mas ajuda caso a sidenav fique doida https://stackoverflow.com/questions/49176479/angular-incorrect-margin-left-applied-to-sidenav-content 
 -->
 <div class="example-container mat-elevation-z5" [class.example-is-mobile]="mobileQuery.matches">
-    <mat-toolbar color="primary" class="example-toolbar mat-elevation-z5 backgroundColor">
+    <mat-toolbar color="primary" class="example-toolbar mat-elevation-z5 backgroundColor"
+    style="border: none; padding: 3px;">
         <button mat-icon-button (click)="sidenav.toggle()">
             <i class="material-icons textColor">menu</i>
         </button>
-        <div style="width: 140px; border: none;">
+        <div style="width: 115px; border: none;">
             <a href="https://bolanarede.net.br">
                 <h1 class="example-app-name">
-                    <strong class="textColor">
-                        bola<span class="red">na</span>rede</strong>
+                    <strong class="textColor">bola<span class="red">na</span>rede</strong>
                 </h1>
             </a>
         </div>
-        <div style="width: 50px; border: none;margin: 0px 0px 13px -5px;" class="hover-rotate">
+        <div style="width: 50px; border: none;margin: 0px 0px 13px -2px;" class="hover-rotate">
             <span style="font-size: 0.8rem;" class="textColor">
                 beta</span>
         </div>
@@ -66,7 +66,7 @@
                             <mat-icon mat-list-icon class="material-icons side-nav-icon hover-rotate">
                                 tv
                             </mat-icon>
-                            Jogos na TV
+                            Guia de Jogos na TV
                         </a>
                         <a mat-list-item routerLink="/futebol" routerLinkActive="active" class="list-item-with-icon"
                             (click)="mobileQuery.matches === false || sidenav.close()">
@@ -171,18 +171,16 @@
             </div>
         </div>
     -->
-            <div style="display: flex; flex-direction: column; align-items: center;">
-                <div style="max-width: 1440px; align-self: center; width: 100%;">
+            <div style="display: flex; flex-direction: column; align-items: center; border:none">
+
+                <div style="max-width: 4040px; align-self: center; width: 100%; border:none">
+
                     <div [@routeAnimations]="o && o.activatedRouteData 
                     && o.activatedRouteData['animation']">
                         <router-outlet #o="outlet"></router-outlet>
                         <!--
 
-            </div>
-            <router-outlet>
-            </router-outlet>
-        </div>
-    -->
+                        -->
                     </div>
                 </div>
             </div>

@@ -1,5 +1,5 @@
 import { slideInAnimation } from './../../route-animation';
-import { HeaderService } from './../../components/template/nav/nav.service';
+import { NavService } from './../../components/template/nav/nav.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'
 
@@ -11,9 +11,9 @@ import { Router } from '@angular/router'
 })
 export class ProductCrudComponent implements OnInit {
 
-  constructor(private router: Router, private headerService: HeaderService) {
+  constructor(private router: Router, private headerService: NavService) {
     headerService.headerData = {
-      title: 'Cadastro de Produtos (CRUD)',
+      title: 'Produtos (crud)',
       icon: 'storefront',
       routeUrl: '/products'
     }

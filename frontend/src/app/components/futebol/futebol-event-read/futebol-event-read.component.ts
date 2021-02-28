@@ -48,7 +48,7 @@ export class FutebolEventReadComponent implements OnInit {
       placar_ft: "0-2",
       datt_home: 0, datt_away: 0, datt_per_minute: 1.05,
       datt_home_ht: 0, datt_away_ht: 0,
-      att_home: 49, att_away: 62, 
+      att_home: 49, att_away: 62,
       att_home_ht: 0, att_away_ht: 0,
       on_target_home: 0, on_target_away: 4, off_target_home: 2, off_target_away: 4, // 👟
       possession_home: 48, possession_away: 52,
@@ -87,7 +87,7 @@ export class FutebolEventReadComponent implements OnInit {
     // STACKOVERFLOW https://stackoverflow.com/questions/38484908/how-can-i-set-the-height-of-a-chart-with-ng2-charts
     responsive: true,
     maintainAspectRatio: false,
-    responsiveAnimationDuration: 1300
+    responsiveAnimationDuration: 3300
   };
 
   public barChartLabels: Label[] = [`05'`, `10'`, `15'`, `20'`, `25'`, `30'`, `35'`, `40'`, `45'`, `50'`, `55'`, `60'`, `65'`, `70'`, `75'`, `80'`, `85'`, `90'`];
@@ -134,12 +134,15 @@ export class FutebolEventReadComponent implements OnInit {
   eventClock = { date: new Date(), minute: 0, second: 0 };
 
   bolShowFlagsMatCardBackground = true;
+  bolDetailedView = false;
 
   constructor(
     private futebolService: FutebolService,
     private router: Router,
     private route: ActivatedRoute,
     private location: Location) {
+    // console.log(`state data from previous view = ${this.router.getCurrentNavigation().extras.state.eventStringed}`);
+    // console.log(this.router.getCurrentNavigation().extras.state.eventStringed);
 
   }
 
@@ -148,7 +151,7 @@ export class FutebolEventReadComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.futebolService.showLoadingMessage('Loading event...')
+    // this.futebolService.showLoadingMessage('Loading event...')
     const id = +this.route.snapshot.paramMap.get('id')
     this.eventId = id;
     this.showLoader()
@@ -158,7 +161,7 @@ export class FutebolEventReadComponent implements OnInit {
     /*
     if (this.jogos.botVersion === 0) {
       console.log('this.jogos.botVersion === 0, coletando jogos...')
-      this.futebolService.read().subscribe(jogos => {
+      this.futebolService.loadEvents().subscribe(jogos => {
         this.jogos = jogos
         this.futebolService.jogos = jogos
         this.event = this.jogos.result.inPlayEventsBSF_eventViewInfos.find((x: { id: number; })=>x.id == this.eventId)
@@ -178,16 +181,22 @@ export class FutebolEventReadComponent implements OnInit {
     })
     */
 
-    this.futebolService.readById_cached(id).subscribe(event => { // cached direct from google apps scripts
-      console.log('chegou evento = ' + JSON.stringify(event))
-      this.futebolService.event = event
-      // this.event = this.futebolService.event.result.inPlayEventsBSF_eventViewInfos[0]
-      this.event = event
-      this.futebolService.showMessage('Event loaded ✅') // ✅✔
-      this.hideLoader();
-      this.updateChart();
-      this.updateClock();
-    })
+    this.event = this.futebolService.readById_fromServiceCache(id);
+    this.hideLoader();
+    this.updateChart();
+    this.updateClock();
+    /*
+        this.futebolService.readById_cached(id).subscribe(event => { // cached direct from google apps scripts
+          // console.log('chegou evento = ' + JSON.stringify(event))
+          this.futebolService.event = event
+          // this.event = this.futebolService.event.result.inPlayEventsBSF_eventViewInfos[0]
+          this.event = event
+          //this.futebolService.showMessage('Event loaded ✅') // ✅✔
+          this.hideLoader();
+          this.updateChart();
+          this.updateClock();
+        })
+        */
 
     setInterval(() => {
       // console.log(this.eventClock.date)
@@ -200,9 +209,20 @@ export class FutebolEventReadComponent implements OnInit {
 
   }
 
-  refreshData(id: number): void {
+  refreshData(eventId: number): void {
+    this.futebolService.loadEvents().subscribe(jogos => {
+      console.log('chegou eventos');
+      this.jogos = jogos
+      console.log(`data total events on service = ${this.jogos.response.result.inPlayEventsBSF_eventViewInfos.length}`)
+      this.futebolService.showMessage('Service reloaded. ✅') // ✅✔
+      this.event = this.jogos.response.result.inPlayEventsBSF_eventViewInfos.find((x: { id: string; }) => x.id === eventId.toString())
+      this.updateChart();
+      this.updateClock();
+    })
+
+    /*
     this.futebolService.readById_cached(id).subscribe(event => { // cached direct from google apps scripts
-      console.log('chegou evento = ' + JSON.stringify(event))
+      // console.log('chegou evento = ' + JSON.stringify(event))
       this.futebolService.event = event
       // this.event = this.futebolService.event.result.inPlayEventsBSF_eventViewInfos[0]
       this.event = event
@@ -210,12 +230,14 @@ export class FutebolEventReadComponent implements OnInit {
       this.updateChart();
       this.updateClock();
     })
+   */
   }
 
 
   hideLoader(): void {
     // Setting display of spinner element to none 
-    document.getElementById('loadingEventComponent').style.display = 'none';
+    //document.getElementById('loadingEventComponent').style.display = 'inline';
+    document.getElementById('loadingEventComponent_ball').style.display = 'none';
     document.getElementById('teamsLogos').style.display = 'inline';
     // document.getElementById('graphs').style.display = 'inline';
     document.getElementById('eventComponent').style.display = 'inline';
@@ -223,7 +245,8 @@ export class FutebolEventReadComponent implements OnInit {
 
   showLoader(): void {
     // Setting display of spinner element to inline 
-    document.getElementById('loadingEventComponent').style.display = 'inline';
+    //document.getElementById('loadingEventComponent').style.display = 'inline';
+    document.getElementById('loadingEventComponent_ball').style.display = 'inline';
     document.getElementById('teamsLogos').style.display = 'none';
     //document.getElementById('graphs').style.display = 'none';
     document.getElementById('eventComponent').style.display = 'none';
@@ -238,21 +261,25 @@ export class FutebolEventReadComponent implements OnInit {
     console.log(`this.bolShowFlagsMatCardBackground switched to = ${this.bolShowFlagsMatCardBackground}`)
   }
 
+
+  switchBolDetailedView(): void {
+    this.bolDetailedView = !this.bolDetailedView
+    console.log(`this.bolDetailedView switched to = ${this.bolDetailedView}`)
+  }
+
+  /*
   updateEvents(): void {
     this.futebolService.showLoadingMessage('Updating events list...')
-    this.futebolService.read().subscribe(jogos => {
+    this.futebolService.loadEvents().subscribe(jogos => {
       this.futebolService.jogos = jogos
       this.event = this.jogos.result.inPlayEventsBSF_eventViewInfos.find((x: { id: number; }) => x.id == this.eventId)
       this.futebolService.showMessage('Events reloaded. ✅') // ✅✔
     })
   }
+  */
 
   consolaTotalEvents(): void {
     this.futebolService.consolaTotalEvents();
-  }
-
-  atribuirJogo(): void {
-    this.event = this.jogos.result.inPlayEventsBSF_eventViewInfos.find((x: { id: number; }) => x.id == this.eventId)
   }
 
   randomize(): void {
@@ -290,7 +317,7 @@ export class FutebolEventReadComponent implements OnInit {
     this.eventClock.date.setSeconds(this.event.clock.second)
   }
 
-  
+
   getFlags($code: string) {
     return this.futebolService.getFlags($code);
   }

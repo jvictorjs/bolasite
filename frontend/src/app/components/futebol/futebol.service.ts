@@ -23,7 +23,7 @@ export class FutebolService {
 
   showMessage(msg: string, isError: boolean = false): void {
     this.snackBar.open(msg, 'X', {
-      duration: 5000,
+      duration: 3300,
       horizontalPosition: "center",
       verticalPosition: "bottom",
       panelClass: isError ? ['msg-error'] : ['msg-success']
@@ -32,7 +32,7 @@ export class FutebolService {
 
   showLoadingMessage(msg: string): void {
     this.snackBar.open(msg, 'X', {
-      duration: 5000,
+      duration: 3300,
       horizontalPosition: "center",
       verticalPosition: "bottom",
       panelClass: ['msg-default']
@@ -44,23 +44,23 @@ export class FutebolService {
     }
     */
 
-  read(): Observable<Object> {
+  loadEvents(): Observable<Object> {
     this.jogos = this.http.get<Object>(this.baseUrl)
-    console.log('events will be collected', true);
+    console.log('events will be collected');
     return this.jogos
   }
 
 
   readUpComingEvents(): Observable<Object> {
     this.jogos_upcoming = this.http.get<Object>(this.baseUrl_upcomingEvents)
-    console.log('events will be collected', true);
+    console.log('upcoming events will be collected');
     return this.jogos_upcoming
   }
 
 
   readById(id: number): Observable<Object> {
-    console.log('collecting event with id = ' + id)
-    console.log(this.baseUrl2 + '&eventId=' + id)
+    // console.log('collecting event with id = ' + id)
+    // console.log(this.baseUrl2 + '&eventId=' + id)
     return this.http.get<Object>(this.baseUrl2 + '&eventId=' + id)
     // console.log('this.jogos.result.inPlayEventsBSF_eventViewInfos.length = ' + this.jogos.result.inPlayEventsBSF_eventViewInfos.length)
     // return this.jogos.result.inPlayEventsBSF_eventViewInfos.find((x: { id: number; }) => x.id == id)
@@ -69,12 +69,19 @@ export class FutebolService {
 
   readById_cached(id: number): Observable<Object> {
     console.log('readById_cached --- START')
-    console.log('collecting event with id  = ' + id)
-    console.log(this.baseUrl2 + '&eventId=' + id + '&cached=true')
+    // console.log('collecting event with id  = ' + id)
+    // console.log(this.baseUrl2 + '&eventId=' + id + '&cached=true')
     return this.http.get<Object>(this.baseUrl2 + '&eventId=' + id + '&cached=true')
     // console.log('this.jogos.result.inPlayEventsBSF_eventViewInfos.length = ' + this.jogos.result.inPlayEventsBSF_eventViewInfos.length)
     // return this.jogos.result.inPlayEventsBSF_eventViewInfos.find((x: { id: number; }) => x.id == id)
     // return this.jogos.result.inPlayEventsBSF_eventViewInfos.find( ({ id }) => id === id );
+  }
+
+  readById_fromServiceCache(eventId:number):any{
+    console.log(`total events on service = ${this.jogos.response.result.inPlayEventsBSF_eventViewInfos.length}`)
+    let retorno = this.jogos.response.result.inPlayEventsBSF_eventViewInfos.find((x: { id: string; }) => x.id === eventId.toString())
+    console.log(`event found in service cache = ${retorno.stringedGameWithRedcards}`)
+    return retorno;
   }
 
   consolaTotalEvents(): void {

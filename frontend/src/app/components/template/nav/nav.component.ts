@@ -1,6 +1,6 @@
 import { slideInAnimation } from './../../../route-animation';
 import { MediaMatcher } from '@angular/cdk/layout';
-import { HeaderService } from './nav.service'
+import { NavService } from './nav.service'
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 
 @Component({  // DECORATOR é o @
@@ -27,7 +27,7 @@ export class NavComponent implements OnInit {
 
   private _mobileQueryListener: () => void;
 
-  constructor(private HeaderService: HeaderService, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+  constructor(private NavService: NavService, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
     this.mobileQuery = media.matchMedia('(max-width: 800px)');
 
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -55,14 +55,14 @@ export class NavComponent implements OnInit {
     } else {
       this.opened = true;
     }
-    return this.HeaderService.headerData.title
+    return this.NavService.headerData.title
   }
 
   get icon(): string {
-    return this.HeaderService.headerData.icon
+    return this.NavService.headerData.icon
   }
 
   get routeUrl(): string {
-    return this.HeaderService.headerData.routeUrl
+    return this.NavService.headerData.routeUrl
   }
 }

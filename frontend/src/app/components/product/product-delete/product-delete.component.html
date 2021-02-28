@@ -1,19 +1,28 @@
-<mat-card>
-    <mat-card-title>Excluir Produto</mat-card-title>
-    <form>
-        <mat-form-field>
-            <input matInput placeholder="Nome" [value]="product.name" name="name" disabled>
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput placeholder="Preço (R$)" [value]="product.price" name="price" disabled>
-        </mat-form-field>
-    </form>
+<div class="view-content">
+    <div style="display: flex; justify-content: center; align-items: center; border: none; width: 100%;">
 
-    <button mat-raised-button (click)="deleteProduct()" color="warn">
-        Excluir
-    </button>
+        <div
+            style="display: flex; flex-direction: column; align-items: stretch; max-width: 800px; border: none; width: 100%;">
 
-    <button mat-raised-button (click)="cancel()">
-        Cancelar
-    </button>
-</mat-card>
+            <mat-card>
+                <mat-card-title>Excluir Produto</mat-card-title>
+                <form>
+                    <mat-form-field>
+                        <input matInput placeholder="Nome" [value]="product.name" name="name" disabled>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput placeholder="Preço (R$)" [value]="product.price" name="price" disabled>
+                    </mat-form-field>
+                </form>
+
+                <button mat-raised-button (click)="deleteProduct()" color="warn">
+                    Excluir
+                </button>
+
+                <button mat-raised-button (click)="cancel()">
+                    Cancelar
+                </button>
+            </mat-card>
+        </div>
+    </div>
+</div>

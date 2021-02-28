@@ -1,5 +1,5 @@
 import { slideInAnimation } from './../../route-animation';
-import { HeaderService } from './../../components/template/nav/nav.service';
+import { NavService } from './../../components/template/nav/nav.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -10,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FutebolComponent implements OnInit {
 
-  constructor(private headerService: HeaderService) {
+  constructor(private headerService: NavService) {
     headerService.headerData = {
       title: 'Jogos Ao Vivo',
       icon: 'sports_soccer',

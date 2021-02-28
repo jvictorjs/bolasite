@@ -2,7 +2,7 @@ import { slideInAnimation } from './../../route-animation';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { EMPTY, Observable } from 'rxjs';
-import { HeaderService } from './../../components/template/nav/nav.service';
+import { NavService } from './../../components/template/nav/nav.service';
 
 @Component({
   selector: 'app-tv-guide',
@@ -18,9 +18,9 @@ export class TvGuideComponent implements OnInit {
   displayedColumns = ['id', 'name', 'price', 'action']
   json_response: any = {}
 
-  constructor(private http: HttpClient, private headerService: HeaderService) {
+  constructor(private http: HttpClient, private headerService: NavService) {
     headerService.headerData = {
-      title: 'Guia de Jogos na TV',
+      title: 'Jogos na TV',
       icon: 'tv',
       routeUrl: '/tv-guide'
     }

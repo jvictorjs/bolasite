@@ -9,6 +9,15 @@ body {
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+.view-content {
+    /*
+    this view content class needed to be created because of th transition
+    the padding need to be inside de router-outlet, ir is outside it, 
+    breaks the transitions animations
+    */
+    padding: 16px;
+}
+
 /*
 STACKOVERFLOW https://stackoverflow.com/questions/4847850/is-it-possible-to-define-constants-in-css/48175165
 */

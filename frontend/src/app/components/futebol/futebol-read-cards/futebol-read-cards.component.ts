@@ -1,3 +1,4 @@
+import { slideInAnimation } from './../../../route-animation';
 
 import { Component, OnInit } from '@angular/core';
 import { FutebolService } from './../futebol.service';
@@ -6,7 +7,8 @@ import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
 @Component({
   selector: 'app-futebol-read-cards',
   templateUrl: './futebol-read-cards.component.html',
-  styleUrls: ['./futebol-read-cards.component.css']
+  styleUrls: ['./futebol-read-cards.component.css'],
+  animations: [slideInAnimation]
 })
 export class FutebolReadCardsComponent implements OnInit {
   jogos: any = { id: 0, response: { botVersion: 0, result: { loopMsgText: '', inPlayEventsBSF_eventViewInfos: [] } } };
@@ -42,10 +44,10 @@ export class FutebolReadCardsComponent implements OnInit {
 
   loadEvents(): void {
     console.log('auto refresh - loading events...');
-    this.futebolService.read().subscribe(jogos => {
+    this.futebolService.loadEvents().subscribe(jogos => {
       this.jogos = jogos
       this.futebolService.jogos = jogos
-      this.futebolService.showMessage('Events loaded. ✅') // ✅✔
+      this.futebolService.showLoadingMessage('Events loaded. ✅') // ✅✔
       if (this.jogos.response.result.inPlayEventsBSF_eventViewInfos.length === 0) {
         this.futebolService.showMessage('No live events.')
         // this.futebolService.showMessage('Sem jogos ao vivo no momento.')
@@ -59,7 +61,12 @@ export class FutebolReadCardsComponent implements OnInit {
   }
 
   navigateWithState(): void {
-    this.router.navigate(['/futebol/event/2992128'], { state: { hello: 'world' } });
+    this.router.navigate(['2992128'], { state: { hello: 'world' } });
+  }
+
+  // STACKOVERFLOW https://stackoverflow.com/questions/37252146/angular-2-redirect-on-click
+  navigateToEvent(eventId: string) {
+    this.router.navigate(['/futebol/event/' + eventId]);
   }
 
 

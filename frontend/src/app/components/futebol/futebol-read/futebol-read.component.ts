@@ -42,10 +42,10 @@ export class FutebolReadComponent implements OnInit {
 
   loadEvents(): void {
     console.log('auto refresh - loading events...');
-    this.futebolService.read().subscribe(jogos => {
+    this.futebolService.loadEvents().subscribe(jogos => {
       this.jogos = jogos
       this.futebolService.jogos = jogos
-      this.futebolService.showMessage('Events loaded. ✅') // ✅✔
+      this.futebolService.showLoadingMessage('Events loaded. ✅') // ✅✔
       if (this.jogos.response.result.inPlayEventsBSF_eventViewInfos.length === 0) {
         this.futebolService.showMessage('No live events.')
         // this.futebolService.showMessage('Sem jogos ao vivo no momento.')

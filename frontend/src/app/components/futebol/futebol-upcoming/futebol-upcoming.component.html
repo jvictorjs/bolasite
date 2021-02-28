@@ -16,7 +16,7 @@
     </mat-card-title>
     <mat-card-subtitle class="subtitle">
         <div class="mat-elevation-z0" style="margin-bottom: 5px;">
-            <table mat-table matSort aria-label="Elements" [dataSource]="jogos.response.result">
+            <table mat-table matSort aria-label="Elements" [dataSource]="jogos_upcoming.response.result">
                 <!-- Id Column 
             <ng-container matColumnDef="id">
                 <th mat-header-cell *matHeaderCellDef>Id</th>
@@ -111,7 +111,7 @@
 
 
         <!--
-    <p class="texto">{{ jogos | json }}</p>
+    <p class="texto">{{ jogos_upcoming | json }}</p>
 -->
     </mat-card-subtitle>
 </mat-card>

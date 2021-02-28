@@ -1,128 +1,160 @@
-<button mat-raised-button color="primary" routerLink="/futebol" routerLinkActive="active" style="margin-top: 0px;">
-    <span class="material-icons md-24 v-middle">
-        arrow_back
-    </span>
-    Back to Soccer Events List
-</button>
-<div style="display: flex; justify-content: center; align-items: center; border: none; width: 100%;">
-
+<div class="view-content">
     <div
-        style="display: flex; flex-direction: column; align-items: stretch; max-width: 1000px; border: none; width: 100%;">
+        style="display: flex; justify-content: center; flex-direction: column; align-items: center; border: none; width: 100%;">
 
+        <div
+            style="display: flex; flex-direction: column; align-items: stretch; max-width: 1000px; border: none; width: 100%;">
+            <div style="display: flex; flex-direction: row; justify-content: space-between; border:none;">
 
-        <!-- 
+                <button mat-raised-button color="primary" routerLink="/futebol" routerLinkActive="active"
+                    style="margin-top: 0px; align-self: flex-start;">
+                    <span class="material-icons md-24 v-middle">
+                        arrow_back
+                    </span>
+                    Voltar
+                </button>
+
+                <button mat-raised-button color="primary" (click)="switchBolDetailedView()" routerLinkActive="active"
+                    style="margin-top: 0px; align-self: flex-start;">
+                    <span class="material-icons md-24 v-middle">
+                        unfold_more
+                    </span>
+                    More Details
+                </button>
+
+            </div>
+            <!-- 
             STACKOVERFLOW https://www.geeksforgeeks.org/how-to-display-spinner-on-the-screen-till-the-data-from-the-api-loads-using-angular-8/
         -->
-        <!-- spinnner element is  
+            <!-- spinnner element is  
     defined with id loading -->
 
+            <!--
         <div class="d-flex justify-content-center">
             <div class="spinner-border" role="status">
                 <span id="loadingEventComponent"></span>
             </div>
         </div>
+        -->
 
-        <div id="eventComponent">
-            <mat-card id="flagsMatCard"
-                class="eventNameAndLogos
+            <div id="loadingEventComponent_ball" class="centerALL">
+                <mat-icon mat-list-icon class="material-icons rotate-infinite textColor"
+                    style="font-size: 10rem; border: none;margin: 100px">
+                    sports_soccer
+                </mat-icon>
+            </div>
+
+            <div id="eventComponent">
+                <mat-card id="flagsMatCard"
+                    class="eventNameAndLogos
                 {{ bolShowFlagsMatCardBackground ? 'mat-elevation-z1 backgroundColor-white' : 'mat-elevation-z0 backgroundColor-lightGray'}}">
-                <mat-card-subtitle class="subtitle centerALL" style="border: none;">
-                    <img src="https://assets.b365api.com/images/team/b/{{ event.home.image_id }}.png" alt="home_logo" />
-                    <div style="font-size: 3rem; margin: 0 1px 0 18px;">
-                        {{event.totalGoals_home}}
-                    </div>
-                    <a (click)="switchShowFlagsMatCardBackground()">
-                        <p class="x">
-                            <span class="tooltiptext">{{event | json}}</span>
-                            X
-                        </p>
-                    </a>
-                    <div style="font-size: 3rem; margin: 0 18px 0 1px;">
-                        {{event.totalGoals_away}}
-                    </div>
-                    <img src="https://assets.b365api.com/images/team/b/{{ event.away.image_id }}.png" alt="away_logo" />
-                </mat-card-subtitle>
-                <mat-card-subtitle class="subtitle"
-                    style="font-weight: 500; border: none; margin:-7px; font-size: 1.2rem;">
-                    <!--
+                    <mat-card-subtitle class="subtitle centerALL" style="border: none;">
+                        <img src="https://assets.b365api.com/images/team/b/{{ event.home.image_id }}.png"
+                            alt="home_logo" />
+                        <div style="font-size: 3rem; margin: 0 1px 0 18px;">
+                            {{event.totalGoals_home}}
+                        </div>
+                        <a (click)="switchShowFlagsMatCardBackground()">
+                            <p class="x">
+                                <span class="tooltiptext">{{event | json}}</span>
+                                X
+                            </p>
+                        </a>
+                        <div style="font-size: 3rem; margin: 0 18px 0 1px;">
+                            {{event.totalGoals_away}}
+                        </div>
+                        <img src="https://assets.b365api.com/images/team/b/{{ event.away.image_id }}.png"
+                            alt="away_logo" />
+                    </mat-card-subtitle>
+                    <mat-card-subtitle class="subtitle"
+                        style="font-weight: 500; border: none; margin:-7px; font-size: 1.2rem;">
+                        <!--
                         STACKOVERFLOW https://stackoverflow.com/questions/54289078/display-time-clock-in-angular
                         STACKOVERFLOW https://stackoverflow.com/questions/36158193/javascript-set-a-new-date-to-tomorrow-8am
                         STACKOVERFLOW https://stackoverflow.com/questions/7687884/add-10-seconds-to-a-date
                         STACKOVERFLOW https://stackoverflow.com/questions/23848608/angularjs-ng-if-to-change-text
                     -->
-                    {{ event.clock.period !== '' ? ''+event.clock.period+' '+(eventClock.date | date:
-                    'mm:ss')+''
-                    :
-                    ''}}
-                    {{ event.clock.period === '' ? '('+event.brClock+')' : ''}}
-                </mat-card-subtitle>
-            </mat-card>
-            <mat-card class="eventStats mat-elevation-z1">
-                <mat-card-title class="title">
-                    {{ getFlags(event.league.cc)}}
-                    {{ event.league.name }}
-                </mat-card-title>
-                <mat-card-subtitle class="subtitle">
-                    {{ event.event_odds.odds_summary.end.home_odd }}
-                    <img src="https://assets.b365api.com/images/team/s/{{ event.home.image_id }}.png" alt="home_logo" />
-                    {{ event.stringedGameWithRedcards }}
-                    <img src="https://assets.b365api.com/images/team/s/{{ event.away.image_id }}.png" alt="away_logo" />
-                    {{ event.event_odds.odds_summary.end.away_odd }}
-                    <br>
-                    <div style="color: rgba(133,133,100,1);font-weight: 500; font-size: 1rem;">
-                        📊
-                        {{ event.event_odds.odds_summary.start.home_odd }}
-                        |
-                        {{ event.event_odds.odds_summary.start.draw_odd }}
-                        |
-                        {{ event.event_odds.odds_summary.start.away_odd }}
-                        <!-- STACKOVERFLOW  https://stackoverflow.com/questions/56669505/adding-whitespace-to-a-string-in-typescript-in-angular/56670220 -->
-                        &nbsp;
-                        {{ '
-                        ➕'+event.event_odds.odds_summary.start.handicap+'@'+event.event_odds.odds_summary.start.over_odd}}
+                        {{ event.clock.period !== '' ? ''+event.clock.period+' '+(eventClock.date | date:
+                        'mm:ss')+''
+                        :
+                        ''}}
+                        {{ event.clock.period === '' ? '('+event.brClock+')' : ''}}
+                    </mat-card-subtitle>
+                </mat-card>
+                <mat-card class="eventStats mat-elevation-z1">
+                    <mat-card-title class="title">
+                        {{ getFlags(event.league.cc)}}
+                        {{ event.league.name }}
+                    </mat-card-title>
+                    <mat-card-subtitle class="subtitle">
+                        {{ event.event_odds.odds_summary.end.home_odd }}
+                        <img src="https://assets.b365api.com/images/team/s/{{ event.home.image_id }}.png"
+                            alt="home_logo" />
+                        {{ event.stringedGameWithRedcards }}
+                        <img src="https://assets.b365api.com/images/team/s/{{ event.away.image_id }}.png"
+                            alt="away_logo" />
+                        {{ event.event_odds.odds_summary.end.away_odd }}
+                        <br>
+                        <div style="color: rgba(133,133,100,1);font-weight: 500; font-size: 1rem;">
+                            📊
+                            {{ event.event_odds.odds_summary.start.home_odd }}
+                            |
+                            {{ event.event_odds.odds_summary.start.draw_odd }}
+                            |
+                            {{ event.event_odds.odds_summary.start.away_odd }}
+                            <!-- STACKOVERFLOW  https://stackoverflow.com/questions/56669505/adding-whitespace-to-a-string-in-typescript-in-angular/56670220 -->
+                            &nbsp;
+                            {{ '
+                            ➕'+event.event_odds.odds_summary.start.handicap+'@'+event.event_odds.odds_summary.start.over_odd}}
 
-                        {{event.textsToShow && (' ⚽' + event.textsToShow.overOdds.eventOddsTextMsgParsedToSend_GoalLine)
-                        }}
+                            {{event.textsToShow && (' ⚽' +
+                            event.textsToShow.overOdds.eventOddsTextMsgParsedToSend_GoalLine)
+                            }}
 
-                        <div style="color: rgba(77,88,100,1);font-weight: 500;">
-                            {{''+event.points.total_shots_home + '🥅' +event.points.total_shots_away}}
-                            &nbsp;&nbsp;&nbsp;
-                            {{''+event.points.on_target_home + '🎯' +event.points.on_target_away}}
-                            &nbsp;&nbsp;&nbsp;
-                            {{''+event.points.datt_home + '💥' +event.points.datt_away + '
-                            ('+event.points.datt_per_minute+')'}}
+                            <div style="color: rgba(77,88,100,1);font-weight: 500;">
+                                {{''+event.points.total_shots_home + '🥅' +event.points.total_shots_away}}
+                                &nbsp;&nbsp;&nbsp;
+                                {{''+event.points.on_target_home + '🎯' +event.points.on_target_away}}
+                                &nbsp;&nbsp;&nbsp;
+                                {{''+event.points.datt_home + '💥' +event.points.datt_away + '
+                                ('+event.points.datt_per_minute+')'}}
+                            </div>
                         </div>
-                    </div>
-                </mat-card-subtitle>
-            </mat-card>
-            <mat-card class="eventMarketValues mat-elevation-z1 {{ (event.tm_stats) ? '' : 'display-none' }}">
-                <mat-card-title class="title">
-                    <img src="https://assets.b365api.com/images/team/s/{{ event.home.image_id }}.png" alt="home_logo" />
-                    {{ event.tm_stats && event.tm_stats.total_market_value &&
-                    event.tm_stats.total_market_value[0]/1000000 +'M €'}}
-                    &nbsp;
-                    {{ event.tm_stats && event.tm_stats.total_market_value && 'vs'}}
-                    &nbsp;
-                    {{ event.tm_stats && event.tm_stats.total_market_value &&
-                    event.tm_stats.total_market_value[1]/1000000 +'M €'}}
-                    <img src="https://assets.b365api.com/images/team/s/{{ event.away.image_id }}.png" alt="away_logo" />
-                </mat-card-title>
-                <mat-card-subtitle class="subtitle">
-                    <!-- STACKOVERFLOW https://stackoverflow.com/questions/46350113/error-typeerror-cannot-read-property-0-of-undefined-angular-4-->
-                    {{ event.tm_stats && event.tm_stats.avg_market_value && event.tm_stats.avg_market_value[0]/1000000
-                    +'M €'}}
-                    &nbsp;
-                    {{ event.tm_stats && event.tm_stats.avg_market_value && 'AVG player value'}}
-                    &nbsp;
-                    {{ event.tm_stats && event.tm_stats.avg_market_value && event.tm_stats.avg_market_value[1]/1000000
-                    +'M €'}}
-                    <br>
-                    {{ event.tm_stats && event.tm_stats.club_members && event.tm_stats.club_members[0] +''}}
-                    {{ event.tm_stats && event.tm_stats.club_members && 'club_members'}}
-                    {{ event.tm_stats && event.tm_stats.club_members && event.tm_stats.club_members[1] +''}}
-                </mat-card-subtitle>
-            </mat-card>
-            <!--
+                    </mat-card-subtitle>
+                </mat-card>
+                <mat-card
+                    class="eventMarketValues mat-elevation-z1 {{ (event.tm_stats) && bolDetailedView ? '' : 'display-none' }}">
+                    <mat-card-title class="title">
+                        <img src="https://assets.b365api.com/images/team/s/{{ event.home.image_id }}.png"
+                            alt="home_logo" />
+                        {{ event.tm_stats && event.tm_stats.total_market_value &&
+                        event.tm_stats.total_market_value[0]/1000000 +'M €'}}
+                        &nbsp;
+                        {{ event.tm_stats && event.tm_stats.total_market_value && 'vs'}}
+                        &nbsp;
+                        {{ event.tm_stats && event.tm_stats.total_market_value &&
+                        event.tm_stats.total_market_value[1]/1000000 +'M €'}}
+                        <img src="https://assets.b365api.com/images/team/s/{{ event.away.image_id }}.png"
+                            alt="away_logo" />
+                    </mat-card-title>
+                    <mat-card-subtitle class="subtitle">
+                        <!-- STACKOVERFLOW https://stackoverflow.com/questions/46350113/error-typeerror-cannot-read-property-0-of-undefined-angular-4-->
+                        {{ event.tm_stats && event.tm_stats.avg_market_value &&
+                        event.tm_stats.avg_market_value[0]/1000000
+                        +'M €'}}
+                        &nbsp;
+                        {{ event.tm_stats && event.tm_stats.avg_market_value && 'AVG player value'}}
+                        &nbsp;
+                        {{ event.tm_stats && event.tm_stats.avg_market_value &&
+                        event.tm_stats.avg_market_value[1]/1000000
+                        +'M €'}}
+                        <br>
+                        {{ event.tm_stats && event.tm_stats.club_members && event.tm_stats.club_members[0] +''}}
+                        {{ event.tm_stats && event.tm_stats.club_members && 'club_members'}}
+                        {{ event.tm_stats && event.tm_stats.club_members && event.tm_stats.club_members[1] +''}}
+                    </mat-card-subtitle>
+                </mat-card>
+                <!--
                 <mat-card class="pointsSlicesToShow mat-elevation-z3">
                 <mat-card-title class="title">
                     {{ event.pointsSlices.minutesToShow_stringed }}
@@ -145,9 +177,9 @@
         </ul>
     </mat-card>
 -->
-            <mat-card class="graphsCard mat-elevation-z1">
+                <mat-card class="graphsCard mat-elevation-z1">
 
-                <!--
+                    <!--
                     
             STACKOVERFLOW   https://www.npmjs.com/package/ng2-charts
             STACKOVERFLOW   https://stackblitz.com/edit/ng2-charts-bar-template?file=src%2Fapp%2Fapp.component.html
@@ -155,22 +187,22 @@
             STACKOVERFLOW   https://stackoverflow.com/questions/23424123/remove-x-axis-label-text-in-chart-js
             STACKOVERFLOW   https://codepen.io/chartjs/pen/YVWZbz
         -->
-                <mat-card-subtitle class="subtitle">
-                    <div class="graphs">
-                        <div id="teamsLogos" class="teamLogos">
-                            <div>
-                                <img style="box-shadow: inset 0 0 0em white, 0 0 0em gray;" class="graphTeamLogo"
-                                    src="https://assets.b365api.com/images/team/b/{{ event.home.image_id }}.png"
-                                    alt="home_logo" />
+                    <mat-card-subtitle class="subtitle">
+                        <div class="graphs">
+                            <div id="teamsLogos" class="teamLogos">
+                                <div>
+                                    <img style="box-shadow: inset 0 0 0em white, 0 0 0em gray;" class="graphTeamLogo"
+                                        src="https://assets.b365api.com/images/team/b/{{ event.home.image_id }}.png"
+                                        alt="home_logo" />
+                                </div>
+                                <div>
+                                    <img class="graphTeamLogo"
+                                        src="https://assets.b365api.com/images/team/b/{{ event.away.image_id }}.png"
+                                        alt="away_logo" />
+                                </div>
                             </div>
-                            <div>
-                                <img class="graphTeamLogo"
-                                    src="https://assets.b365api.com/images/team/b/{{ event.away.image_id }}.png"
-                                    alt="away_logo" />
-                            </div>
-                        </div>
 
-                        <!--
+                            <!--
 
                     return (
                         <View style={{ justifyContent: 'space-around', flexDirection: 'row', borderWidth: 0, width: '99%', alignSelf: 'center' }}>
@@ -180,50 +212,55 @@
                             </View>
                             
                         -->
-                        <div class="graphContainer">
-                            <div class="graphRowData" style="height: auto;">
-                                <!-- home redcards 🟥 -->
-                                <div class="cell" *ngFor="let number of [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]">
-                                    {{ event.pointsSlices.minutesOfHomeRedCardsToShow_array[number]}}
+                            <div class="graphContainer">
+                                <div class="graphRowData" style="height: auto;">
+                                    <!-- home redcards 🟥 -->
+                                    <div class="cell"
+                                        *ngFor="let number of [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]">
+                                        {{ event.pointsSlices.minutesOfHomeRedCardsToShow_array[number]}}
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="graphRowData">
-                                <!-- home goals ⚽ -->
-                                <!-- STACKOVERFLOW https://stackoverflow.com/questions/36354325/angular-2-ngfor-using-numbers-instead-collections -->
-                                <div class="cell" *ngFor="let number of [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]">
-                                    {{ event.pointsSlices.minutesOfHomeGoalsToShow_array[number]}}
+                                <div class="graphRowData">
+                                    <!-- home goals ⚽ -->
+                                    <!-- STACKOVERFLOW https://stackoverflow.com/questions/36354325/angular-2-ngfor-using-numbers-instead-collections -->
+                                    <div class="cell"
+                                        *ngFor="let number of [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]">
+                                        {{ event.pointsSlices.minutesOfHomeGoalsToShow_array[number]}}
+                                    </div>
                                 </div>
-                            </div>
-                            <div style="position: relative; width: 100%; height:150px;border: none;">
-                                <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels"
-                                    [options]="barChartOptions" [legend]="barChartLegend" [chartType]="barChartType">
-                                </canvas>
-                            </div>
-                            <div class="graphRowData">
-                                <!-- away goals ⚽ -->
-                                <div class="cell" *ngFor="let number of [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]">
-                                    {{ event.pointsSlices.minutesOfAwayGoalsToShow_array[number]}}
+                                <div style="position: relative; width: 100%; height:150px;border: none;">
+                                    <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels"
+                                        [options]="barChartOptions" [legend]="barChartLegend"
+                                        [chartType]="barChartType">
+                                    </canvas>
                                 </div>
-                            </div>
-                            <div class="graphRowData" style="height: auto;">
-                                <!-- away redcards 🟥 -->
-                                <div class="cell" *ngFor="let number of [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]">
-                                    {{ event.pointsSlices.minutesOfAwayRedCardsToShow_array[number]}}
+                                <div class="graphRowData">
+                                    <!-- away goals ⚽ -->
+                                    <div class="cell"
+                                        *ngFor="let number of [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]">
+                                        {{ event.pointsSlices.minutesOfAwayGoalsToShow_array[number]}}
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="graphRowData">
-                                <div style="font-size: 0.6rem; color: #888888; text-Align: center; flex-Wrap: wrap; font-Weight: 'bold'; border:none; width: 3%;"
-                                    *ngFor="let number of ['05','10','15','20','25','30','35','40','45','50','55','60','65','70','75','80','85','90']">
-                                    {{ number }}'</div>
-                            </div>
-                            <div class="graphRowData">
-                                <div style="font-size: 0.6rem; color: #888888; text-Align: center; flex-Wrap: wrap; font-Weight: 'bold'; border:none; width: 3%;"
-                                    *ngFor="let number of [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]">
-                                    {{ event.pointsSlices.minutesToShow_array[number]}}</div>
+                                <div class="graphRowData" style="height: auto;">
+                                    <!-- away redcards 🟥 -->
+                                    <div class="cell"
+                                        *ngFor="let number of [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]">
+                                        {{ event.pointsSlices.minutesOfAwayRedCardsToShow_array[number]}}
+                                    </div>
+                                </div>
+                                <div class="graphRowData">
+                                    <div style="font-size: 0.6rem; color: #888888; text-Align: center; flex-Wrap: wrap; font-Weight: 'bold'; border:none; width: 3%;"
+                                        *ngFor="let number of ['05','10','15','20','25','30','35','40','45','50','55','60','65','70','75','80','85','90']">
+                                        {{ number }}'</div>
+                                </div>
+                                <div class="graphRowData">
+                                    <div style="font-size: 0.6rem; color: #888888; text-Align: center; flex-Wrap: wrap; font-Weight: 'bold'; border:none; width: 3%;"
+                                        *ngFor="let number of [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]">
+                                        {{ event.pointsSlices.minutesToShow_array[number]}}</div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <!--
+                        <!--
                         <button mat-raised-button color="primary" (click)="updateChart()" style="margin-top: 0px;">
                             <span class="material-icons-two-tone md-24 v-middle">
                                 refresh
@@ -237,48 +274,48 @@
                             randomize()
                         </button>
                     -->
-                </mat-card-subtitle>
-            </mat-card>
+                    </mat-card-subtitle>
+                </mat-card>
 
 
-            <mat-card class="eventNameAndLogos mat-elevation-z0 backgroundColor-lightGray"
-                style="border:none ;margin:13px">
+                <mat-card class="eventsTimeLineCard mat-elevation-z0 backgroundColor-lightGray
+                {{ bolDetailedView ? '' : 'display-none' }}" style="border:none ;margin:13px">
 
-                <mat-card-subtitle *ngFor="let eventToShow of event.eventsToShow"
-                    class="centerALL mat-elevation-z0 backgroundColor-lightGray" style="display: flex; flex-direction: row; justify-content: center;align-items: center;
+                    <mat-card-subtitle *ngFor="let eventToShow of event.eventsToShow"
+                        class="centerALL mat-elevation-z0 backgroundColor-lightGray" style="display: flex; flex-direction: row; justify-content: center;align-items: center;
                     border-radius: 8px; width: 100%;
                     margin:-15px -12px 23px -22px;min-height: 35px; border:none">
 
 
 
-                    <div class="centerALL mat-elevation-z2"
-                        style="display: flex; flex-direction: row; 
+                        <div class="centerALL mat-elevation-z2"
+                            style="display: flex; flex-direction: row; 
                     border-radius: 8px; width: 7%; background-color: #fff; padding: 3px; margin: 0px 3px; border: none;">
 
-                        <div class="centerALL" style="display: flex; margin: 2px 3px 0px 5px; border:none; vertical-align: middle;
+                            <div class="centerALL" style="display: flex; margin: 2px 3px 0px 5px; border:none; vertical-align: middle;
                     min-width: 7%; font-weight: 600; height: 100%;">
-                            {{ eventToShow.minuteToShow }}
-                            <!-- MINUTO -->
+                                {{ eventToShow.minuteToShow }}
+                                <!-- MINUTO -->
+                            </div>
                         </div>
-                    </div>
 
 
 
 
-                    <div class="centerALL mat-elevation-z2" style="display: flex; flex-direction: row; 
+                        <div class="centerALL mat-elevation-z2" style="display: flex; flex-direction: row; 
                     border-radius: 8px; width: 100%; background-color: #fff; border: none; padding: 3px;">
 
-                        <div style="display: flex;width: 100%;justify-content: flex-start; border:none;">
-                            <div *ngIf="eventToShow.homeOrAway == '-'; else elseBlock" class="centerALL"
-                                style="font-weight: 600; border: none;width: 100%; margin: 2px;">
-                                {{ eventToShow.text }}
-                                <!-- HALF AND FULLTIME BAR -->
-                            </div>
-                            <ng-template #elseBlock>
-                                <div class="
-                            {{ eventToShow.homeOrAway === 'H' ? 'homeEvent':'awayEvent' }} centerALL"
-                                    style="border:none;">
+                            <div style="display: flex;width: 100%;justify-content: flex-start; border:none;">
+                                <div *ngIf="eventToShow.homeOrAway == '-'; else elseBlock" class="centerALL"
+                                    style="font-weight: 600; border: none;width: 100%; margin: 2px;">
+                                    {{ eventToShow.text }}
+                                    <!-- HALF AND FULLTIME BAR -->
+                                </div>
+                                <ng-template #elseBlock>
                                     <div class="
+                            {{ eventToShow.homeOrAway === 'H' ? 'homeEvent':'awayEvent' }} centerALL"
+                                        style="border:none;">
+                                        <div class="
                                 {{ eventToShow.homeOrAway === 'H' ? 'homeEvent':'awayEvent' }} " style="display: flex;
                                     
     align-items: center;
@@ -286,7 +323,7 @@
     justify-content: space-between; 
     border: none; 
     width: 55%;">
-                                        <div style="display:flex;
+                                            <div style="display:flex;
     justify-content: center; 
     margin: 0 8px 0 8px; 
     vertical-align: middle; 
@@ -295,47 +332,56 @@
     border:none;
     font-size: 1.2rem;
     width: 12%;">
-                                            {{ eventToShow.symbolToShow }}
-                                            <!-- EVENT SYMBOL ⚽⚽⚽⚽🌫-->
-                                        </div>
+                                                {{ eventToShow.symbolToShow }}
+                                                <!-- EVENT SYMBOL ⚽⚽⚽⚽🌫-->
+                                            </div>
 
-                                        <div style="text-align: center; width: 60%; border: none; margin: 5px 1px 5px 1px; 
+                                            <div style="text-align: center; width: 60%; border: none; margin: 5px 1px 5px 1px; 
                                     word-wrap: break-word; font-size: 0.8rem; line-height: 1.2;">
-                                            {{ eventToShow.text }}
-                                            <!-- EVENT TEXT -->
-                                        </div>
-                                        <div style="width: 18%; border: none" class="centerALL">
+                                                {{ eventToShow.text }}
+                                                <!-- EVENT TEXT -->
+                                            </div>
+                                            <div style="width: 18%; border: none" class="centerALL">
 
-                                            <div *ngIf="eventToShow.homeOrAway === 'H'; else elseLogoBlock">
-                                                <img style="display: flex;
+                                                <div *ngIf="eventToShow.homeOrAway === 'H'; else elseLogoBlock">
+                                                    <img style="display: flex;
                                 margin: 0px 0px 0px 0px;
                                 height: 1.8rem;
                                 border:none;" src="https://assets.b365api.com/images/team/b/{{ event.home.image_id }}.png"
-                                                    alt="home_logo" />
-                                            </div>
-                                            <ng-template #elseLogoBlock>
-                                                <div>
-                                                    <img style="display: flex;
+                                                        alt="home_logo" />
+                                                </div>
+                                                <ng-template #elseLogoBlock>
+                                                    <div>
+                                                        <img style="display: flex;
                                     margin: 0px 0px 0px 0px;
                                     height: 1.8rem;
                                     border:none;
                                     " src="https://assets.b365api.com/images/team/b/{{ event.away.image_id }}.png"
-                                                        alt="away_logo" />
-                                                </div>
-                                            </ng-template>
+                                                            alt="away_logo" />
+                                                    </div>
+                                                </ng-template>
+                                            </div>
+                                        </div>
+                                        <div style="border:none;width: 45%; color:#fff">
+                                            branco aqui
+                                            <!-- WHITE SPACE -->
                                         </div>
                                     </div>
-                                    <div style="border:none;width: 45%; color:#fff">
-                                        branco aqui
-                                        <!-- WHITE SPACE -->
-                                    </div>
-                                </div>
-                            </ng-template>
+                                </ng-template>
+                            </div>
                         </div>
-                    </div>
-                </mat-card-subtitle>
-            </mat-card>
+                    </mat-card-subtitle>
+                </mat-card>
+
+                <button mat-raised-button color="primary" (click)="refreshData(event.id)" routerLinkActive="active"
+                    style="margin-top: 0px; align-self: flex-start;">
+                    <span class="material-icons md-24 v-middle">
+                        refresh
+                    </span>
+                    Update now
+                </button>
+            </div>
+            <br>
         </div>
-        <br>
     </div>
 </div>

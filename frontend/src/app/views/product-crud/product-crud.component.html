@@ -1,6 +1,19 @@
+<div class="view-content">
+    <div style="display: flex; justify-content: center; align-items: center; border: none; width: 100%;">
 
-<button mat-raised-button (click)="navigateToProductCreate()" color="primary">
-    Novo Produto
-</button>
+        <div
+            style="display: flex; flex-direction: column; align-items: stretch; max-width: 800px; border: none; width: 100%;">
 
-<app-product-read></app-product-read>
+
+            <button mat-raised-button (click)="navigateToProductCreate()" color="primary"
+                style="margin-top: 0px; align-self: flex-start;">
+                <span class="material-icons md-24 v-middle">
+                    add_circle_outline
+                </span>
+                Novo Produto
+            </button>
+
+            <app-product-read></app-product-read>
+        </div>
+    </div>
+</div>

@@ -8,7 +8,7 @@ import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
   styleUrls: ['./futebol-upcoming.component.css']
 })
 export class FutebolUpcomingComponent implements OnInit {
-  jogos: any = { id: 0, response: { botVersion: 0, result: [] } };
+  jogos_upcoming: any = { id: 0, response: { botVersion: 0, result: [] } };
   displayedColumns = ['league', 'clock', 'event']
 
   // STACKOVERFLOW https://stackoverflow.com/questions/37116619/angular-2-setinterval-keep-running-on-other-component
@@ -25,7 +25,7 @@ export class FutebolUpcomingComponent implements OnInit {
 
   ngOnInit(): void {
 
-    if (this.jogos.response.botVersion === 0) {
+    if (this.jogos_upcoming.response.botVersion === 0) {
       console.log('this.jogos.response.botVersion === 0, loading events...')
       this.loadUpcomingEvents()
     }
@@ -47,12 +47,13 @@ export class FutebolUpcomingComponent implements OnInit {
   }
 
   loadUpcomingEvents(): void {
-    console.log('auto refresh - loading events...');
+    console.log('auto refresh - loading upcoming events...');
     this.futebolService.readUpComingEvents().subscribe(jogos => {
-      this.jogos = jogos
-      this.futebolService.jogos = jogos
-      this.futebolService.showMessage('Upcoming events loaded. ✅') // ✅✔
-      if (this.jogos.response.result.length === 0) {
+      this.jogos_upcoming = jogos
+      this.futebolService.jogos_upcoming = jogos
+      console.log(`total loaded upcoming events = ${this.jogos_upcoming.response.result.length}`)
+      //this.futebolService.showMessage('Upcoming events loaded. ✅') // ✅✔
+      if (this.jogos_upcoming.response.result.length === 0) {
         this.futebolService.showMessage('No upcoming events.')
         // this.futebolService.showMessage('Sem jogos ao vivo no momento.')
       }

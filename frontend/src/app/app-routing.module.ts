@@ -26,7 +26,7 @@ const routes: Routes = [
   {
     path: "products/create",
     component: ProductCreateComponent,
-    data: {animation: 'Products-new'}
+    data: {animation: 'Products-create'}
   },
   {
     path: "products/update/:id",

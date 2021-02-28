@@ -1,4 +1,4 @@
-import { HeaderService } from './header.service';
+import { NavService } from './header.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,20 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private HeaderService: HeaderService) { }
+  constructor(private NavService: NavService) { }
 
   ngOnInit(): void {
   }
 
   get title(): string{
-    return this.HeaderService.headerData.title
+    return this.NavService.headerData.title
   }
 
   get icon(): string{
-    return this.HeaderService.headerData.icon
+    return this.NavService.headerData.icon
   }
 
   get routeUrl(): string{
-    return this.HeaderService.headerData.routeUrl
+    return this.NavService.headerData.routeUrl
   }
 }

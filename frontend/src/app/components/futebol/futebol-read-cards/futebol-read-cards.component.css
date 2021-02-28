@@ -29,6 +29,9 @@
 }
 
 .event-card .tooltiptext {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     font-size: 0.9rem;
     /*
     visibility: hidden;
@@ -36,7 +39,7 @@
     width: 92%;
     background-color: rgba(111, 111, 111, 0.93);
     color: #fff;
-    text-align: center;
+    text-align: flex-start;
     border-radius: 6px;
     padding: 0px 2px 3px 2px;
     /* Position the tooltip */
@@ -44,7 +47,8 @@
     z-index: 99999 !important;
     margin: -10px 0px 0 0;
     line-height: normal;
-    max-width: 800px;
+    max-width: 700px;
+    border: none;
 }
 
 /*
