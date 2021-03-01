@@ -4,34 +4,66 @@
 
         <div
             style="display: flex; flex-direction: column; align-items: stretch; max-width: 1000px; border: none; width: 100%;">
-            <div style="display: flex; flex-direction: row; justify-content: space-between; border:none;">
+            <div
+                style="display: flex; flex-direction: row; justify-content: space-between; border:none; margin:0 0 13px">
 
-                <button mat-raised-button color="primary" routerLink="/futebol" routerLinkActive="active"
-                    style="margin-top: 0px; align-self: flex-start;">
+                <button mat-raised-button class="mat-elevation-z7" color="primary" routerLink="/futebol"
+                    routerLinkActive="active" style="margin: 0px 0 0px 0; align-self: flex-start; border: none;">
                     <span class="material-icons md-24 v-middle">
                         arrow_back
                     </span>
                     Voltar
                 </button>
-
-                <button mat-raised-button class="{{ bolDetailedView ? 'display-none' : '' }}" color="primary"
-                    (click)="switchBolDetailedView()" routerLinkActive="active"
-                    style="margin-top: 0px; align-self: flex-start;"
-                    matTooltip="Ativar/desativar visão detalhada do jogo, com informações extras.">
-                    <span class="material-icons md-24 v-middle">
-                        unfold_more
-                    </span>
-                    Mais detalhes
-                </button>
-                <button mat-raised-button class="{{ bolDetailedView ? '' : 'display-none' }}" color="primary"
-                    (click)="switchBolDetailedView()" routerLinkActive="active"
-                    style="margin-top: 0px; align-self: flex-start;"
-                    matTooltip="Ativar/desativar visão detalhada do jogo, com informações extras.">
-                    <span class="material-icons md-24 v-middle">
-                        unfold_less
-                    </span>
-                    Menos detalhes
-                </button>
+                <!--STACKOVERFLOW https://material.angular.io/components/button/overview-->
+                <div style="border: none; margin:-23px 5px -20px 0;">
+                    <button mat-mini-fab [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu"
+                        color="primary" style="border: none;" class="mat-elevation-z17">
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu" xPosition="before" style="border: none;">
+                        <button mat-raised-button color="primary" (click)="switchBolDetailedView()"
+                            routerLinkActive="active" style="margin-top: 0px; align-self: flex-start;"
+                            matTooltip="Ativar/desativar visão detalhada do jogo, com informações extras.">
+                            <span class="material-icons md-24 v-middle">
+                                {{bolDetailedView ? 'unfold_less' : 'unfold_more'}}
+                            </span>
+                            {{bolDetailedView ? 'Menos detalhes' : 'Mais detalhes'}}
+                        </button>
+                        <button mat-menu-item color="primary" (click)="manualyUpdate(event.id)"
+                            routerLinkActive="active" style="margin: 0px 10px 0 0; align-self: flex-start;">
+                            <span class="material-icons md-24 v-middle">
+                                refresh
+                            </span>
+                            Update now
+                        </button>
+                        <button mat-menu-item>
+                            <mat-icon>dialpad</mat-icon>
+                            <span>Redial</span>
+                        </button>
+                        <button mat-menu-item disabled>
+                            <mat-icon>voicemail</mat-icon>
+                            <span>Check voice mail</span>
+                        </button>
+                        <button mat-menu-item>
+                            <mat-icon>notifications_off</mat-icon>
+                            <span>Disable alerts</span>
+                        </button>
+                        <div style="display: flex; flex-direction: row;justify-content: space-between;border: none;">
+                            <!-- STACKOVERFLOW https://stackoverflow.com/questions/50094246/how-to-use-matslidetogglechange-of-mat-slide-toggle-in-angular-material-->
+                            <div class="centerALL"
+                                style="font-weight: 500;color:rgba(133, 133, 133, 1); margin: 0 0 0px 0px">
+                                <mat-slide-toggle [(ngModel)]="bolAutoUpdateActive" class="example-margin"
+                                    [color]="'primary'" [checked]="bolAutoUpdateActive"
+                                    (change)="switchBolAutoUpdateActiveLogMsg()">
+                                    <span class="material-icons md-24 v-middle">
+                                        refresh
+                                    </span>
+                                    Auto-update
+                                </mat-slide-toggle>
+                            </div>
+                        </div>
+                    </mat-menu>
+                </div>
             </div>
             <!-- 
             STACKOVERFLOW https://www.geeksforgeeks.org/how-to-display-spinner-on-the-screen-till-the-data-from-the-api-loads-using-angular-8/
@@ -46,12 +78,14 @@
             </div>
         </div>
         -->
-
-            <div id="loadingEventComponent_ball" class="centerALL">
-                <mat-icon mat-list-icon class="material-icons rotate-infinite textColor"
-                    style="font-size: 10rem; border: none;margin: 100px">
-                    sports_soccer
-                </mat-icon>
+            <div class="centerALL">
+                <div id="loadingEventComponent_ball" class="centerALL rotate-infinite"
+                    style="border: none; width: 100px; margin: 150px 0 0 0">
+                    <!--STACKOVERFLOW https://stackoverflow.com/questions/53312640/how-to-change-size-of-mat-icon-on-angular-material/53312754-->
+                    <mat-icon class="material-icons textColor" style="border: none;transform: scale(5)">
+                        sports_soccer
+                    </mat-icon>
+                </div>
             </div>
 
             <div id="eventComponent">
@@ -91,12 +125,16 @@
                         {{ event.clock.period === '' ? '('+event.brClock+')' : ''}}
                     </mat-card-subtitle>
                 </mat-card>
-                <mat-card class="eventName mat-elevation-z1" (click)="switchBolDetailedView()">
+                <!--
+                    STACKOVERFLOW https://material.angular.io/components/ripple/examples
+                -->
+                <mat-card class="eventName mat-elevation-z1" (click)="switchBolDetailedView()" matRipple
+                    [matRippleRadius]="133">
                     <mat-card-title class="title">
                         {{ getFlags(event.league.cc)}}
                         {{ event.league.name }}
                     </mat-card-title>
-                    <mat-card-subtitle class="subtitle"
+                    <mat-card-subtitle class="subtitle last-child"
                         matTooltip="Os números ao lado dos brasões dos times mostras as respectivas Odds com cotação em tempo real.">
                         {{ event.event_odds.odds_summary.end.home_odd }}
                         <img src="https://assets.b365api.com/images/team/s/{{ event.home.image_id }}.png"
@@ -109,7 +147,7 @@
                     </mat-card-subtitle>
                 </mat-card>
                 <mat-card class="eventStats mat-elevation-z1 {{ bolDetailedView ? '' : 'display-none' }}"
-                    (click)="switchBolDetailedView()">
+                    (click)="switchBolDetailedView()" matRipple [matRippleRadius]="133">
                     <mat-card-title class="title">
                         <div style="color: rgba(77,88,100,1);font-weight: 500;">
                             {{''+event.points.total_shots_home + '🥅' +event.points.total_shots_away}}
@@ -120,7 +158,7 @@
                             ('+event.points.datt_per_minute+')'}}
                         </div>
                     </mat-card-title>
-                    <mat-card-subtitle class="subtitle">
+                    <mat-card-subtitle class="subtitle last-child">
 
                         <div style="color: rgba(133,133,100,1);font-weight: 500; font-size: 1rem;"
                             matTooltip="📊 Aqui estão as odds quando o mercado abriu (pre-game alguns dias anteriores).">
@@ -145,7 +183,7 @@
                 </mat-card>
                 <mat-card
                     class="eventMarketValues mat-elevation-z1 {{ (event.tm_stats) && bolDetailedView ? '' : 'display-none' }}"
-                    (click)="switchBolDetailedView()">
+                    (click)="switchBolDetailedView()" matRipple [matRippleRadius]="133">
                     <mat-card-title class="title">
                         <img src="https://assets.b365api.com/images/team/s/{{ event.home.image_id }}.png"
                             alt="home_logo" />
@@ -159,7 +197,7 @@
                         <img src="https://assets.b365api.com/images/team/s/{{ event.away.image_id }}.png"
                             alt="away_logo" />
                     </mat-card-title>
-                    <mat-card-subtitle class="subtitle">
+                    <mat-card-subtitle class="subtitle last-child">
                         <!-- STACKOVERFLOW https://stackoverflow.com/questions/46350113/error-typeerror-cannot-read-property-0-of-undefined-angular-4-->
                         {{ event.tm_stats && event.tm_stats.avg_market_value &&
                         event.tm_stats.avg_market_value[0]/1000000
@@ -213,7 +251,7 @@
                         <div class="graphs">
                             <div id="teamsLogos" class="teamLogos">
                                 <div>
-                                    <img style="box-shadow: inset 0 0 0em white, 0 0 0em gray;" class="graphTeamLogo"
+                                    <img style="box-shadow: none 0 0 0em white, 0 0 0em gray;" class="graphTeamLogo"
                                         src="https://assets.b365api.com/images/team/b/{{ event.home.image_id }}.png"
                                         alt="home_logo" />
                                 </div>
@@ -395,25 +433,7 @@
                         </div>
                     </mat-card-subtitle>
                 </mat-card>
-                <div style="display: flex; flex-direction: row;justify-content: space-between;border: none;">
-                    <div class="centerALL" style="font-weight: 500;color:rgba(133, 133, 133, 1); margin: 0 0 0 10px">
-                        <mat-slide-toggle [(ngModel)]="bolAutoUpdateActive" class="example-margin" [color]="'primary'"
-                            [checked]="bolAutoUpdateActive" (change)="switchBolAutoUpdateActiveLogMsg()">
-                            <span class="material-icons md-24 v-middle">
-                                refresh
-                            </span>
-                            Auto-update
-                        </mat-slide-toggle>
-                    </div>
-                    <button mat-raised-button color="primary" (click)="refreshData(event.id)" routerLinkActive="active"
-                        style="margin: 0px 10px 0 0; align-self: flex-start;">
-                        <span class="material-icons md-24 v-middle">
-                            refresh
-                        </span>
-                        Update now
-                    </button>
-                    <!-- STACKOVERFLOW https://stackoverflow.com/questions/50094246/how-to-use-matslidetogglechange-of-mat-slide-toggle-in-angular-material-->
-                </div>
+
             </div>
             <br><br>
         </div>

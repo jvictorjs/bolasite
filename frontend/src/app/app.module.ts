@@ -40,6 +40,9 @@ import { MatSortModule } from '@angular/material/sort'
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatRippleModule } from '@angular/material/core';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
 
 import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
@@ -97,7 +100,10 @@ registerLocaleData(localePt);
     MatTooltipModule,
     ChartsModule,
     MatBadgeModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatRippleModule,
+    MatMenuModule,
+    MatIconModule
   ],
   providers: [{
     provide: LOCALE_ID,

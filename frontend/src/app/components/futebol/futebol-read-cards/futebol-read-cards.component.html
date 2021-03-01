@@ -50,7 +50,7 @@
                         <div class="centerALL" style="border:none; border-color: green; min-width: 55%;" matTooltip="{{'\n
         '+
             getToolTipMsgForEvent(event)}} {{getToolTipMsgForEvent_colorSlices(event)}}" matTooltipPosition="above"
-                            matTooltipClass="tooltip" matTooltipTouchGestures="on">
+                            matTooltipClass="tooltip" matTooltipTouchGestures="on" matRipple>
                             <a routerLink="/futebol/event/{{ event.id }}" [state]="{hello:'world'}" class="view">
                                 <div style="display:inline-block; flex-direction: row; justify-content: center; flex-wrap: wrap;
                         font-size: 0.9rem; font-weight: 500; border:none;">
@@ -77,7 +77,7 @@
                             {{getToolTipMsgForEvent(event)}}
                             {{getToolTipMsgForEvent_colorSlices(event)}}
                         </div>
-                        <div style="display: flex;border: none; justify-content: flex-end;margin:2px 2px 2px 2px ;">
+                        <div style=" display: flex;border: none; justify-content: flex-end;margin:2px 2px 2px 2px ;">
                             <mat-icon mat-list-icon class="material-icons" style="color:#fff; font-size: 1rem;">
                                 cancel
                             </mat-icon>

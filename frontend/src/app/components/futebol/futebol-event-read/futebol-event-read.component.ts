@@ -214,7 +214,15 @@ export class FutebolEventReadComponent implements OnInit {
 
   }
 
-  refreshData(eventId: number): void {
+  async manualyUpdate(eventId: number) {
+    this.showLoader();
+    await this.delay(555)
+    this.hideLoader();
+    await this.refreshData(eventId);
+  }
+
+  async refreshData(eventId: number) {
+    await this.delay(555)
     this.futebolService.loadEvents().subscribe(jogos => {
       console.log('chegou eventos');
       this.jogos = jogos
@@ -267,10 +275,20 @@ export class FutebolEventReadComponent implements OnInit {
   }
 
 
-  switchBolDetailedView(): void {
+  async switchBolDetailedView() {
+    await this.delay(555)
     this.bolDetailedView = !this.bolDetailedView
     console.log(`this.bolDetailedView switched to = ${this.bolDetailedView}`)
   }
+
+  // STACKOVERFLOW https://medium.com/aprendajs/angular-6-com-uma-fun%C3%A7%C3%A3o-para-delay-192b4562f2b4
+  // nossa função delay com suporte a promisse.
+  private delay(ms: number): Promise<boolean> {
+    return new Promise(resolve => {
+      setTimeout(() => { resolve(true); }, ms);
+    });
+  }
+
 
   switchBolAutoUpdateActiveLogMsg(): void {
     console.log(`bolAutoUpdateActive switched to = ${this.bolAutoUpdateActive}`)
