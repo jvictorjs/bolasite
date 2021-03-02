@@ -54,6 +54,11 @@ import { TvGuideComponent } from './views/tv-guide/tv-guide.component';
 import { FutebolUpcomingComponent } from './components/futebol/futebol-upcoming/futebol-upcoming.component'
 import { ChartsModule } from 'ng2-charts';
 import { FutebolReadCardsComponent } from './components/futebol/futebol-read-cards/futebol-read-cards.component';
+import { TremdgolAppComponent } from './views/tremdgol-app/tremdgol-app.component';
+import { TipsComponent } from './views/tips/tips.component';
+import { ControleFinanceiroComponent } from './views/controle-financeiro/controle-financeiro.component';
+import { BolaoCatar22Component } from './views/bolao-catar22/bolao-catar22.component';
+import { PrognosticosComponent } from './views/prognosticos/prognosticos.component';
 
 registerLocaleData(localePt);
 
@@ -78,7 +83,12 @@ registerLocaleData(localePt);
     AboutComponent,
     TvGuideComponent,
     FutebolUpcomingComponent,
-    FutebolReadCardsComponent
+    FutebolReadCardsComponent,
+    TremdgolAppComponent,
+    TipsComponent,
+    ControleFinanceiroComponent,
+    BolaoCatar22Component,
+    PrognosticosComponent
   ],
   imports: [ // módulos
     BrowserModule,

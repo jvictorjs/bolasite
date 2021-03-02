@@ -14,31 +14,43 @@
                     </span>
                     Voltar
                 </button>
+
+
                 <!--STACKOVERFLOW https://material.angular.io/components/button/overview-->
                 <div style="border: none; margin:-23px 5px -20px 0;">
                     <button mat-mini-fab [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu"
-                        color="primary" style="border: none;" class="mat-elevation-z17">
+                        color="primary" style="border: none;" class="mat-elevation-z7"
+                        matTooltip="Opções">
                         <mat-icon>more_vert</mat-icon>
                     </button>
                     <mat-menu #menu="matMenu" xPosition="before" style="border: none;">
-                        <button mat-raised-button color="primary" (click)="switchBolDetailedView()"
-                            routerLinkActive="active" style="margin-top: 0px; align-self: flex-start;"
+                        <button mat-menu-item (click)="switchBolDetailedView()" routerLinkActive="active"
+                            style="margin-top: 0px; align-self: flex-start;"
                             matTooltip="Ativar/desativar visão detalhada do jogo, com informações extras.">
-                            <span class="material-icons md-24 v-middle">
-                                {{bolDetailedView ? 'unfold_less' : 'unfold_more'}}
-                            </span>
-                            {{bolDetailedView ? 'Menos detalhes' : 'Mais detalhes'}}
+                            <mat-icon>{{bolDetailedView ? 'unfold_less' : 'unfold_more'}}</mat-icon>
+                            <span>{{bolDetailedView ? 'Menos detalhes' : 'Mais detalhes'}}</span>
                         </button>
-                        <button mat-menu-item color="primary" (click)="manualyUpdate(event.id)"
-                            routerLinkActive="active" style="margin: 0px 10px 0 0; align-self: flex-start;">
-                            <span class="material-icons md-24 v-middle">
-                                refresh
-                            </span>
-                            Update now
-                        </button>
-                        <button mat-menu-item>
-                            <mat-icon>dialpad</mat-icon>
-                            <span>Redial</span>
+                        <div style="display: flex; flex-direction: row;justify-content: space-between;border: none;">
+                            <!-- STACKOVERFLOW https://stackoverflow.com/questions/50094246/how-to-use-matslidetogglechange-of-mat-slide-toggle-in-angular-material-->
+                            <div class="centerALL"
+                                style="font-weight: 500;color:rgba(133, 133, 133, 1); margin: 0 0 25px 10px">
+                                <mat-slide-toggle [(ngModel)]="bolAutoUpdateActive" class="example-margin"
+                                    [color]="'primary'" [checked]="bolAutoUpdateActive"
+                                    (change)="switchBolAutoUpdateActiveLogMsg()">
+                                    <!--
+                                        <span class="material-icons md-24 v-middle">
+                                        refresh
+                                    </span>
+                                -->
+                                    Auto-update
+                                </mat-slide-toggle>
+                            </div>
+                        </div>
+                        <button mat-menu-item (click)="manualyUpdate(event.id)" routerLinkActive="active"
+                            style="margin-top: 0px; align-self: flex-start;"
+                            matTooltip="Ativar/desativar visão detalhada do jogo, com informações extras.">
+                            <mat-icon>refresh</mat-icon>
+                            <span>Update now</span>
                         </button>
                         <button mat-menu-item disabled>
                             <mat-icon>voicemail</mat-icon>
@@ -48,20 +60,6 @@
                             <mat-icon>notifications_off</mat-icon>
                             <span>Disable alerts</span>
                         </button>
-                        <div style="display: flex; flex-direction: row;justify-content: space-between;border: none;">
-                            <!-- STACKOVERFLOW https://stackoverflow.com/questions/50094246/how-to-use-matslidetogglechange-of-mat-slide-toggle-in-angular-material-->
-                            <div class="centerALL"
-                                style="font-weight: 500;color:rgba(133, 133, 133, 1); margin: 0 0 0px 0px">
-                                <mat-slide-toggle [(ngModel)]="bolAutoUpdateActive" class="example-margin"
-                                    [color]="'primary'" [checked]="bolAutoUpdateActive"
-                                    (change)="switchBolAutoUpdateActiveLogMsg()">
-                                    <span class="material-icons md-24 v-middle">
-                                        refresh
-                                    </span>
-                                    Auto-update
-                                </mat-slide-toggle>
-                            </div>
-                        </div>
                     </mat-menu>
                 </div>
             </div>
@@ -147,7 +145,7 @@
                     </mat-card-subtitle>
                 </mat-card>
                 <mat-card class="eventStats mat-elevation-z1 {{ bolDetailedView ? '' : 'display-none' }}"
-                    (click)="switchBolDetailedView()" matRipple [matRippleRadius]="133">
+                    (click)="switchBolDetailedView()">
                     <mat-card-title class="title">
                         <div style="color: rgba(77,88,100,1);font-weight: 500;">
                             {{''+event.points.total_shots_home + '🥅' +event.points.total_shots_away}}
@@ -159,31 +157,36 @@
                         </div>
                     </mat-card-title>
                     <mat-card-subtitle class="subtitle last-child">
-
-                        <div style="color: rgba(133,133,100,1);font-weight: 500; font-size: 1rem;"
-                            matTooltip="📊 Aqui estão as odds quando o mercado abriu (pre-game alguns dias anteriores).">
-                            📊
-                            {{ event.event_odds.odds_summary.start.home_odd }}
-                            |
-                            {{ event.event_odds.odds_summary.start.draw_odd }}
-                            |
-                            {{ event.event_odds.odds_summary.start.away_odd }}
-                            <!-- STACKOVERFLOW  https://stackoverflow.com/questions/56669505/adding-whitespace-to-a-string-in-typescript-in-angular/56670220 -->
+                        <div
+                            style="display: flex; flex-direction: row; justify-content: center; flex-wrap: wrap; border: none;">
+                            <div style="color: rgba(133,133,100,1);font-weight: 500; font-size: 1rem;"
+                                matTooltip="📊 Aqui estão as odds quando o mercado abriu (pre-game alguns dias anteriores).">
+                                📊
+                                {{ event.event_odds.odds_summary.start.home_odd }}
+                                |
+                                {{ event.event_odds.odds_summary.start.draw_odd }}
+                                |
+                                {{ event.event_odds.odds_summary.start.away_odd }}
+                            </div>
                             &nbsp;
-                            {{ '
-                            ➕'+event.event_odds.odds_summary.start.handicap+'@'+event.event_odds.odds_summary.start.over_odd}}
+                            <div style="color: rgba(133,133,100,1);font-weight: 500; font-size: 1rem;">
+                                {{ '
+                                ➕'+event.event_odds.odds_summary.start.handicap+'@'+event.event_odds.odds_summary.start.over_odd}}
+                                <!-- STACKOVERFLOW  https://stackoverflow.com/questions/56669505/adding-whitespace-to-a-string-in-typescript-in-angular/56670220 -->
+                                &nbsp;
 
-                            {{event.textsToShow && (' ⚽' +
-                            event.textsToShow.overOdds.eventOddsTextMsgParsedToSend_GoalLine)
-                            }}
-
+                                {{event.textsToShow && (' ⚽' +
+                                event.textsToShow.overOdds.eventOddsTextMsgParsedToSend_GoalLine)
+                                }}
+                            </div>
 
                         </div>
+
                     </mat-card-subtitle>
                 </mat-card>
                 <mat-card
                     class="eventMarketValues mat-elevation-z1 {{ (event.tm_stats) && bolDetailedView ? '' : 'display-none' }}"
-                    (click)="switchBolDetailedView()" matRipple [matRippleRadius]="133">
+                    (click)="switchBolDetailedView()">
                     <mat-card-title class="title">
                         <img src="https://assets.b365api.com/images/team/s/{{ event.home.image_id }}.png"
                             alt="home_logo" />
@@ -336,19 +339,14 @@
                     -->
                     </mat-card-subtitle>
                 </mat-card>
-
-
                 <mat-card class="eventsTimeLineCard mat-elevation-z0 backgroundColor-lightGray
-                {{ bolDetailedView ? '' : 'display-none' }}" style="border:none ;margin:13px"
+                {{ bolDetailedView ? '' : 'display-none' }}" style="border:none ;margin:8px"
                     (click)="switchBolDetailedView()">
 
                     <mat-card-subtitle *ngFor="let eventToShow of event.eventsToShow"
-                        class="centerALL mat-elevation-z0 backgroundColor-lightGray" style="display: flex; flex-direction: row; justify-content: center;align-items: center;
-                    border-radius: 8px; width: 100%;
-                    margin:-15px -12px 23px -22px;min-height: 35px; border:none">
-
-
-
+                        class="centerALL mat-elevation-z0 backgroundColor-lightGray" style="display: flex; flex-direction: row; 
+                        justify-content: center;align-items: center;border-radius: 8px; width: 100%;
+                        margin:-0px 0px 10px -5px;min-height: 35px; border:none; border-color: blue;">
                         <div class="centerALL mat-elevation-z2"
                             style="display: flex; flex-direction: row; 
                     border-radius: 8px; width: 7%; background-color: #fff; padding: 3px; margin: 0px 3px; border: none;">

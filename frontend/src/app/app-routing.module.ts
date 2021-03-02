@@ -1,3 +1,8 @@
+import { PrognosticosComponent } from './views/prognosticos/prognosticos.component';
+import { BolaoCatar22Component } from './views/bolao-catar22/bolao-catar22.component';
+import { ControleFinanceiroComponent } from './views/controle-financeiro/controle-financeiro.component';
+import { TipsComponent } from './views/tips/tips.component';
+import { TremdgolAppComponent } from './views/tremdgol-app/tremdgol-app.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -62,6 +67,31 @@ const routes: Routes = [
     path: "tv-guide",
     component: TvGuideComponent,
     data: {animation: 'TV-guide'}
+  },
+  {
+    path: "tremdgol-app",
+    component: TremdgolAppComponent,
+    data: {animation: 'Tremdgol-app'}
+  },
+  {
+    path: "tips",
+    component: TipsComponent,
+    data: {animation: 'Tips'}
+  },
+  {
+    path: "controle-financeiro",
+    component: ControleFinanceiroComponent,
+    data: {animation: 'Controle-financeiro'}
+  },
+  {
+    path: "bolao-catar22",
+    component: BolaoCatar22Component,
+    data: {animation: 'Bolao-catar22'}
+  },
+  {
+    path: "prognosticos",
+    component: PrognosticosComponent,
+    data: {animation: 'Prognosticos'}
   }
 ];
 
