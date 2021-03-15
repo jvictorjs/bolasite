@@ -255,6 +255,8 @@ STACKOVERFLOW https://www.geeksforgeeks.org/how-to-display-spinner-on-the-screen
 }
 
 .x {
+    display: flex;
+    flex-direction: column;
     text-align: center;
     vertical-align: center;
     justify-content: center;
@@ -262,12 +264,15 @@ STACKOVERFLOW https://www.geeksforgeeks.org/how-to-display-spinner-on-the-screen
     align-content: center;
     margin: 8px 8px 0 8px;
     font-weight: 500;
+    height: 80px;
+    border: none;
+    vertical-align: middle;
 }
 
 .x .tooltiptext {
     font-size: 0.3rem;
     visibility: hidden;
-    width: 90%;
+    width: 80%;
     background-color: rgba(111, 111, 111, 0.99);
     color: #fff;
     text-align: center;
@@ -276,7 +281,7 @@ STACKOVERFLOW https://www.geeksforgeeks.org/how-to-display-spinner-on-the-screen
     /* Position the tooltip */
     position: absolute;
     z-index: 1;
-    margin: 30px 0px 0 -45%;
+    margin: 250px 0px 0 0;
     line-height: normal;
 }
 
