@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js'; // STACKOVERFLOW https://www.youtube.com/watch?v=VaQI0Oo-XzY&t=18s [Angular] Criando gráficos com chart.js
 import { Label } from 'ng2-charts';
+import { ThemePalette } from '@angular/material/core';
+import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-futebol-event-read',

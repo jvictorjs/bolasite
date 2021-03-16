@@ -19,8 +19,7 @@
                 <!--STACKOVERFLOW https://material.angular.io/components/button/overview-->
                 <div style="border: none; margin:-23px 5px -20px 0;">
                     <button mat-mini-fab [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu"
-                        color="primary" style="border: none;" class="mat-elevation-z7"
-                        matTooltip="Opções">
+                        color="primary" style="border: none;" class="mat-elevation-z7" matTooltip="Opções">
                         <mat-icon>more_vert</mat-icon>
                     </button>
                     <mat-menu #menu="matMenu" xPosition="before" style="border: none;">
@@ -184,6 +183,236 @@
 
                     </mat-card-subtitle>
                 </mat-card>
+                <mat-card class="eventStats mat-elevation-z1 {{ bolDetailedView ? '' : 'display-none' }}"
+                    (click)="switchBolDetailedView()">
+                    <mat-card-title class="title">
+
+                    </mat-card-title>
+                    <mat-card-subtitle class="subtitle last-child">
+
+                        <!-- <View style={styles.statsBox563}>
+                        -->
+
+                        <div
+                            style="display:flex; flex-direction:column; border-width: 0; height: 116; justify-content: space-around; padding-top: 3px ">
+                            <div
+                                style="display:flex;  flex-direction:row; border-width: 0; height: 33%; justify-content: space-between; padding-bottom: 3px ">
+                                <div
+                                    style="display:flex;  flex-direction:column; justify-content: center; border-width: 0; width: 30% ">
+                                    <div
+                                        style=" border-width: 0; width: 100%; height: 35%; justify-content: 'flex-end'; align-content: center; margin: 0px 0 5px 0">
+                                        <div
+                                            style=" font-size: 10; align-self: center; font-weight: bold; color: '#41414d'">
+                                            Ataques</div>
+                                    </div>
+                                    <div
+                                        style="display:flex; flex-direction:row; border-width: 0; width: 100%; justify-content: center ">
+                                        <div style=" width: 25%; text-align: right; font-weight: bold ">
+                                            {{event.points.att_home}}</div>
+                                        <!--
+STACKOVERFLOW https://www.angularjswiki.com/angular/creating-progress-spinner-in-angular/
+                                                <ProgressCircle style=" width: 25%; height: 22 }} progress={event.points.away_att_percent} startAngle={0} backgroundColor={'#0088cc'} strokeWidth={4} progressColor={'#ff9900'} />
+                                            -->
+                                        <div
+                                            style="display:flex; flex-direction:row; border:none;width: 30px; margin: 0 5px 0 5px;">
+                                            <div>
+                                                <mat-progress-spinner class="custom-spinner" diameter="33"
+                                                    style="display: inline;" strokeWidth="8" mode="determinate"
+                                                    value="100">
+                                                </mat-progress-spinner>
+                                                <mat-progress-spinner class="custom-spinner2" diameter="33"
+                                                    style="display: inline;" strokeWidth="8" mode="determinate"
+                                                    value="{{event.points.att_away/(event.points.att_home+event.points.att_away)*100}}">
+                                                </mat-progress-spinner>
+                                            </div>
+                                        </div>
+                                        <div style=" width: 25%; text-align: left; font-weight: bold ">
+                                            {{event.points.att_away}}</div>
+                                    </div>
+                                </div>
+                                <div
+                                    style="display:flex; flex-direction:column; justify-content: center; border-width: 0; width: 36% ">
+                                    <div
+                                        style=" border-width: 0; width: 100%; height: 35%; justify-content: flex-end; align-content: center; margin-bottom: 5px ">
+                                        <div
+                                            style=" font-size: 10; align-self: center; font-weight: bold; color: '#41414d' ">
+                                            Ataques perigosos</div>
+                                    </div>
+                                    <div
+                                        style="display:flex; flex-direction:row; border-width: 0; width: 100%; justify-content: center ">
+                                        <div
+                                            style=" width: 25%; text-align: right; font-weight: bold; border-width: 0 ">
+                                            {{event.points.datt_home}}</div>
+                                        <!--
+
+                                                <ProgressCircle style=" width: 25%; height: 22, border-width: 0 }} progress={event.points.away_datt_percent} startAngle={0} backgroundColor={'#0088cc'} strokeWidth={4} progressColor={'#ff9900'} />
+                                            -->
+                                        <div
+                                            style="display:flex; flex-direction:row; border:none;width: 30px; margin: 0 5px 0 5px;">
+                                            <div>
+                                                <mat-progress-spinner class="custom-spinner" diameter="33"
+                                                    style="display: inline;" strokeWidth="8" mode="determinate"
+                                                    value="100">
+                                                </mat-progress-spinner>
+                                                <mat-progress-spinner class="custom-spinner2" diameter="33"
+                                                    style="display: inline;" strokeWidth="8" mode="determinate"
+                                                    value="{{event.points.datt_away/(event.points.datt_home+event.points.datt_away)*100}}">
+                                                </mat-progress-spinner>
+                                            </div>
+                                        </div>
+                                        <div style=" width: 25%; text-align: left; font-weight: bold ">
+                                            {{event.points.datt_away}}</div>
+                                    </div>
+                                </div>
+                                <div
+                                    style="display:flex; flex-direction:column; justify-content: center; border-width: 0; width: 30% ">
+                                    <div
+                                        style=" border-width: 0; width: 100%; height: 35%; justify-content: flex-end; align-content: center; margin-bottom: 5px ">
+                                        <div
+                                            style=" font-size: 10; align-self: center; font-weight: bold; color: '#41414d' ">
+                                            % de Posse</div>
+                                    </div>
+                                    <div
+                                        style="display:flex; flex-direction:row; border-width: 0; width: 100%; justify-content: center ">
+                                        <div style=" width: 25%; text-align: right; font-weight: bold ">
+                                            {{event.points.possession_home}}</div>
+                                        <div
+                                            style="display:flex; flex-direction:row; border:none;width: 30px; margin: 0 5px 0 5px;">
+                                            <div>
+                                                <mat-progress-spinner class="custom-spinner" diameter="33"
+                                                    style="display: inline;" strokeWidth="8" mode="determinate"
+                                                    value="100">
+                                                </mat-progress-spinner>
+                                                <mat-progress-spinner class="custom-spinner2" diameter="33"
+                                                    style="display: inline;" strokeWidth="8" mode="determinate"
+                                                    value="{{event.points.possession_away}}">
+                                                </mat-progress-spinner>
+                                            </div>
+                                        </div>
+                                        <!--
+
+                                               
+                                            <ProgressCircle style=" width: 25%; height: 22 }} progress={event.points.away_poss / 100} startAngle={0} backgroundColor={'#0088cc'} strokeWidth={4} progressColor={'#ff9900'} />
+                                            -->
+                                        <div style=" width: 25%; text-align: left; font-weight: bold ">
+                                            {{event.points.possession_away}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div
+                                style="display:flex; flex-direction:row; border-width: 0; height: 65%; margin-bottom: 2 ">
+                                <div
+                                    style="display:flex; flex-direction:column; justify-content: center; border-width: 0; width: 28% ">
+                                    <div
+                                        style="display:flex;  flex-direction:row; border-width: 0; width: 100%; justify-content: center; margin-bottom: 5; margin-top: 20 ">
+                                        <div style=" width: 20%; text-align: center; font-size: 11 ">🟨</div>
+                                        <div style=" width: 20%; text-align: center; font-size: 11 ">🟥</div>
+                                        <div style=" width: 20%; text-align: center; font-size: 11 ">⛳️</div>
+                                        <div style=" width: 20%; text-align: center; font-size: 15 ">🌟</div>
+                                    </div>
+                                    <div
+                                        style="display:flex; flex-direction:row; border-width: 0; width: 100%; justify-content: center ">
+                                        <div style=" width: 20%; text-align: center; font-weight: bold; font-size: 11 ">
+                                            {{event.points.home_ycards}}</div>
+                                        <div style=" width: 20%; text-align: center; font-weight: bold; font-size: 11 ">
+                                            {{event.points.home_redcards}}</div>
+                                        <div style=" width: 20%; text-align: center; font-weight: bold; font-size: 11 ">
+                                            {{event.points.home_corners}}</div>
+                                        <div style=" width: 20%; text-align: center; font-weight: bold; font-size: 13 ">
+                                            oppsH</div>
+                                    </div>
+                                </div>
+                                <div
+                                    style="display:flex; flex-direction:column; justify-content: flex-start; border-width: 0; width: '44%'; border-color: 'blue' ">
+                                    <div
+                                        style="display:flex; flex-direction:row; border-width: 0; width: 100%; height: 15; justify-content: center; margin-bottom: 1; margin-top: 1 ">
+                                        <div
+                                            style=" width: '40%'; text-align: center; font-size: 10; font-weight: bold; color: '#41414d'; vertical-align: center; ">
+                                            No Alvo 🎯</div>
+                                    </div>
+                                    <div
+                                        style="display:flex; flex-direction:row; border-width: 0; justify-content: center; width: 100% ">
+                                        <div
+                                            style=" width: '16%'; text-align: center; vertical-align: top; font-size: 13; font-weight: bold ">
+                                            {{event.points.on_target_home}}</div>
+                                        <div
+                                            style="display:flex; flex-direction:row; width: '60%'; justify-content: center; padding-top: 4 ">
+                                            <!-- 
+                                                <div style="
+                                                    border-width: 4.5; border-color: #0088cc; height: '10%'; 
+                                                    width: (event.points.home_on_target_percent ? event.points.home_on_target_percent : 0) + '%'
+                                                    "></div>
+                                                        // #0088cc azul padrao dos botoes
+                                                        -->
+                                            <!-- 
+                                                <div style="
+                                                    border-width: 4.5; border-color: '#ff9900'; height: '10%'; 
+                                                    width: (event.points.away_on_target_percent ? event.points.away_on_target_percent : 0) + '%'
+                                                    "></div>
+                                                        // #ff9900 = laranja do fogo #b30000 = vermelho do pace slider thumb
+                                                    -->
+                                        </div>
+                                        <div
+                                            style=" width: '16%'; text-align: center; vertical-align: top; font-size: 13; font-weight: bold ">
+                                            {{event.points.on_target_away}}</div>
+                                    </div>
+                                    <div
+                                        style="display:flex; flex-direction:row; border-width: 0; width: 100%; height: 15; justify-content: center; margin-bottom: 1; margin-top: 3 ">
+                                        <div
+                                            style=" width: '40%'; text-align: center; font-size: 10; font-weight: bold; color: '#41414d' ">
+                                            Ao Lado 👟</div>
+                                    </div>
+                                    <div
+                                        style="display:flex; flex-direction:row; border-width: 0; width: 100%; justify-content: center ">
+                                        <div
+                                            style=" width: '16%'; text-align: center; vertical-align: top; font-size: 13; font-weight: bold ">
+                                            {{event.points.home_off_target}}</div>
+                                        <div
+                                            style="display:flex; flex-direction:row; width: '60%'; justify-content: center; padding-top: 3 ">
+                                            <!--
+
+                                                    <div style="
+                                                    border-width: 4.5; border-color: #0088cc; height: '10%';
+                                                    width: (event.points.home_off_target_percent ? event.points.home_off_target_percent : 0) + '%'
+                                                    "></div>
+                                                    <div style="
+                                                    border-width: 4.5; border-color: '#ff9900'; height: '10%'; 
+                                                    width: (event.points.away_off_target_percent ? event.points.away_off_target_percent : 0) + '%'
+                                                    "></div>
+                                                -->
+                                        </div>
+                                        <div
+                                            style=" width: '16%'; text-align: center; vertical-align: top; vertical-align: top; font-size: 13; font-weight: bold ">
+                                            {{event.points.away_off_target}}</div>
+                                    </div>
+                                </div>
+                                <div
+                                    style="display:flex; flex-direction:column; justify-content: center; border-width: 0; width: 28% ">
+                                    <div
+                                        style="display:flex; flex-direction:row; border-width: 0; width: 100%; justify-content: center; margin-bottom: 5; margin-top: 20 ">
+                                        <div style=" width: 20%; text-align: center; font-size: 15 ">🌟</div>
+                                        <div style=" width: 20%; text-align: center; font-size: 11 ">⛳️</div>
+                                        <div style=" width: 20%; text-align: center; font-size: 11 ">🟥</div>
+                                        <div style=" width: 20%; text-align: center; font-size: 11 ">🟨</div>
+                                    </div>
+                                    <div
+                                        style="display:flex; flex-direction:row; border-width: 0; width: 100%; justify-content: center ">
+                                        <div style=" width: 20%; text-align: center; font-weight: bold; font-size: 13 ">
+                                            oppsA</div>
+                                        <div style=" width: 20%; text-align: center; font-weight: bold; font-size: 11 ">
+                                            {{event.points.away_corners}}</div>
+                                        <div style=" width: 20%; text-align: center; font-weight: bold; font-size: 11 ">
+                                            {{event.points.away_redcards}}</div>
+                                        <div style=" width: 20%; text-align: center; font-weight: bold; font-size: 11 ">
+                                            {{event.points.away_ycards}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </mat-card-subtitle>
+                </mat-card>
                 <mat-card
                     class="eventMarketValues mat-elevation-z1 {{ (event.tm_stats) && bolDetailedView ? '' : 'display-none' }}"
                     (click)="switchBolDetailedView()">
@@ -264,17 +493,6 @@
                                         alt="away_logo" />
                                 </div>
                             </div>
-
-                            <!--
-
-                    return (
-                        <View style={{ justifyContent: 'space-around', flexDirection: 'row', borderWidth: 0, width: '99%', alignSelf: 'center' }}>
-                            {eventBSF_StatsTrend_MinutesOfHomeGoalsToShow_slices.map((minuteOfGoalsToShow) => (
-                                <Text key={'minuteOfGoalsToShow_Key_' + key++} style={{ fontSize: 8, color: "#888888", textAlign: 'center', flexWrap: 'wrap', marginHorizontal: 0, fontWeight: 'bold', borderWidth: 0, width: '5%', width: '8%' }} >{minuteOfGoalsToShow}</Text>
-                                ))}
-                            </View>
-                            
-                        -->
                             <div class="graphContainer">
                                 <div class="graphRowData" style="height: auto;">
                                     <!-- home redcards 🟥 -->
@@ -312,12 +530,12 @@
                                     </div>
                                 </div>
                                 <div class="graphRowData">
-                                    <div style="font-size: 0.6rem; color: #888888; text-Align: center; flex-Wrap: wrap; font-Weight: 'bold'; border:none; width: 3%;"
+                                    <div style="font-size: 0.6rem; color: #888888; text-Align: center; flex-Wrap: wrap; font-Weight: bold; border:none; width: 3%;"
                                         *ngFor="let number of ['05','10','15','20','25','30','35','40','45','50','55','60','65','70','75','80','85','90']">
                                         {{ number }}'</div>
                                 </div>
                                 <div class="graphRowData">
-                                    <div style="font-size: 0.6rem; color: #888888; text-Align: center; flex-Wrap: wrap; font-Weight: 'bold'; border:none; width: 3%;"
+                                    <div style="font-size: 0.6rem; color: #888888; text-Align: center; flex-Wrap: wrap; font-Weight: bold; border:none; width: 3%;"
                                         *ngFor="let number of [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]">
                                         {{ event.pointsSlices.minutesToShow_array[number]}}</div>
                                 </div>

@@ -312,3 +312,15 @@ STACKOVERFLOW https://www.geeksforgeeks.org/how-to-display-spinner-on-the-screen
 .rotate-infinite {
     animation: rotate 2.3s linear infinite;
 }
+
+:host ::ng-deep .custom-spinner circle {
+    stroke: rgba(22, 52, 134, 0.993);
+}
+
+:host ::ng-deep .custom-spinner2 circle {
+    stroke: rgba(100, 100, 100, 0.9);
+    /* rotate is not nedded now, for the future if ai decide to use it
+    https://stackoverflow.com/questions/63101535/change-css-variables-dynamically-in-angular
+    transform: rotate(45deg);
+    */
+}
