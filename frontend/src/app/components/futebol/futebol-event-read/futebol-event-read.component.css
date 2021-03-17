@@ -314,13 +314,43 @@ STACKOVERFLOW https://www.geeksforgeeks.org/how-to-display-spinner-on-the-screen
 }
 
 :host ::ng-deep .custom-spinner circle {
+    /*
     stroke: rgba(22, 52, 134, 0.993);
+    */
+    stroke: rgb(65, 65, 180);
 }
 
 :host ::ng-deep .custom-spinner2 circle {
+    /*
     stroke: rgba(100, 100, 100, 0.9);
+    */
+    stroke: rgb(160, 158, 158);
     /* rotate is not nedded now, for the future if ai decide to use it
     https://stackoverflow.com/questions/63101535/change-css-variables-dynamically-in-angular
     transform: rotate(45deg);
     */
+}
+
+/*
+STACKOVERFLOW https://stackoverflow.com/questions/48869915/angular-material-progressbar-custom-color
+*/
+
+::ng-deep .mat-progress-bar-fill::after {
+    background-color: rgb(65, 65, 180);
+}
+
+::ng-deep .mat-progress-bar-buffer {
+    background-color: rgb(160, 158, 158);
+}
+
+::ng-deep .mat-progress-bar {
+    border-radius: 2px;
+}
+
+.scale0-01 {
+    transform: scaleY(0.01);
+}
+
+.scale2-2 {
+    transform: scaleY(2.3);
 }

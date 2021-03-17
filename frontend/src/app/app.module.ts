@@ -44,6 +44,7 @@ import { MatRippleModule } from '@angular/material/core';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
@@ -115,7 +116,8 @@ registerLocaleData(localePt);
     MatRippleModule,
     MatMenuModule,
     MatIconModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatProgressBarModule
   ],
   providers: [{
     provide: LOCALE_ID,

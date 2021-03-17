@@ -194,27 +194,27 @@
                         -->
 
                         <div
-                            style="display:flex; flex-direction:column; border-width: 0; height: 116; justify-content: space-around; padding-top: 3px ">
+                            style="display:flex; flex-direction:column; border:none; height: 162; justify-content: space-around; padding-top: 3px ">
                             <div
-                                style="display:flex;  flex-direction:row; border-width: 0; height: 33%; justify-content: space-between; padding-bottom: 3px ">
+                                style="display:flex;  flex-direction:row; border: none; height: 33%; justify-content: space-between; padding-bottom: 13px ">
                                 <div
                                     style="display:flex;  flex-direction:column; justify-content: center; border-width: 0; width: 30% ">
                                     <div
                                         style=" border-width: 0; width: 100%; height: 35%; justify-content: 'flex-end'; align-content: center; margin: 0px 0 5px 0">
                                         <div
-                                            style=" font-size: 10; align-self: center; font-weight: bold; color: '#41414d'">
+                                            style=" font-size: 0.95rem; align-self: center; font-weight: bold; color: '#41414d'">
                                             Ataques</div>
                                     </div>
                                     <div
                                         style="display:flex; flex-direction:row; border-width: 0; width: 100%; justify-content: center ">
-                                        <div style=" width: 25%; text-align: right; font-weight: bold ">
+                                        <div style=" width: 25%; text-align: right; font-weight: bold; margin: 5px 2px">
                                             {{event.points.att_home}}</div>
                                         <!--
 STACKOVERFLOW https://www.angularjswiki.com/angular/creating-progress-spinner-in-angular/
                                                 <ProgressCircle style=" width: 25%; height: 22 }} progress={event.points.away_att_percent} startAngle={0} backgroundColor={'#0088cc'} strokeWidth={4} progressColor={'#ff9900'} />
                                             -->
                                         <div
-                                            style="display:flex; flex-direction:row; border:none;width: 30px; margin: 0 5px 0 5px;">
+                                            style="display:flex; flex-direction:row; border:none;width: 30px; margin: 0 7px 0 5px;">
                                             <div>
                                                 <mat-progress-spinner class="custom-spinner" diameter="33"
                                                     style="display: inline;" strokeWidth="8" mode="determinate"
@@ -226,7 +226,7 @@ STACKOVERFLOW https://www.angularjswiki.com/angular/creating-progress-spinner-in
                                                 </mat-progress-spinner>
                                             </div>
                                         </div>
-                                        <div style=" width: 25%; text-align: left; font-weight: bold ">
+                                        <div style=" width: 25%; text-align: left; font-weight: bold; margin: 5px 2px ">
                                             {{event.points.att_away}}</div>
                                     </div>
                                 </div>
@@ -235,32 +235,32 @@ STACKOVERFLOW https://www.angularjswiki.com/angular/creating-progress-spinner-in
                                     <div
                                         style=" border-width: 0; width: 100%; height: 35%; justify-content: flex-end; align-content: center; margin-bottom: 5px ">
                                         <div
-                                            style=" font-size: 10; align-self: center; font-weight: bold; color: '#41414d' ">
+                                            style="font-size: 0.85rem; align-self: center; font-weight: bold; color: '#41414d' ">
                                             Ataques perigosos</div>
                                     </div>
                                     <div
-                                        style="display:flex; flex-direction:row; border-width: 0; width: 100%; justify-content: center ">
+                                        style="font-size: 1.15rem;display:flex; flex-direction:row; border-width: 0; width: 100%; justify-content: center; ">
                                         <div
-                                            style=" width: 25%; text-align: right; font-weight: bold; border-width: 0 ">
+                                            style=" width: 25%; text-align: right; font-weight: bold; border-width: 0; margin: 8px 2px">
                                             {{event.points.datt_home}}</div>
                                         <!--
 
                                                 <ProgressCircle style=" width: 25%; height: 22, border-width: 0 }} progress={event.points.away_datt_percent} startAngle={0} backgroundColor={'#0088cc'} strokeWidth={4} progressColor={'#ff9900'} />
                                             -->
                                         <div
-                                            style="display:flex; flex-direction:row; border:none;width: 30px; margin: 0 5px 0 5px;">
+                                            style="display:flex; flex-direction:row; border:none;width: 30px; margin: 0px 13px 0 5px;">
                                             <div>
-                                                <mat-progress-spinner class="custom-spinner" diameter="33"
-                                                    style="display: inline;" strokeWidth="8" mode="determinate"
+                                                <mat-progress-spinner class="custom-spinner" diameter="42"
+                                                    style="display: inline;" strokeWidth="10" mode="determinate"
                                                     value="100">
                                                 </mat-progress-spinner>
-                                                <mat-progress-spinner class="custom-spinner2" diameter="33"
-                                                    style="display: inline;" strokeWidth="8" mode="determinate"
+                                                <mat-progress-spinner class="custom-spinner2" diameter="42"
+                                                    style="display: inline;" strokeWidth="10" mode="determinate"
                                                     value="{{event.points.datt_away/(event.points.datt_home+event.points.datt_away)*100}}">
                                                 </mat-progress-spinner>
                                             </div>
                                         </div>
-                                        <div style=" width: 25%; text-align: left; font-weight: bold ">
+                                        <div style=" width: 25%; text-align: left; font-weight: bold; margin: 8px 2px;">
                                             {{event.points.datt_away}}</div>
                                     </div>
                                 </div>
@@ -269,16 +269,22 @@ STACKOVERFLOW https://www.angularjswiki.com/angular/creating-progress-spinner-in
                                     <div
                                         style=" border-width: 0; width: 100%; height: 35%; justify-content: flex-end; align-content: center; margin-bottom: 5px ">
                                         <div
-                                            style=" font-size: 10; align-self: center; font-weight: bold; color: '#41414d' ">
+                                            style=" font-size: 0.9rem; align-self: center; font-weight: bold; color: '#41414d' ">
                                             % de Posse</div>
                                     </div>
                                     <div
                                         style="display:flex; flex-direction:row; border-width: 0; width: 100%; justify-content: center ">
-                                        <div style=" width: 25%; text-align: right; font-weight: bold ">
+                                        <div
+                                            style=" width: 25%; text-align: right; font-weight: bold; margin: 5px 2px ">
                                             {{event.points.possession_home}}</div>
                                         <div
-                                            style="display:flex; flex-direction:row; border:none;width: 30px; margin: 0 5px 0 5px;">
+                                            style="display:flex; flex-direction:row; border:none;width: 30px; margin: 0 7px 0 5px;">
                                             <div>
+                                                <!--
+                                                    <div style="transform: rotate(180deg); border: none">
+                                                    </div>
+                                                -->
+
                                                 <mat-progress-spinner class="custom-spinner" diameter="33"
                                                     style="display: inline;" strokeWidth="8" mode="determinate"
                                                     value="100">
@@ -294,17 +300,17 @@ STACKOVERFLOW https://www.angularjswiki.com/angular/creating-progress-spinner-in
                                                
                                             <ProgressCircle style=" width: 25%; height: 22 }} progress={event.points.away_poss / 100} startAngle={0} backgroundColor={'#0088cc'} strokeWidth={4} progressColor={'#ff9900'} />
                                             -->
-                                        <div style=" width: 25%; text-align: left; font-weight: bold ">
+                                        <div style=" width: 25%; text-align: left; font-weight: bold; margin: 5px 2px ">
                                             {{event.points.possession_away}}</div>
                                     </div>
                                 </div>
                             </div>
                             <div
-                                style="display:flex; flex-direction:row; border-width: 0; height: 65%; margin-bottom: 2 ">
+                                style="display:flex; flex-direction:row; border:none; height: 65%; margin-bottom: 2px ">
                                 <div
                                     style="display:flex; flex-direction:column; justify-content: center; border-width: 0; width: 28% ">
                                     <div
-                                        style="display:flex;  flex-direction:row; border-width: 0; width: 100%; justify-content: center; margin-bottom: 5; margin-top: 20 ">
+                                        style="display:flex;  flex-direction:row; border-width: 0; width: 100%; justify-content: center; margin-bottom: 5px; margin-top: 20px ">
                                         <div style=" width: 20%; text-align: center; font-size: 11 ">🟨</div>
                                         <div style=" width: 20%; text-align: center; font-size: 11 ">🟥</div>
                                         <div style=" width: 20%; text-align: center; font-size: 11 ">⛳️</div>
@@ -313,27 +319,27 @@ STACKOVERFLOW https://www.angularjswiki.com/angular/creating-progress-spinner-in
                                     <div
                                         style="display:flex; flex-direction:row; border-width: 0; width: 100%; justify-content: center ">
                                         <div style=" width: 20%; text-align: center; font-weight: bold; font-size: 11 ">
-                                            {{event.points.home_ycards}}</div>
+                                            {{event.stats.corners[0]}}</div>
                                         <div style=" width: 20%; text-align: center; font-weight: bold; font-size: 11 ">
-                                            {{event.points.home_redcards}}</div>
+                                            {{event.points.redcards_home}}</div>
                                         <div style=" width: 20%; text-align: center; font-weight: bold; font-size: 11 ">
-                                            {{event.points.home_corners}}</div>
+                                            {{event.stats.yellowcards[0]}}</div>
                                         <div style=" width: 20%; text-align: center; font-weight: bold; font-size: 13 ">
                                             oppsH</div>
                                     </div>
                                 </div>
                                 <div
-                                    style="display:flex; flex-direction:column; justify-content: flex-start; border-width: 0; width: '44%'; border-color: 'blue' ">
+                                    style="display:flex; flex-direction:column; justify-content: flex-start; border:none; width: '44%'; border-color: 'blue' ">
                                     <div
-                                        style="display:flex; flex-direction:row; border-width: 0; width: 100%; height: 15; justify-content: center; margin-bottom: 1; margin-top: 1 ">
+                                        style="display:flex; flex-direction:row; border-width: 0; width: 100%; height: 15; justify-content: center; margin-bottom: 1px; margin-top: 1px ">
                                         <div
                                             style=" width: '40%'; text-align: center; font-size: 10; font-weight: bold; color: '#41414d'; vertical-align: center; ">
                                             No Alvo 🎯</div>
                                     </div>
                                     <div
-                                        style="display:flex; flex-direction:row; border-width: 0; justify-content: center; width: 100% ">
+                                        style="display:flex; flex-direction:row; border-width: 0; justify-content: center; align-items: center; width: 100%; border:none;">
                                         <div
-                                            style=" width: '16%'; text-align: center; vertical-align: top; font-size: 13; font-weight: bold ">
+                                            style=" width: '16%'; text-align: center; vertical-align: top; font-size: 1.15rem; font-weight: bold; border:none; ">
                                             {{event.points.on_target_home}}</div>
                                         <div
                                             style="display:flex; flex-direction:row; width: '60%'; justify-content: center; padding-top: 4 ">
@@ -351,22 +357,30 @@ STACKOVERFLOW https://www.angularjswiki.com/angular/creating-progress-spinner-in
                                                     "></div>
                                                         // #ff9900 = laranja do fogo #b30000 = vermelho do pace slider thumb
                                                     -->
+
+                                            <!--
+                                                        STACKOVERFLOW https://stackoverflow.com/questions/37296110/change-md-progress-linear-height
+                                                    -->
+                                            <mat-progress-bar color="primary" mode="determinate"
+                                                class="{{ event.points.on_target_away+event.points.on_target_home > 0? 'scale2-2' : 'scale0-01'}}"
+                                                value="{{event.points.on_target_home/(event.points.on_target_away+event.points.on_target_home)*100}}">
+                                            </mat-progress-bar>
                                         </div>
                                         <div
-                                            style=" width: '16%'; text-align: center; vertical-align: top; font-size: 13; font-weight: bold ">
+                                            style=" width: '16%'; text-align: center; vertical-align: top; font-size: 1.15rem; font-weight: bold ">
                                             {{event.points.on_target_away}}</div>
                                     </div>
                                     <div
-                                        style="display:flex; flex-direction:row; border-width: 0; width: 100%; height: 15; justify-content: center; margin-bottom: 1; margin-top: 3 ">
+                                        style="display:flex; flex-direction:row; border-width: 0; width: 100%; height: 15; justify-content: center; margin-bottom: 1px; margin-top: 3px ">
                                         <div
                                             style=" width: '40%'; text-align: center; font-size: 10; font-weight: bold; color: '#41414d' ">
                                             Ao Lado 👟</div>
                                     </div>
                                     <div
-                                        style="display:flex; flex-direction:row; border-width: 0; width: 100%; justify-content: center ">
+                                        style="display:flex; flex-direction:row; border-width: 0; width: 100%; justify-content: center; align-items: center; ">
                                         <div
-                                            style=" width: '16%'; text-align: center; vertical-align: top; font-size: 13; font-weight: bold ">
-                                            {{event.points.home_off_target}}</div>
+                                            style=" width: '16%'; text-align: center; vertical-align: top; font-size: 1.15rem; font-weight: bold ">
+                                            {{event.points.off_target_home}}</div>
                                         <div
                                             style="display:flex; flex-direction:row; width: '60%'; justify-content: center; padding-top: 3 ">
                                             <!--
@@ -380,16 +394,22 @@ STACKOVERFLOW https://www.angularjswiki.com/angular/creating-progress-spinner-in
                                                     width: (event.points.away_off_target_percent ? event.points.away_off_target_percent : 0) + '%'
                                                     "></div>
                                                 -->
+
+                                            <mat-progress-bar color="primary" mode="determinate"
+                                                class="{{ event.points.off_target_away+event.points.off_target_home > 0? 'scale2-2' : 'scale0-01'}}"
+                                                value="{{event.points.off_target_home/(event.points.off_target_away+event.points.off_target_home)*100}}">
+                                            </mat-progress-bar>
+
                                         </div>
                                         <div
-                                            style=" width: '16%'; text-align: center; vertical-align: top; vertical-align: top; font-size: 13; font-weight: bold ">
-                                            {{event.points.away_off_target}}</div>
+                                            style=" width: '16%'; text-align: center; vertical-align: top; vertical-align: top; font-size: 1.15rem; font-weight: bold ">
+                                            {{event.points.off_target_away}}</div>
                                     </div>
                                 </div>
                                 <div
                                     style="display:flex; flex-direction:column; justify-content: center; border-width: 0; width: 28% ">
                                     <div
-                                        style="display:flex; flex-direction:row; border-width: 0; width: 100%; justify-content: center; margin-bottom: 5; margin-top: 20 ">
+                                        style="display:flex; flex-direction:row; border-width: 0; width: 100%; justify-content: center; margin-bottom: 5px; margin-top: 20px ">
                                         <div style=" width: 20%; text-align: center; font-size: 15 ">🌟</div>
                                         <div style=" width: 20%; text-align: center; font-size: 11 ">⛳️</div>
                                         <div style=" width: 20%; text-align: center; font-size: 11 ">🟥</div>
@@ -400,11 +420,11 @@ STACKOVERFLOW https://www.angularjswiki.com/angular/creating-progress-spinner-in
                                         <div style=" width: 20%; text-align: center; font-weight: bold; font-size: 13 ">
                                             oppsA</div>
                                         <div style=" width: 20%; text-align: center; font-weight: bold; font-size: 11 ">
-                                            {{event.points.away_corners}}</div>
+                                            {{event.stats.corners[1]}}</div>
                                         <div style=" width: 20%; text-align: center; font-weight: bold; font-size: 11 ">
-                                            {{event.points.away_redcards}}</div>
+                                            {{event.points.redcards_away}}</div>
                                         <div style=" width: 20%; text-align: center; font-weight: bold; font-size: 11 ">
-                                            {{event.points.away_ycards}}</div>
+                                            {{event.stats.yellowcards[1]}}</div>
                                     </div>
                                 </div>
                             </div>
@@ -430,6 +450,18 @@ STACKOVERFLOW https://www.angularjswiki.com/angular/creating-progress-spinner-in
                             alt="away_logo" />
                     </mat-card-title>
                     <mat-card-subtitle class="subtitle last-child">
+                        <div
+                            style="display: flex; flex-direction: row; justify-content: center; align-items: center; border: none;padding: 10px 0 15px 0;">
+                            <div style="display:flex; flex-direction:row; border:none;width: 55%;border: none;">
+                                <mat-progress-bar color="primary" mode="determinate"
+                                    class="{{ event.points.on_target_away+event.points.on_target_home > 0? 'scale2-2' : 'scale0-01'}}"
+                                    value="{{ event.tm_stats && event.tm_stats.total_market_value &&
+                                event.tm_stats.total_market_value[0]/
+                                (event.tm_stats.total_market_value[1]+event.tm_stats.total_market_value[0])
+                                *100}}">
+                                </mat-progress-bar>
+                            </div>
+                        </div>
                         <!-- STACKOVERFLOW https://stackoverflow.com/questions/46350113/error-typeerror-cannot-read-property-0-of-undefined-angular-4-->
                         {{ event.tm_stats && event.tm_stats.avg_market_value &&
                         event.tm_stats.avg_market_value[0]/1000000
