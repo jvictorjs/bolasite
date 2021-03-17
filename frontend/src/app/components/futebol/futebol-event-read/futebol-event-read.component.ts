@@ -63,6 +63,10 @@ export class FutebolEventReadComponent implements OnInit {
       pointsIndexColoredSymbol: "🟡",
       pointsStringedWithBars: "||||||-||||||||||||",
       pointsStringedWithPeriod: "······x············"
+    },
+    stats: {
+      yellowcards: [0, 0],
+      corners: [0, 0]
     }
   }
   eventId = 0;
