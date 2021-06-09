@@ -1,3 +1,5 @@
+import { slideInAnimation } from './../../route-animation';
+import { NavService } from './../../components/template/nav/nav.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,7 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ControleFinanceiroComponent implements OnInit {
 
-  constructor() { }
+  
+  constructor(private headerService: NavService) {
+    headerService.headerData = {
+      title: 'Controle Financeiro',
+      icon: 'attach_money',
+      routeUrl: 'controle-financeiro'
+    }
+  }
 
   ngOnInit(): void {
   }

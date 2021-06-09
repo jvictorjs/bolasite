@@ -1,3 +1,5 @@
+import { slideInAnimation } from './../../route-animation';
+import { NavService } from './../../components/template/nav/nav.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,7 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TipsComponent implements OnInit {
 
-  constructor() { }
+  
+  constructor(private headerService: NavService) {
+    headerService.headerData = {
+      title: 'TIPS',
+      icon: 'sports_soccer',
+      routeUrl: 'tips'
+    }
+  }
 
   ngOnInit(): void {
   }

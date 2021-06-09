@@ -236,7 +236,8 @@ STACKOVERFLOW https://www.angularjswiki.com/angular/creating-progress-spinner-in
                                     style="display:flex; flex-direction:column; justify-content: center; border-width: 0; width: 45% ">
                                     <div
                                         style="display: flex; flex-direction: column;border: none; height: 35%; margin-bottom: 5px;">
-                                        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                                        <div
+                                            style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
                                             <div style="font-size: 0.85rem; align-self: center; font-weight: bold; color: '#41414d'; border: none;margin: 3px 0 0 0;"
                                                 matBadge="{{event.points.datt_per_minute}}" matBadgePosition="after"
                                                 matBadgeColor="primary">
@@ -536,6 +537,22 @@ STACKOVERFLOW https://www.angularjswiki.com/angular/creating-progress-spinner-in
         </ul>
     </mat-card>
 -->
+                <mat-card
+                    class="eventMarketValues mat-elevation-z1 {{ (event.tm_stats) && bolDetailedView ? '' : 'display-none' }}"
+                    (click)="switchBolDetailedView()">
+                    <mat-card-title class="title">
+                        Probabilidades
+                    </mat-card-title>
+                    <mat-card-subtitle class="subtitle last-child">
+                        Vitória time casa:  {{ event.event_odds && event.event_odds.odds_summary &&
+                            event.event_odds.odds_summary.end.home_prob
+                        +'%'}}
+                        <br>
+                        Vitória time visitante: {{ event.event_odds && event.event_odds.odds_summary &&
+                            event.event_odds.odds_summary.end.away_prob
+                            +'%'}}
+                    </mat-card-subtitle>
+                </mat-card>
                 <mat-card class="graphsCard mat-elevation-z1">
 
                     <!--

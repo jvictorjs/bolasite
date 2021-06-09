@@ -1,36 +1,42 @@
 <div class="view-content">
-    <mat-card class="graphsCard mat-elevation-z1">
+    <div
+        style="display: flex; justify-content: center; flex-direction: column; align-items: center; border: none; width: 100%;">
+        <div
+            style="display: flex; flex-direction: column; align-items: stretch; max-width: 1400px; border: none; width: 100%;">
+            <mat-card class="graphsCard mat-elevation-z1">
 
-        <a matTooltip="{{json_response | json}} => {{json_response}}">
-            <h1>
-                {{json_response.title}}
+                <a matTooltip="{{json_response | json}} => {{json_response}}">
+                    <h1>
+                        {{json_response.title}}
 
-            </h1>
-        </a>
-        <br>
-        <div style="row-gap: 1px;">
-            <div style="display: flex; flex-direction: row; column-gap: 20px; justify-content: space-between;"
-                *ngFor="let event of json_response.events">
-                <div style="width: 7%;">
-                    {{ event.start_at }}
+                    </h1>
+                </a>
+                <br>
+                <div style="row-gap: 1px;">
+                    <div style="display: flex; flex-direction: row; column-gap: 20px; justify-content: space-between;"
+                        *ngFor="let event of json_response.events">
+                        <div style="width: 7%;">
+                            {{ event.start_at }}
+                        </div>
+                        <div style="width: 18%;">
+                            {{ event.league }}
+                        </div>
+                        <div style="width: 35%;">
+                            {{ event.event }}
+                        </div>
+                        <div style="width: 30%;">
+                            {{ event.tv_channel }}
+                        </div>
+                    </div>
                 </div>
-                <div style="width: 18%;">
-                    {{ event.league }}
-                </div>
-                <div style="width: 35%;">
-                    {{ event.event }}
-                </div>
-                <div style="width: 30%;">
-                    {{ event.tv_channel }}
-                </div>
-            </div>
+                <br>
+                <button mat-raised-button matTooltip="Tooltip above the element" matTooltipPosition="above">
+                    Tooltip
+                </button>
+            </mat-card>
+            <br>
+            <br>
+            <br>
         </div>
-        <br>
-        <button mat-raised-button matTooltip="Tooltip above the element" matTooltipPosition="above">
-            Tooltip
-        </button>
-    </mat-card>
-    <br>
-    <br>
-    <br>
+    </div>
 </div>

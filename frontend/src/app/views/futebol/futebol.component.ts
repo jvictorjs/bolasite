@@ -14,7 +14,7 @@ export class FutebolComponent implements OnInit {
     headerService.headerData = {
       title: 'Jogos Ao Vivo',
       icon: 'sports_soccer',
-      routeUrl: ''
+      routeUrl: 'futebol'
     }
   }
 

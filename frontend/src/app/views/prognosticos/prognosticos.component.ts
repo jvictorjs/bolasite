@@ -1,4 +1,7 @@
+import { slideInAnimation } from './../../route-animation';
+import { NavService } from './../../components/template/nav/nav.service';
 import { Component, OnInit } from '@angular/core';
+
 
 @Component({
   selector: 'app-prognosticos',
@@ -7,7 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PrognosticosComponent implements OnInit {
 
-  constructor() { }
+  constructor(private headerService: NavService) {
+    headerService.headerData = {
+      title: 'Prognósticos',
+      icon: 'sports_soccer',
+      routeUrl: 'prognosticos'
+    }
+  }
 
   ngOnInit(): void {
   }

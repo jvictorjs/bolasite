@@ -1,0 +1,31 @@
+.home {
+    margin-bottom: 20px;
+}
+
+.home .title {
+    font-size: 2.3rem;
+    font-weight: light;
+    line-height: 1.2;
+}
+
+.home .subtitle {
+    font-size: 1.1rem;
+    margin-top: 0px;
+}
+
+.tremdgol_free_app_playstoreimg {
+    display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+  border-radius: 8px;
+  transition: transform .4s;
+  max-width: 400px;
+}
+
+.tremdgol_free_app_playstoreimg:hover {
+    -ms-transform: scale(1.3); /* IE 9 */
+    -webkit-transform: scale(1.3); /* Safari 3-8 */
+    transform: scale(1.3);  
+    border-radius: 8px;
+}

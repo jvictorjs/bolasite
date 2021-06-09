@@ -22,8 +22,8 @@ export class FutebolEventReadComponent implements OnInit {
     away: { image_id: '7409' },
     event_odds: {
       odds_summary: {
-        end: { home_odd: '', draw_odd: '', away_odd: '' },
-        start: { home_odd: '', draw_odd: '', away_odd: '' }
+        end: { home_odd: '', draw_odd: '', away_odd: '', home_prob: '', draw_prob: '', away_prob: '', },
+        start: { home_odd: '', draw_odd: '', away_odd: '',home_prob: '', draw_prob: '', away_prob: '', }
       }
     },
     pointsSlices: {
