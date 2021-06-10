@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class FutebolService {
 
   baseUrl = 'https://angularcrudbackend.bolanarede.net.br/live_events/1' // PRODUÇÃO - live events
-  baseUrl_upcomingEvents = 'https://angularcrudbackend.bolanarede.net.br/live_events/2' // PRODUÇÃO - live event
+  baseUrl_upcomingEvents = 'https://angularcrudbackend.bolanarede.net.br/live_events/2' // PRODUÇÃO - upcoming event
   // baseUrl = 'http://localhost:3001/live_events/1' // DESENVOLVIMENTO
   // the below link is from 
   baseUrl2 = 'https://script.google.com/macros/s/AKfycbx9YFTSh9GRqZ6TYPirRUWGtIdfqWR7qrLyAa2rdQuvV-Pm15B7qBbt/exec?doLoop=justDoIt'
@@ -77,7 +77,7 @@ export class FutebolService {
     // return this.jogos.result.inPlayEventsBSF_eventViewInfos.find( ({ id }) => id === id );
   }
 
-  readById_fromServiceCache(eventId:number):any{
+  readById_fromServiceCache(eventId: number): any {
     console.log(`total events on service = ${this.jogos.response.result.inPlayEventsBSF_eventViewInfos.length}`)
     let retorno = this.jogos.response.result.inPlayEventsBSF_eventViewInfos.find((x: { id: string; }) => x.id === eventId.toString())
     console.log(`event found in service cache = ${retorno.stringedGameWithRedcards}`)
@@ -114,6 +114,74 @@ export class FutebolService {
   getToolTipMsgForEvent_colorSlices(event: any) {
     let retorno = `\n` + event.pointsSlices.minutesToShow_stringed
       + `\n ` + event.pointsSlices.powerIndexToShow_stringed
+    return retorno
+  }
+
+
+  parseEpochTimeToTimeToKO(epochTimeString: any) { // 10jun2021 
+    const getDateDDMMMhhmmMiniZone = (date: Date) => { // 03/Jun 13:10 GMT-0300
+      var dd = date.getDate();
+      var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+      var MMM = months[date.getMonth()]
+      var hh = date.getHours()
+      var mm = date.getMinutes()
+
+      if (dd < 10) {
+        dd = Number('0' + dd);
+      }
+      if (hh < 10) {
+        hh = Number('0' + hh);
+      }
+      if (mm < 10) {
+        mm = Number('0' + mm);
+      }
+      let dateStringed = date.toString()
+      let timeZone = dateStringed.substring(dateStringed.indexOf('('), dateStringed.length);
+      let miniTimeZone = dateStringed.substring(dateStringed.indexOf('GMT'), dateStringed.indexOf(' ('));
+      console.log(dateStringed)
+      console.log(timeZone)
+      console.log(miniTimeZone)
+      return dd + '/' + MMM + ' ' + hh + ':' + mm + ' ' + miniTimeZone;
+    }
+
+    const msToTimeddHHmm = (msDuration: number) => { // 4h54m | 42m | 1d3h | 10h | -15m | -3h 
+      let msDuration_absolute = Math.abs(msDuration)
+      var seconds = Math.floor((msDuration_absolute / 1000) % 60),
+        minutes = Math.floor((msDuration_absolute / (1000 * 60)) % 60),
+        hours = Math.floor((msDuration_absolute / (1000 * 60 * 60)) % 24),
+        days = Math.floor((msDuration_absolute / (1000 * 60 * 60)) / 24);
+
+      let retorno = ''
+      if (days > 0) {
+        retorno += days + 'd'
+        if (hours > 0) {
+          retorno += hours + "h"
+        }
+      } else {
+        if (hours > 0) {
+          if (hours >= 5) {
+            retorno += hours + "h"
+          } else {
+            retorno += hours + "h" + minutes + 'm'
+          }
+        } else {
+          retorno += minutes + 'm'
+        }
+      }
+      return (msDuration > 0) ? retorno : '-' + retorno;
+    }
+
+    const getTimeStamps = (epochTimeString: string) => {
+      return {
+        // NEW TIMESTAMPS properties (correct names)
+        time_stringed_ISO_8601: new Date(Number(epochTimeString) * 1000), // The 0 there is the key, which sets the date to the epoch
+        time_stringed_withZoneBR: getDateDDMMMhhmmMiniZone(new Date(Number(epochTimeString) * 1000)), // The 0 there is the key, which sets the date to the epoch
+        timeUntilKickOff_stringed: msToTimeddHHmm(new Date(Number(epochTimeString) * 1000).getTime() - new Date().getTime()), // The 0 there is the key, which sets the date to the epoch
+      }
+    }
+    // NEW TIMESTAMPS properties (correct names)
+    let retorno = getTimeStamps(epochTimeString)
+    //console.log('timeStamps = ' + JSON.stringify(retorno))
     return retorno
   }
 

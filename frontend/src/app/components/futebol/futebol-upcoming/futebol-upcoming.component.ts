@@ -51,6 +51,10 @@ export class FutebolUpcomingComponent implements OnInit {
     this.futebolService.readUpComingEvents().subscribe(jogos => {
       this.jogos_upcoming = jogos
       this.futebolService.jogos_upcoming = jogos
+      for (let upcomingEvent of this.jogos_upcoming.response.result){
+        upcomingEvent.timeStamps = this.parseEpochTimeToTimeToKO(upcomingEvent.time)
+      }
+      this.jogos_upcoming.response.result = this.jogos_upcoming.response.result.filter((upEvent: any)=> upEvent.timeStamps.timeUntilKickOff_stringed.indexOf('-') === -1)
       console.log(`total loaded upcoming events = ${this.jogos_upcoming.response.result.length}`)
       //this.futebolService.showMessage('Upcoming events loaded. ✅') // ✅✔
       if (this.jogos_upcoming.response.result.length === 0) {
@@ -71,5 +75,9 @@ export class FutebolUpcomingComponent implements OnInit {
 
   getFlags($code: string) {
     return this.futebolService.getFlags($code);
+  }
+
+  parseEpochTimeToTimeToKO(timeEpoch: string) {
+    return this.futebolService.parseEpochTimeToTimeToKO(timeEpoch);
   }
 }

@@ -41,6 +41,7 @@
   "live_events": [
     {
       "id": 1,
+      "description": "live events",
       "response": {
         "botVersion": 113,
         "result": {
@@ -51,24 +52,27 @@
     },
     {
       "id": 2,
-      "response": "response"
+      "description": "upcoming events",
+      "response": {
+        "botVersion": 113
+      }
     },
     {
       "id": 3,
-      "response": "response"
-    },
-    {
-      "id": 4,
-      "response": "response"
-    },
-    {
-      "id": 5,
-      "response": "response"
+      "description": "bf upcoming events",
+      "response": {
+        "botVersion": 113
+      }
     }
   ],
   "todos": [
     {
       "id": 1,
+      "title": "title1",
+      "details": "details"
+    },
+    {
+      "id": 2,
       "title": "title1",
       "details": "details"
     }
