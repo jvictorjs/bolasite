@@ -32,7 +32,7 @@ export class FutebolUpcomingComponent implements OnInit {
 
     this.intervalId = setInterval(() => {
       this.loadUpcomingEvents();
-    }, 360000);
+    }, 125000);
   }
 
   switchShowUpcomingEvents(): void {

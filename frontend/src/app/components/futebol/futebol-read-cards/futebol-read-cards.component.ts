@@ -33,7 +33,7 @@ export class FutebolReadCardsComponent implements OnInit {
 
     this.intervalId = setInterval(() => {
       this.loadEvents();
-    }, 30000);
+    }, 60000);
   }
 
   ngOnDestroy() {
