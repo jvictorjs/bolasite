@@ -10,8 +10,6 @@ import { NavService } from './../../components/template/nav/nav.service';
 })
 export class AboutComponent implements OnInit {
 
-  'https://script.google.com/macros/s/AKfycbxkbKS7Wb3nNCb5GJD-IAOT_PFxXvF0GjK56UwkE1jaWhbU6sV4BkTkkg/exec?getSchedule=1'
-
   constructor(private headerService: NavService) {
     headerService.headerData = {
       title: 'Sobre',

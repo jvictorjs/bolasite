@@ -20,7 +20,7 @@ export class FutebolUpcomingComponent implements OnInit {
     private futebolService: FutebolService,
     private router: Router,
     private route: ActivatedRoute,) {
-    this.futebolService.showLoadingMessage('Loading events...')
+    //this.futebolService.showLoadingMessage('Loading events...')
   }
 
   ngOnInit(): void {

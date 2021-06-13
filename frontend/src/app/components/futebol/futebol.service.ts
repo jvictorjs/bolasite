@@ -12,9 +12,6 @@ export class FutebolService {
   baseUrl_upcomingEvents = 'https://angularcrudbackend.bolanarede.net.br/live_events/2' // PRODUÇÃO - upcoming event
   // baseUrl = 'http://localhost:3001/live_events/1' // DESENVOLVIMENTO
   // the below link is from 
-  baseUrl2 = 'https://script.google.com/macros/s/AKfycbx9YFTSh9GRqZ6TYPirRUWGtIdfqWR7qrLyAa2rdQuvV-Pm15B7qBbt/exec?doLoop=justDoIt'
-  // mudei o /2/ para /s/ e, 18fev21, parecia nao funcionar com /2/ nao entendi | baseUrl2 = 'https://script.google.com/macros/2/AKfycbx9YFTSh9GRqZ6TYPirRUWGtIdfqWR7qrLyAa2rdQuvV-Pm15B7qBbt/exec?doLoop=justDoIt'
-  // https://script.google.com/macros/s/AKfycby7xJZIUEwRVRESF11LKl8xv96JoQLtgBl6KgxUfuQ/dev?doLoop=justDoIt&eventId=2683591&cached=true
   jogos: any = { id: 0, response: { botVersion: 0, result: { loopMsgText: '', inPlayEventsBSF_eventViewInfos: [] } } };
   jogos_upcoming: any = { id: 0, response: { botVersion: 0, result: [] } };
   event: any = { botVersion: 0, result: { loopMsgText: '', inPlayEventsBSF_eventViewInfos: [] } };
@@ -55,26 +52,6 @@ export class FutebolService {
     this.jogos_upcoming = this.http.get<Object>(this.baseUrl_upcomingEvents)
     console.log('upcoming events will be collected');
     return this.jogos_upcoming
-  }
-
-
-  readById(id: number): Observable<Object> {
-    // console.log('collecting event with id = ' + id)
-    // console.log(this.baseUrl2 + '&eventId=' + id)
-    return this.http.get<Object>(this.baseUrl2 + '&eventId=' + id)
-    // console.log('this.jogos.result.inPlayEventsBSF_eventViewInfos.length = ' + this.jogos.result.inPlayEventsBSF_eventViewInfos.length)
-    // return this.jogos.result.inPlayEventsBSF_eventViewInfos.find((x: { id: number; }) => x.id == id)
-    // return this.jogos.result.inPlayEventsBSF_eventViewInfos.find( ({ id }) => id === id );
-  }
-
-  readById_cached(id: number): Observable<Object> {
-    console.log('readById_cached --- START')
-    // console.log('collecting event with id  = ' + id)
-    // console.log(this.baseUrl2 + '&eventId=' + id + '&cached=true')
-    return this.http.get<Object>(this.baseUrl2 + '&eventId=' + id + '&cached=true')
-    // console.log('this.jogos.result.inPlayEventsBSF_eventViewInfos.length = ' + this.jogos.result.inPlayEventsBSF_eventViewInfos.length)
-    // return this.jogos.result.inPlayEventsBSF_eventViewInfos.find((x: { id: number; }) => x.id == id)
-    // return this.jogos.result.inPlayEventsBSF_eventViewInfos.find( ({ id }) => id === id );
   }
 
   readById_fromServiceCache(eventId: number): any {
@@ -138,9 +115,9 @@ export class FutebolService {
       let dateStringed = date.toString()
       let timeZone = dateStringed.substring(dateStringed.indexOf('('), dateStringed.length);
       let miniTimeZone = dateStringed.substring(dateStringed.indexOf('GMT'), dateStringed.indexOf(' ('));
-      console.log(dateStringed)
-      console.log(timeZone)
-      console.log(miniTimeZone)
+      // console.log(dateStringed)
+      //console.log(timeZone)
+      //console.log(miniTimeZone)
       return dd + '/' + MMM + ' ' + hh + ':' + mm + ' ' + miniTimeZone;
     }
 

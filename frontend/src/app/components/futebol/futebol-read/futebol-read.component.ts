@@ -19,7 +19,7 @@ export class FutebolReadComponent implements OnInit {
     private futebolService: FutebolService,
     private router: Router,
     private route: ActivatedRoute,) {
-    this.futebolService.showLoadingMessage('Loading events...')
+    //this.futebolService.showLoadingMessage('Loading events...')
   }
 
   ngOnInit(): void {
@@ -45,7 +45,7 @@ export class FutebolReadComponent implements OnInit {
     this.futebolService.loadEvents().subscribe(jogos => {
       this.jogos = jogos
       this.futebolService.jogos = jogos
-      this.futebolService.showLoadingMessage('Events loaded. ✅') // ✅✔
+      //this.futebolService.showLoadingMessage('Events loaded. ✅') // ✅✔
       if (this.jogos.response.result.inPlayEventsBSF_eventViewInfos.length === 0) {
         this.futebolService.showMessage('No live events.')
         // this.futebolService.showMessage('Sem jogos ao vivo no momento.')
@@ -61,6 +61,7 @@ export class FutebolReadComponent implements OnInit {
   consolaTotalEvents(): void {
     this.futebolService.consolaTotalEvents();
   }
+  
 
   getFlags($code: string) {
     if ($code) {

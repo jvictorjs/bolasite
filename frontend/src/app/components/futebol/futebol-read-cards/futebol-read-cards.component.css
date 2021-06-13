@@ -123,3 +123,8 @@ i:hover {
     /* Safari 3-8 */
     transform: scale(2.8);
 }
+
+
+.rotate-infinite {
+    animation: rotate 2.3s linear infinite;
+}

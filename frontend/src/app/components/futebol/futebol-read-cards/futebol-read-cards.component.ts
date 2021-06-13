@@ -21,7 +21,7 @@ export class FutebolReadCardsComponent implements OnInit {
     private futebolService: FutebolService,
     private router: Router,
     private route: ActivatedRoute,) {
-    this.futebolService.showLoadingMessage('Loading events...')
+    //this.futebolService.showLoadingMessage('Loading events...')
   }
 
   ngOnInit(): void {
@@ -43,11 +43,13 @@ export class FutebolReadCardsComponent implements OnInit {
   }
 
   loadEvents(): void {
+    this.showLoader1()
     console.log('auto refresh - loading events...');
     this.futebolService.loadEvents().subscribe(jogos => {
       this.jogos = jogos
       this.futebolService.jogos = jogos
-      this.futebolService.showLoadingMessage('Events loaded. ✅') // ✅✔
+      //this.futebolService.showLoadingMessage('Events loaded. ✅') // ✅✔
+      this.hideLoader1()
       if (this.jogos.response.result.inPlayEventsBSF_eventViewInfos.length === 0) {
         this.futebolService.showMessage('No live events.')
         // this.futebolService.showMessage('Sem jogos ao vivo no momento.')
@@ -94,5 +96,26 @@ export class FutebolReadCardsComponent implements OnInit {
 
   getToolTipMsgForEvent_colorSlices(event: any) {
     return this.futebolService.getToolTipMsgForEvent_colorSlices(event)
+  }
+
+  
+  hideLoader1(): void {
+    // Setting display of spinner element to none 
+    //document.getElementById('loadingEventComponent').style.display = 'inline';
+    document.getElementById('loadingEventComponent_ball1').style.display = 'none';
+    document.getElementById('loaderBall').style.color = 'red';
+    document.getElementById('eventsCardList').style.display = 'inline';
+    // document.getElementById('graphs').style.display = 'inline';
+    //document.getElementById('eventComponent').style.display = 'inline';
+  }
+
+  showLoader1(): void {
+    // Setting display of spinner element to inline 
+    //document.getElementById('loadingEventComponent').style.display = 'inline';
+    document.getElementById('loadingEventComponent_ball1').style.display = 'inline';
+    //document.getElementById('loaderBall').style.color = 'red';
+    document.getElementById('eventsCardList').style.display = 'none';
+    //document.getElementById('graphs').style.display = 'none';
+    //document.getElementById('eventComponent').style.display = 'none';
   }
 }

@@ -193,18 +193,6 @@ export class FutebolEventReadComponent implements OnInit {
     this.hideLoader();
     this.updateChart();
     this.updateClock();
-    /*
-        this.futebolService.readById_cached(id).subscribe(event => { // cached direct from google apps scripts
-          // console.log('chegou evento = ' + JSON.stringify(event))
-          this.futebolService.event = event
-          // this.event = this.futebolService.event.result.inPlayEventsBSF_eventViewInfos[0]
-          this.event = event
-          //this.futebolService.showMessage('Event loaded ✅') // ✅✔
-          this.hideLoader();
-          this.updateChart();
-          this.updateClock();
-        })
-        */
 
     setInterval(() => {
       // console.log(this.eventClock.date)
@@ -234,7 +222,7 @@ export class FutebolEventReadComponent implements OnInit {
       console.log('chegou eventos');
       this.jogos = jogos
       console.log(`data total events on service = ${this.jogos.response.result.inPlayEventsBSF_eventViewInfos.length}`)
-      this.futebolService.showMessage('Service reloaded. ✅') // ✅✔
+      //this.futebolService.showMessage('Service reloaded. ✅') // ✅✔
       this.event = this.jogos.response.result.inPlayEventsBSF_eventViewInfos.find((x: { id: string; }) => x.id === eventId.toString())
       this.updateChart();
       this.updateClock();

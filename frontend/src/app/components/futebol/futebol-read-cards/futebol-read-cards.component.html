@@ -10,81 +10,93 @@
     <div
         style="display: flex; flex-direction: column; align-items: stretch; max-width: 1000px; border: none; width: 100%;">
 
-        <div *ngFor="let event of jogos.response.result.inPlayEventsBSF_eventViewInfos">
-            <mat-card class="event-card mat-elevation-z2">
-                <!--STACKOVERFLOW https://stackblitz.com/angular/yjpgkmogvgle?file=src%2Fapp%2Fbadge-overview-example.ts-->
-                <div class=" event-div" matBadge="{{event.points.datt_per_minute}}" matBadgePosition="after"
-                    matBadgeColor="warn" [matBadgeHidden]="getBadgeVisibility(event.points.datt_per_minute)">
-                    <div style="display: flex; flex-direction: row; justify-content: space-around; border:none; flex-wrap: wrap; 
+        <div class="centerALL">
+            <div id="loadingEventComponent_ball1" class="centerALL rotate-infinite"
+                style="border: none; width: 100px; margin: 150px 0 150px 0">
+                <!--STACKOVERFLOW https://stackoverflow.com/questions/53312640/how-to-change-size-of-mat-icon-on-angular-material/53312754-->
+                <mat-icon id="loaderBall"class="material-icons textColor" style="border: none;transform: scale(5)">
+                    sports_soccer
+                </mat-icon>
+            </div>
+        </div>
+        <div id="eventsCardList">
+            <div *ngFor="let event of jogos.response.result.inPlayEventsBSF_eventViewInfos">
+                <mat-card class="event-card mat-elevation-z2">
+                    <!--STACKOVERFLOW https://stackblitz.com/angular/yjpgkmogvgle?file=src%2Fapp%2Fbadge-overview-example.ts-->
+                    <div class=" event-div" matBadge="{{event.points.datt_per_minute}}" matBadgePosition="after"
+                        matBadgeColor="warn" [matBadgeHidden]="getBadgeVisibility(event.points.datt_per_minute)">
+                        <div style="display: flex; flex-direction: row; justify-content: space-around; border:none; flex-wrap: wrap; 
                 width: 100%; margin: 0px; padding:1px">
-                        <div class="textColor centerALL v-middle"
-                            style="display:flex; flex-direction: row; justify-content: center; font-size: 0.8rem; 
+                            <div class="textColor centerALL v-middle"
+                                style="display:flex; flex-direction: row; justify-content: center; font-size: 0.8rem; 
                         font-weight: 500; text-align: center;border:none; max-width: 18%; min-width: 60px; margin: 0px 5px 0px 15px">
-                            {{event.brClock}}
-                        </div>
-                        <div (click)="switchBolToolTipVisibility(event)" style="border: none;">
-                            <span class="material-icons md-24 v-middle" matTooltip="Click to see stats.">
-                                bar_chart
-                            </span>
-                            <!--➕📊-->
-                        </div>
-                        <!--
+                                {{event.brClock}}
+                            </div>
+                            <div (click)="switchBolToolTipVisibility(event)" style="border: none;">
+                                <span class="material-icons md-24 v-middle" matTooltip="Click to see stats.">
+                                    bar_chart
+                                </span>
+                                <!--➕📊-->
+                            </div>
+                            <!--
 
                             <a routerLink="/futebol/event/{{ event.id }}" [state]="{hello:'world'}" class="view">
                         -->
 
-                        <a (click)="navigateToEvent(event.id)" class="view">
-                            <div
-                                style="display: inline-block; flex-direction: row; flex-wrap: wrap;border:none; min-width: 200px; margin: 0px 0 0px 0;">
-                                <div class="textColor"
-                                    style="display:inline-block; flex-direction: row; justify-content: center; 
+                            <a (click)="navigateToEvent(event.id)" class="view">
+                                <div
+                                    style="display: inline-block; flex-direction: row; flex-wrap: wrap;border:none; min-width: 200px; margin: 0px 0 0px 0;">
+                                    <div class="textColor"
+                                        style="display:inline-block; flex-direction: row; justify-content: center; 
                         padding: 0px 3px 0 8px; font-size: 1.1rem; border:none; vertical-align:middle; max-width:27px;">
-                                    {{ getFlags(event.league.cc)}}
-                                </div>
-                                <div class="textColor" style="display:inline-block; flex-direction: row; justify-content: center; 
+                                        {{ getFlags(event.league.cc)}}
+                                    </div>
+                                    <div class="textColor" style="display:inline-block; flex-direction: row; justify-content: center; 
                         padding: 0px 8px 0 3px; font-size: 0.85rem; font-weight: 600; border:none; flex-wrap: wrap;">
-                                    {{event.league.name}}
-                                </div>
-                            </div>
-                        </a>
-                        <div class="centerALL" style="border:none; border-color: green; min-width: 55%;" matTooltip="{{'\n
-        '+
-            getToolTipMsgForEvent(event)}} {{getToolTipMsgForEvent_colorSlices(event)}}" matTooltipPosition="below"
-                            matTooltipClass="tooltip" matTooltipTouchGestures="on" matRipple>
-                            <a routerLink="/futebol/event/{{ event.id }}" [state]="{hello:'world'}" class="view">
-                                <div style="display:inline-block; flex-direction: row; justify-content: center; flex-wrap: wrap;
-                        font-size: 0.9rem; font-weight: 500; border:none;">
-                                    <img src="https://assets.b365api.com/images/team/m/{{ event.home.image_id }}.png"
-                                        alt="home_logo" class="team-logo" />
-                                    {{event.stringedGameWithRedcards}}
-                                    <img src="https://assets.b365api.com/images/team/m/{{ event.away.image_id }}.png"
-                                        alt="away_logo" class="team-logo" />
+                                        {{event.league.name}}
+                                    </div>
                                 </div>
                             </a>
+                            <div class="centerALL" style="border:none; border-color: green; min-width: 55%;" matTooltip="{{'\n
+        '+
+            getToolTipMsgForEvent(event)}} {{getToolTipMsgForEvent_colorSlices(event)}}" matTooltipPosition="below"
+                                matTooltipClass="tooltip" matTooltipTouchGestures="on" matRipple>
+                                <a routerLink="/futebol/event/{{ event.id }}" [state]="{hello:'world'}" class="view">
+                                    <div style="display:inline-block; flex-direction: row; justify-content: center; flex-wrap: wrap;
+                        font-size: 0.9rem; font-weight: 500; border:none;">
+                                        <img src="https://assets.b365api.com/images/team/m/{{ event.home.image_id }}.png"
+                                            alt="home_logo" class="team-logo" />
+                                        {{event.stringedGameWithRedcards}}
+                                        <img src="https://assets.b365api.com/images/team/m/{{ event.away.image_id }}.png"
+                                            alt="away_logo" class="team-logo" />
+                                    </div>
+                                </a>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="tooltiptext mat-elevation-z10 {{ event.bolToolTipVisibility ? ' visibility-visible' : 'visibility-hidden'}}"
-                        (click)="switchBolToolTipVisibility(event)">
-                        <!--
+                        <div class="tooltiptext mat-elevation-z10 {{ event.bolToolTipVisibility ? ' visibility-visible' : 'visibility-hidden'}}"
+                            (click)="switchBolToolTipVisibility(event)">
+                            <!--
                     STACKOVERFLOW https://stackoverflow.com/questions/44410095/angular-create-a-new-line-on-html
                     <div (click)="switchBolToolTipVisibility(event)" style="border:inset;">
                         X
                     </div>
                 -->
-                        <div
-                            style="color: rgba(255,255,255,1);font-weight: 500;white-space: pre-wrap; font-size: 0.7rem; padding: 3px;">
-                            {{getToolTipMsgForEvent(event)}}
-                            {{getToolTipMsgForEvent_colorSlices(event)}}
-                        </div>
-                        <div style=" display: flex;border: none; justify-content: flex-end;margin:2px 2px 2px 2px ;">
-                            <mat-icon mat-list-icon class="material-icons" style="color:#fff; font-size: 1rem;">
-                                cancel
-                            </mat-icon>
+                            <div
+                                style="color: rgba(255,255,255,1);font-weight: 500;white-space: pre-wrap; font-size: 0.7rem; padding: 3px;">
+                                {{getToolTipMsgForEvent(event)}}
+                                {{getToolTipMsgForEvent_colorSlices(event)}}
+                            </div>
+                            <div
+                                style=" display: flex;border: none; justify-content: flex-end;margin:2px 2px 2px 2px ;">
+                                <mat-icon mat-list-icon class="material-icons" style="color:#fff; font-size: 1rem;">
+                                    cancel
+                                </mat-icon>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </mat-card>
+                </mat-card>
+            </div>
         </div>
     </div>
 </div>
