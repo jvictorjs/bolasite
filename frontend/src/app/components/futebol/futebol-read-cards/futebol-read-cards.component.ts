@@ -32,7 +32,7 @@ export class FutebolReadCardsComponent implements OnInit {
     }
 
     this.intervalId = setInterval(() => {
-      this.loadEvents();
+      this.reloadEvents();
     }, 60000);
   }
 
@@ -50,6 +50,27 @@ export class FutebolReadCardsComponent implements OnInit {
       this.futebolService.jogos = jogos
       //this.futebolService.showLoadingMessage('Events loaded. ✅') // ✅✔
       this.hideLoader1()
+      if (this.jogos.response.result.inPlayEventsBSF_eventViewInfos.length === 0) {
+        this.futebolService.showMessage('No live events.')
+        // this.futebolService.showMessage('Sem jogos ao vivo no momento.')
+      } else {
+        for (let event of this.jogos.response.result.inPlayEventsBSF_eventViewInfos) {
+          console.log(event.pointsStringedWithFavoriteSymbol)
+          event.bolToolTipVisibility = false;
+        }
+      }
+    })
+  }
+
+  
+  reloadEvents(): void {
+    //this.showLoader1()
+    console.log('auto refresh - loading events...');
+    this.futebolService.loadEvents().subscribe(jogos => {
+      this.jogos = jogos
+      this.futebolService.jogos = jogos
+      //this.futebolService.showLoadingMessage('Events loaded. ✅') // ✅✔
+      //this.hideLoader1()
       if (this.jogos.response.result.inPlayEventsBSF_eventViewInfos.length === 0) {
         this.futebolService.showMessage('No live events.')
         // this.futebolService.showMessage('Sem jogos ao vivo no momento.')
@@ -103,7 +124,7 @@ export class FutebolReadCardsComponent implements OnInit {
     // Setting display of spinner element to none 
     //document.getElementById('loadingEventComponent').style.display = 'inline';
     document.getElementById('loadingEventComponent_ball1').style.display = 'none';
-    document.getElementById('loaderBall').style.color = 'red';
+    //document.getElementById('loaderBall').style.color = 'red';
     document.getElementById('eventsCardList').style.display = 'inline';
     // document.getElementById('graphs').style.display = 'inline';
     //document.getElementById('eventComponent').style.display = 'inline';
