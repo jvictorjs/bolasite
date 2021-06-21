@@ -32,8 +32,10 @@ module.exports = [bodyParser.json({
 
 */
 
+
+// STACKOVERFLOW check NGNIX to set a big file size https://medium.com/@svsh227/error-413-request-entity-too-large-in-nginx-with-client-max-body-size-changes-in-nginx-6aacd525fe11
 const bodyParser = require('body-parser');
-jsonServer.bodyParser[0] = bodyParser.json({ limit: '100.001mb', extended: false })
+jsonServer.bodyParser[0] = bodyParser.json({ limit: '30.001mb', extended: false })
 
 const hello_mid = require('./hello_middleware');
 const middlewares = jsonServer.defaults(defaultsOpts)
